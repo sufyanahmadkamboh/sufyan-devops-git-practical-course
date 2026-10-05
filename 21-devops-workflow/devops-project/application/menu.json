@@ -1,0 +1,7 @@
+{
+  "items": [
+    {"name": "espresso", "price": "2.50"},
+    {"name": "latte", "price": "3.20"},
+    {"name": "cappuccino", "price": "3.40"}
+  ]
+}
