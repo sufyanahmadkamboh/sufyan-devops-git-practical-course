@@ -9,6 +9,36 @@ junior makes the lesson's mistake on purpose, they read the error together, fix 
 recorded by `tests/run.sh --update` when the lessons ran (with Git 2.54, and against GitHub for the GitHub modules).
 The diagrams are the lessons' own. Nothing on screen is typed by hand, and the narration is the lessons' text.
 
+## The videos
+
+| # | Video | Length | Files |
+|---|---|---|---|
+| 01 | Module 01 · Git fundamentals | 7:47 | `git-course-01-fundamentals-full.mp4` / `-silent.mp4` |
+| 02 | Module 02 · Repositories | 8:12 | `git-course-02-repositories-full.mp4` / `-silent.mp4` |
+| 03 | Module 03 · Commits | 8:33 | `git-course-03-commits-full.mp4` / `-silent.mp4` |
+| 04 | Module 04 · Git history | 7:23 | `git-course-04-history-full.mp4` / `-silent.mp4` |
+| 05 | Module 05 · Branches | 10:12 | `git-course-05-branches-full.mp4` / `-silent.mp4` |
+| 06 | Module 06 · Merging | 10:56 | `git-course-06-merging-full.mp4` / `-silent.mp4` |
+| 07 | Module 07 · Undoing changes | 9:11 | `git-course-07-undoing-full.mp4` / `-silent.mp4` |
+| 08 | Module 08 · Stash | 5:19 | `git-course-08-stash-full.mp4` / `-silent.mp4` |
+| 09 | Module 09 · Remote repositories | 12:00 | `git-course-09-remotes-full.mp4` / `-silent.mp4` |
+| 10 | Module 10 · GitHub fundamentals | 14:26 | `git-course-10-github-full.mp4` / `-silent.mp4` |
+| 11 | Module 11 · Pull requests | 8:42 | `git-course-11-pull-requests-full.mp4` / `-silent.mp4` |
+| 12 | Module 12 · Collaboration | 9:00 | `git-course-12-collaboration-full.mp4` / `-silent.mp4` |
+| 13 | Module 13 · Rebase | 12:55 | `git-course-13-rebase-full.mp4` / `-silent.mp4` |
+| 14 | Module 14 · Advanced Git | 12:04 | `git-course-14-advanced-git-full.mp4` / `-silent.mp4` |
+| 15 | Module 15 · Git internals | 8:44 | `git-course-15-git-internals-full.mp4` / `-silent.mp4` |
+| 16 | Module 16 · Advanced recovery | 5:57 | `git-course-16-recovery-full.mp4` / `-silent.mp4` |
+| 17 | Module 17 · Git hooks | 6:26 | `git-course-17-hooks-full.mp4` / `-silent.mp4` |
+| 18 | Module 18 · Advanced repositories | 5:41 | `git-course-18-advanced-repositories-full.mp4` / `-silent.mp4` |
+| 19 | Module 19 · Git security | 8:36 | `git-course-19-security-full.mp4` / `-silent.mp4` |
+| 20 | Module 20 · GitHub advanced | 11:35 | `git-course-20-github-advanced-full.mp4` / `-silent.mp4` |
+| 21 | Module 21 · The DevOps workflow | 2:50 | `git-course-21-devops-workflow-full.mp4` / `-silent.mp4` |
+| 22 | Module 22 · Real-world troubleshooting | 14:36 | `git-course-22-troubleshooting-full.mp4` / `-silent.mp4` |
+| 23 | Capstone · A broken repository to Kubernetes | 2:36 | `git-course-23-capstone-full.mp4` / `-silent.mp4` |
+
+Total: 3 h 24 min.
+
 ## Two versions of every video
 
 | File (in `out/partNN/`) | Picture | Sound |

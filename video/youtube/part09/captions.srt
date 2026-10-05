@@ -1,0 +1,663 @@
+1
+00:00:04,800 --> 00:00:06,505
+What is a remote?
+
+2
+00:00:07,067 --> 00:00:13,293
+A remote is another copy of the repository that yours knows by a short name, usually origin.
+
+3
+00:00:13,293 --> 00:00:22,701
+We look at how your clone remembers the remote's branches (origin/main) and why they are only a snapshot of the last time you talked to it.
+
+4
+00:00:24,467 --> 00:00:28,866
+First, a fresh practice repository for this lesson.
+
+5
+00:00:29,400 --> 00:00:36,778
+origin is the name, the path is the address (on GitHub it is https://github.com/...
+
+6
+00:00:36,778 --> 00:00:38,822
+or [email]:...).
+
+7
+00:00:38,822 --> 00:00:44,244
+One for fetching, one for pushing; they are usually the same.
+
+8
+00:00:44,800 --> 00:00:52,050
+origin is the name, the path is the address (on GitHub it is https://github.com/...
+
+9
+00:00:52,050 --> 00:00:54,059
+or [email]:...).
+
+10
+00:00:54,059 --> 00:00:59,387
+One for fetching, one for pushing; they are usually the same.
+
+11
+00:00:59,387 --> 00:01:05,588
+origin/main (shown as remotes/origin/main) is a remote-tracking branch:
+
+12
+00:01:05,588 --> 00:01:09,169
+your clone's memory of the server's main.
+
+13
+00:01:10,933 --> 00:01:12,885
+Let me try something.
+
+14
+00:01:12,885 --> 00:01:15,208
+Grace commits and pushes.
+
+15
+00:01:15,767 --> 00:01:18,835
+Ada's origin/main still shows Add prices.
+
+16
+00:01:18,835 --> 00:01:21,679
+Remote-tracking branches are not live:
+
+17
+00:01:21,679 --> 00:01:25,946
+they are updated only by git fetch, git pull or git push.
+
+18
+00:01:25,946 --> 00:01:30,436
+Ada's clone has not talked to the server since Grace pushed.
+
+19
+00:01:32,200 --> 00:01:33,999
+Here is the fix.
+
+20
+00:01:35,733 --> 00:01:36,447
+Got it.
+
+21
+00:01:36,447 --> 00:01:39,198
+What do I need to remember?
+
+22
+00:01:39,733 --> 00:01:45,698
+A remote is a named URL of another copy; origin is the default name after cloning.
+
+23
+00:01:46,233 --> 00:01:54,773
+origin/main is a local, read-only snapshot of the server's main, updated only by fetch/pull/push.
+
+24
+00:01:55,333 --> 00:01:58,368
+git ls-remote asks the server live.
+
+25
+00:02:00,133 --> 00:02:03,041
+I keep hearing about git remote.
+
+26
+00:02:03,041 --> 00:02:04,768
+What is it, really?
+
+27
+00:02:05,333 --> 00:02:06,863
+Managing remotes:
+
+28
+00:02:06,863 --> 00:02:10,101
+add, rename, change the URL, remove.
+
+29
+00:02:10,101 --> 00:02:16,848
+And working with two remotes, the common origin + upstream setup of a fork.
+
+30
+00:02:18,600 --> 00:02:22,999
+First, a fresh practice repository for this lesson.
+
+31
+00:02:23,533 --> 00:02:26,346
+Add the second remote and fetch from it:
+
+32
+00:02:26,346 --> 00:02:31,126
+The server moved to a new address (the team renamed the repository).
+
+33
+00:02:31,126 --> 00:02:33,728
+Update the URL instead of re-cloning:
+
+34
+00:02:34,267 --> 00:02:39,360
+The server moved to a new address (the team renamed the repository).
+
+35
+00:02:39,360 --> 00:02:42,131
+Update the URL instead of re-cloning:
+
+36
+00:02:43,867 --> 00:02:45,436
+Let me try something.
+
+37
+00:02:45,436 --> 00:02:52,386
+Add origin again, as you would after copying a "connect this repository" snippet from GitHub:
+
+38
+00:02:52,933 --> 00:02:53,399
+error:
+
+39
+00:02:53,399 --> 00:02:55,726
+remote origin already exists.:
+
+40
+00:02:55,726 --> 00:02:57,821
+a clone already has origin.
+
+41
+00:02:57,821 --> 00:03:00,691
+The snippet assumes a fresh git init.
+
+42
+00:03:00,691 --> 00:03:04,338
+Check what origin currently is before deciding:
+
+43
+00:03:06,100 --> 00:03:10,908
+If the URL is what you wanted, there is nothing to do.
+
+44
+00:03:10,908 --> 00:03:15,804
+If not, change it (set-url), never add a second origin:
+
+45
+00:03:17,567 --> 00:03:18,280
+Got it.
+
+46
+00:03:18,280 --> 00:03:21,031
+What do I need to remember?
+
+47
+00:03:21,567 --> 00:03:27,381
+git remote add / set-url / rename / remove manage the list of remotes.
+
+48
+00:03:27,933 --> 00:03:32,508
+One origin; change its URL instead of adding it again.
+
+49
+00:03:33,067 --> 00:03:38,931
+Forks usually have origin (your fork) and upstream (the original).
+
+50
+00:03:40,667 --> 00:03:42,911
+How does git clone work?
+
+51
+00:03:43,467 --> 00:03:51,816
+git clone URL copies a whole repository (every commit, every branch) and sets up origin and the local main.
+
+52
+00:03:51,816 --> 00:03:57,746
+We also see shallow clones and cloning a specific branch, both common in CI.
+
+53
+00:03:59,500 --> 00:04:03,899
+First, a fresh practice repository for this lesson.
+
+54
+00:04:04,433 --> 00:04:08,460
+Only main is a local branch, but every commit is there:
+
+55
+00:04:08,460 --> 00:04:11,461
+feature-tea exists as origin/feature-tea.
+
+56
+00:04:11,461 --> 00:04:15,488
+Switching to it creates the local branch automatically:
+
+57
+00:04:16,033 --> 00:04:20,060
+Only main is a local branch, but every commit is there:
+
+58
+00:04:20,060 --> 00:04:23,061
+feature-tea exists as origin/feature-tea.
+
+59
+00:04:23,061 --> 00:04:27,088
+Switching to it creates the local branch automatically:
+
+60
+00:04:28,833 --> 00:04:30,559
+Let me try something.
+
+61
+00:04:30,559 --> 00:04:34,093
+Clone into a folder that already has files:
+
+62
+00:04:34,633 --> 00:04:39,449
+destination path 'ada' already exists and is not an empty directory.:
+
+63
+00:04:39,449 --> 00:04:42,032
+Git never clones over existing files.
+
+64
+00:04:42,032 --> 00:04:47,127
+Either the repository is already there (then you need git pull inside it,
+
+65
+00:04:47,127 --> 00:04:50,128
+not a new clone), or choose another folder.
+
+66
+00:04:51,867 --> 00:04:53,666
+Here is the fix.
+
+67
+00:04:55,400 --> 00:04:56,113
+Got it.
+
+68
+00:04:56,113 --> 00:04:58,865
+What do I need to remember?
+
+69
+00:04:59,400 --> 00:05:05,515
+git clone = init + add origin + fetch everything + check out the default branch.
+
+70
+00:05:06,067 --> 00:05:12,526
+Remote branches arrive as origin/*; git switch NAME creates the local tracking branch.
+
+71
+00:05:13,067 --> 00:05:18,091
+--depth 1 for fast CI clones; --unshallow to get the history later.
+
+72
+00:05:19,833 --> 00:05:22,038
+Why would I need git fetch?
+
+73
+00:05:22,600 --> 00:05:29,867
+git fetch downloads new commits from the remote and updates origin/*, without touching your branches or files.
+
+74
+00:05:29,867 --> 00:05:34,029
+It is the safe way to see what changed before you integrate it.
+
+75
+00:05:35,767 --> 00:05:40,166
+First, a fresh practice repository for this lesson.
+
+76
+00:05:40,700 --> 00:05:42,300
+Let's run it.
+
+77
+00:05:42,833 --> 00:05:48,246
+main..origin/main = "commits on origin/main that are not on main":
+
+78
+00:05:48,246 --> 00:05:51,116
+exactly what a pull would bring in.
+
+79
+00:05:51,116 --> 00:05:53,658
+Review them before integrating:
+
+80
+00:05:54,200 --> 00:05:59,612
+main..origin/main = "commits on origin/main that are not on main":
+
+81
+00:05:59,612 --> 00:06:02,482
+exactly what a pull would bring in.
+
+82
+00:06:02,482 --> 00:06:05,024
+Review them before integrating:
+
+83
+00:06:06,767 --> 00:06:08,363
+Let me try something.
+
+84
+00:06:08,363 --> 00:06:13,456
+Grace deletes a branch on the server; Ada's clone keeps showing it:
+
+85
+00:06:14,000 --> 00:06:15,939
+origin/old-promo is stale:
+
+86
+00:06:15,939 --> 00:06:21,829
+a plain fetch adds and updates remote-tracking branches but never deletes them.
+
+87
+00:06:21,829 --> 00:06:26,900
+On busy repositories this produces dozens of dead origin/* branches.
+
+88
+00:06:28,633 --> 00:06:30,091
+Make it permanent:
+
+89
+00:06:30,091 --> 00:06:33,088
+git config --global fetch.prune true.
+
+90
+00:06:34,833 --> 00:06:35,547
+Got it.
+
+91
+00:06:35,547 --> 00:06:38,298
+What do I need to remember?
+
+92
+00:06:38,833 --> 00:06:44,563
+git fetch updates origin/* only; your branches and files are untouched.
+
+93
+00:06:45,100 --> 00:06:51,415
+main..origin/main incoming, origin/main..main outgoing.
+
+94
+00:06:51,967 --> 00:06:57,526
+--prune (or fetch.prune true) removes branches deleted on the server.
+
+95
+00:06:59,267 --> 00:07:01,791
+What should I know about git pull?
+
+96
+00:07:02,333 --> 00:07:09,307
+git pull = git fetch + integrate (merge or rebase) origin/<branch> into the current branch.
+
+97
+00:07:09,307 --> 00:07:16,818
+We see the easy case, the "divergent branches" error, and how to configure the behaviour you want.
+
+98
+00:07:18,567 --> 00:07:22,966
+First, a fresh practice repository for this lesson.
+
+99
+00:07:23,500 --> 00:07:25,553
+Ada has no local commits:
+
+100
+00:07:25,553 --> 00:07:27,770
+the pull is a fast-forward.
+
+101
+00:07:29,533 --> 00:07:31,409
+Let me try something.
+
+102
+00:07:31,409 --> 00:07:33,016
+Both sides commit:
+
+103
+00:07:33,016 --> 00:07:35,963
+Ada locally, Grace on the server.
+
+104
+00:07:36,500 --> 00:07:36,921
+fatal:
+
+105
+00:07:36,921 --> 00:07:40,638
+Need to specify how to reconcile divergent branches.:
+
+106
+00:07:40,638 --> 00:07:42,953
+Git fetched Grace's commit (look:
+
+107
+00:07:42,953 --> 00:07:48,424
+origin/main moved) but refuses to choose between a merge and a rebase for you,
+
+108
+00:07:48,424 --> 00:07:51,300
+because they produce different histories.
+
+109
+00:07:53,033 --> 00:07:53,576
+Choose.
+
+110
+00:07:53,576 --> 00:07:58,463
+The two options produce the same files but a different history:
+
+111
+00:08:00,200 --> 00:08:00,913
+Got it.
+
+112
+00:08:00,913 --> 00:08:03,665
+What do I need to remember?
+
+113
+00:08:04,200 --> 00:08:07,630
+git pull = fetch + merge or rebase.
+
+114
+00:08:08,167 --> 00:08:10,983
+Diverged branches need a decision:
+
+115
+00:08:10,983 --> 00:08:15,621
+--no-rebase (merge commit) or --rebase (linear history).
+
+116
+00:08:16,167 --> 00:08:22,741
+Configure pull.rebase / pull.ff once; use --ff-only on shared branches.
+
+117
+00:08:24,500 --> 00:08:26,785
+Can you show me git push?
+
+118
+00:08:27,333 --> 00:08:31,950
+git push uploads your commits and moves the branch on the server.
+
+119
+00:08:31,950 --> 00:08:37,632
+It only works as a fast-forward; when someone pushed before you, it is rejected.
+
+120
+00:08:37,632 --> 00:08:42,888
+We see why, the right fix, and the safe way to force-push your own branch.
+
+121
+00:08:44,633 --> 00:08:49,033
+First, a fresh practice repository for this lesson.
+
+122
+00:08:49,567 --> 00:08:52,634
+4267004..xxxxxxx main -> main:
+
+123
+00:08:52,634 --> 00:08:58,666
+the server's main moved from the old commit to the new one.
+
+124
+00:08:58,666 --> 00:09:00,506
+Push a new branch:
+
+125
+00:09:01,067 --> 00:09:04,134
+4267004..xxxxxxx main -> main:
+
+126
+00:09:04,134 --> 00:09:10,166
+the server's main moved from the old commit to the new one.
+
+127
+00:09:10,166 --> 00:09:12,006
+Push a new branch:
+
+128
+00:09:13,767 --> 00:09:15,866
+Let me try something.
+
+129
+00:09:15,866 --> 00:09:18,766
+Grace pushes first; then Ada:
+
+130
+00:09:19,300 --> 00:09:19,364
+!
+
+131
+00:09:19,364 --> 00:09:21,803
+[rejected] main -> main (fetch first):
+
+132
+00:09:21,803 --> 00:09:25,910
+the server's main has a commit (Grace's) that Ada does not have.
+
+133
+00:09:25,910 --> 00:09:33,161
+A push must be a fast-forward of the server's branch; accepting Ada's push would delete Grace's commit from main.
+
+134
+00:09:33,161 --> 00:09:39,899
+(non-fast-forward is the same rejection when Git already knows the remote commit from an earlier fetch.).
+
+135
+00:09:41,633 --> 00:09:44,755
+Integrate first, then push.
+
+136
+00:09:44,755 --> 00:09:46,143
+Not --force.
+
+137
+00:09:47,900 --> 00:09:48,613
+Got it.
+
+138
+00:09:48,613 --> 00:09:51,364
+What do I need to remember?
+
+139
+00:09:51,900 --> 00:09:56,000
+A push must fast-forward the server's branch; otherwise it is rejected.
+
+140
+00:09:57,533 --> 00:10:02,928
+Fix a rejection with git pull (merge or rebase), then push again.
+
+141
+00:10:03,467 --> 00:10:08,436
+Only rewrite pushed history on your own branch, with --force-with-lease.
+
+142
+00:10:10,200 --> 00:10:13,626
+I keep hearing about upstream branches.
+
+143
+00:10:13,626 --> 00:10:15,294
+What is it, really?
+
+144
+00:10:15,833 --> 00:10:22,053
+The upstream (tracking) branch is the remote branch a local branch is connected to.
+
+145
+00:10:22,053 --> 00:10:28,948
+It is what lets you type plain git push, git pull and see "ahead 1, behind 2" in git status.
+
+146
+00:10:30,700 --> 00:10:35,099
+First, a fresh practice repository for this lesson.
+
+147
+00:10:35,633 --> 00:10:37,997
+A new branch has no upstream yet.
+
+148
+00:10:37,997 --> 00:10:42,223
+Push it with -u to create the remote branch and connect it:
+
+149
+00:10:42,767 --> 00:10:45,062
+A new branch has no upstream yet.
+
+150
+00:10:45,062 --> 00:10:49,165
+Push it with -u to create the remote branch and connect it:
+
+151
+00:10:49,165 --> 00:10:54,311
+Now plain git push / git pull work on it, and git status compares with it:
+
+152
+00:10:54,867 --> 00:11:00,311
+Now plain git push / git pull work on it, and git status compares with it:
+
+153
+00:11:02,067 --> 00:11:03,716
+Let me try something.
+
+154
+00:11:03,716 --> 00:11:07,251
+Create another branch and push it without -u:
+
+155
+00:11:07,800 --> 00:11:08,187
+fatal:
+
+156
+00:11:08,187 --> 00:11:11,862
+The current branch feature-mocha has no upstream branch.:
+
+157
+00:11:11,862 --> 00:11:18,117
+Git does not know where to push this branch; it does not assume a remote branch of the same name.
+
+158
+00:11:18,117 --> 00:11:20,954
+The message prints the exact command to use.
+
+159
+00:11:22,700 --> 00:11:24,960
+To never see the error again:
+
+160
+00:11:24,960 --> 00:11:28,544
+git config --global push.autoSetupRemote true.
+
+161
+00:11:30,300 --> 00:11:31,013
+Got it.
+
+162
+00:11:31,013 --> 00:11:33,764
+What do I need to remember?
+
+163
+00:11:34,300 --> 00:11:38,535
+The upstream connects a local branch to a remote branch:
+
+164
+00:11:38,535 --> 00:11:41,559
+plain push/pull and ahead/behind use it.
+
+165
+00:11:42,100 --> 00:11:47,844
+git push -u origin BRANCH the first time (or push.autoSetupRemote true).
+
+166
+00:11:48,400 --> 00:11:52,439
+Check with git branch -vv; fix with git branch -u.

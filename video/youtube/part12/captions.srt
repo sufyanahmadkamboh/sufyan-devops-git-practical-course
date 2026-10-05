@@ -1,0 +1,483 @@
+1
+00:00:04,800 --> 00:00:07,559
+Can you show me team Git workflow?
+
+2
+00:00:08,100 --> 00:00:13,141
+What happens when three people work on the same repository at the same time,
+
+3
+00:00:13,141 --> 00:00:16,259
+and the small set of habits that keeps it calm:
+
+4
+00:00:16,259 --> 00:00:22,030
+short branches, pull before you start, push often, integrate through the shared server.
+
+5
+00:00:23,767 --> 00:00:28,166
+First, a fresh practice repository for this lesson.
+
+6
+00:00:28,700 --> 00:00:32,273
+Each developer works on a branch and pushes it:
+
+7
+00:00:32,273 --> 00:00:36,833
+The branches are integrated into main one by one (on GitHub:
+
+8
+00:00:36,833 --> 00:00:38,962
+three merged pull requests).
+
+9
+00:00:38,962 --> 00:00:43,295
+Here, Ada merges all three, as the PR merge button would:
+
+10
+00:00:43,833 --> 00:00:48,364
+The branches are integrated into main one by one (on GitHub:
+
+11
+00:00:48,364 --> 00:00:50,479
+three merged pull requests).
+
+12
+00:00:50,479 --> 00:00:54,783
+Here, Ada merges all three, as the PR merge button would:
+
+13
+00:00:54,783 --> 00:00:59,163
+Everyone updates their main before starting the next task:
+
+14
+00:00:59,700 --> 00:01:03,694
+Everyone updates their main before starting the next task:
+
+15
+00:01:05,433 --> 00:01:07,116
+Let me try something.
+
+16
+00:01:07,116 --> 00:01:12,163
+Two developers commit directly on main and push, minutes apart:
+
+17
+00:01:12,700 --> 00:01:14,664
+Linus's push is rejected:
+
+18
+00:01:14,664 --> 00:01:17,806
+Grace's commit reached the server first.
+
+19
+00:01:17,806 --> 00:01:23,148
+Both changed the end of menu.txt, so integrating will also conflict.
+
+20
+00:01:23,148 --> 00:01:28,254
+On a team, working directly on main turns every push into a race.
+
+21
+00:01:29,000 --> 00:01:36,814
+Linus integrates Grace's work (rebase his commit on top), resolves, and pushes:
+
+22
+00:01:38,567 --> 00:01:39,280
+Got it.
+
+23
+00:01:39,280 --> 00:01:42,031
+What do I need to remember?
+
+24
+00:01:42,567 --> 00:01:45,033
+Many developers, one server:
+
+25
+00:01:45,033 --> 00:01:48,381
+integrate through it, in small pieces.
+
+26
+00:01:48,933 --> 00:01:55,258
+Pull before starting, branch per task, push early, merge via PRs.
+
+27
+00:01:55,800 --> 00:02:00,504
+Direct commits to a shared main cause rejected pushes and conflicts.
+
+28
+00:02:02,267 --> 00:02:06,032
+I keep hearing about feature branch workflow.
+
+29
+00:02:06,032 --> 00:02:07,621
+What is it, really?
+
+30
+00:02:08,167 --> 00:02:10,655
+The feature branch workflow in detail:
+
+31
+00:02:10,655 --> 00:02:17,006
+naming, keeping the branch up to date with main while it lives, and why long-lived branches hurt.
+
+32
+00:02:18,767 --> 00:02:23,166
+First, a fresh practice repository for this lesson.
+
+33
+00:02:23,700 --> 00:02:26,864
+Ada starts a feature from the latest main:
+
+34
+00:02:27,400 --> 00:02:30,539
+Meanwhile Grace's change lands on main:
+
+35
+00:02:31,100 --> 00:02:36,024
+Ada updates her branch with main, tests, and continues:
+
+36
+00:02:37,767 --> 00:02:39,331
+Let me try something.
+
+37
+00:02:39,331 --> 00:02:40,821
+A long-lived branch:
+
+38
+00:02:40,821 --> 00:02:46,781
+Grace starts feature/new-prices, works on it for "three weeks" without updating,
+
+39
+00:02:46,781 --> 00:02:49,761
+while main keeps changing the same file:
+
+40
+00:02:50,300 --> 00:02:53,527
+Three weeks of main against three weeks of branch:
+
+41
+00:02:53,527 --> 00:02:57,012
+the longer they diverge, the more overlapping changes,
+
+42
+00:02:57,012 --> 00:03:02,174
+the harder the conflict, and the less anyone remembers why each change was made.
+
+43
+00:03:03,933 --> 00:03:09,471
+Resolve once (keep the new prices for both items), then keep the branch fresh:
+
+44
+00:03:09,471 --> 00:03:14,938
+merge main in every day, or after every merged PR that touches the same area.
+
+45
+00:03:16,700 --> 00:03:17,413
+Got it.
+
+46
+00:03:17,413 --> 00:03:20,164
+What do I need to remember?
+
+47
+00:03:20,700 --> 00:03:25,069
+One short-lived branch per task, named by convention.
+
+48
+00:03:25,633 --> 00:03:30,223
+Update the branch from main regularly; conflicts stay small.
+
+49
+00:03:30,767 --> 00:03:36,971
+Long-lived branches = big conflicts; prefer small PRs and feature flags.
+
+50
+00:03:38,733 --> 00:03:41,133
+How does GitHub Flow work?
+
+51
+00:03:41,667 --> 00:03:44,931
+GitHub Flow is the simplest common team workflow:
+
+52
+00:03:44,931 --> 00:03:52,592
+main is always deployable; every change goes through a short branch and a pull request; what is merged is deployed.
+
+53
+00:03:52,592 --> 00:03:55,656
+We run it end to end with a tiny "deployment".
+
+54
+00:03:57,400 --> 00:04:01,799
+First, a fresh practice repository for this lesson.
+
+55
+00:04:02,333 --> 00:04:05,475
+One change, the GitHub Flow way.
+
+56
+00:04:05,475 --> 00:04:07,243
+Branch and commit:
+
+57
+00:04:07,800 --> 00:04:09,693
+Review and checks (here:
+
+58
+00:04:09,693 --> 00:04:16,949
+the smoke test against the branch), then merge into main (the PR's merge button) and deploy:
+
+59
+00:04:18,700 --> 00:04:20,319
+Let me try something.
+
+60
+00:04:20,319 --> 00:04:21,399
+Skip the flow:
+
+61
+00:04:21,399 --> 00:04:28,184
+a "quick fix" pushed straight to main, without review or checks, breaks the prices file.
+
+62
+00:04:28,733 --> 00:04:35,713
+Production's smoke test failed (deploy.sh stopped with exit status 1 and printed no deployed line):
+
+63
+00:04:35,713 --> 00:04:40,859
+main is no longer deployable, and every later merge is blocked behind it.
+
+64
+00:04:40,859 --> 00:04:42,058
+Find the culprit:
+
+65
+00:04:43,800 --> 00:04:47,037
+The fastest safe fix on a shared main:
+
+66
+00:04:47,037 --> 00:04:52,829
+revert it, through the same flow (branch, check, merge), and deploy:
+
+67
+00:04:54,567 --> 00:04:55,280
+Got it.
+
+68
+00:04:55,280 --> 00:04:58,031
+What do I need to remember?
+
+69
+00:04:58,567 --> 00:04:59,589
+GitHub Flow:
+
+70
+00:04:59,589 --> 00:05:05,466
+main always deployable; branch → PR → review/checks → merge → deploy.
+
+71
+00:05:05,000 --> 00:05:10,039
+Bypassing review and checks breaks production for everyone.
+
+72
+00:05:10,600 --> 00:05:13,560
+Fix forward through the same flow:
+
+73
+00:05:13,560 --> 00:05:14,604
+a revert PR.
+
+74
+00:05:16,367 --> 00:05:18,486
+Why would I need Git Flow?
+
+75
+00:05:19,033 --> 00:05:24,420
+Git Flow is a branching model with two long-lived branches (main for releases,
+
+76
+00:05:24,420 --> 00:05:30,082
+develop for integration) and short-lived feature/, release/ and hotfix/* branches.
+
+77
+00:05:30,082 --> 00:05:37,678
+We run a full cycle with plain Git commands and discuss where it helps and where it is unnecessary complexity.
+
+78
+00:05:39,433 --> 00:05:43,833
+First, a fresh practice repository for this lesson.
+
+79
+00:05:44,367 --> 00:05:45,169
+Feature:
+
+80
+00:05:45,169 --> 00:05:48,376
+from develop, back into develop:
+
+81
+00:05:48,933 --> 00:05:49,640
+Release:
+
+82
+00:05:49,640 --> 00:05:57,588
+from develop; only stabilisation commits; merged into main (tagged) and back into develop:
+
+83
+00:05:59,333 --> 00:06:01,683
+Let me try something.
+
+84
+00:06:01,683 --> 00:06:04,592
+A production bug in 1.1.0:
+
+85
+00:06:04,592 --> 00:06:06,383
+the latte price.
+
+86
+00:06:06,933 --> 00:06:09,569
+develop still has latte 3.20:
+
+87
+00:06:09,569 --> 00:06:15,750
+the next release (1.2.0, cut from develop) would bring the bug back.
+
+88
+00:06:15,750 --> 00:06:19,568
+Check what main has that develop does not:
+
+89
+00:06:21,333 --> 00:06:23,133
+Here is the fix.
+
+90
+00:06:24,867 --> 00:06:25,580
+Got it.
+
+91
+00:06:25,580 --> 00:06:28,331
+What do I need to remember?
+
+92
+00:06:28,867 --> 00:06:29,851
+Git Flow:
+
+93
+00:06:29,851 --> 00:06:38,166
+main (releases) + develop (integration) + feature, release, hotfix branches.
+
+94
+00:06:38,700 --> 00:06:44,284
+Hotfixes go into main and develop; check with git log develop..main.
+
+95
+00:06:44,833 --> 00:06:50,748
+Good for versioned products; often unnecessary for continuously deployed services.
+
+96
+00:06:52,500 --> 00:06:55,459
+What should I know about branch protection?
+
+97
+00:06:55,000 --> 00:06:58,654
+How a server enforces the team rules:
+
+98
+00:06:58,654 --> 00:07:03,030
+no direct pushes to main, changes only through pull requests,
+
+99
+00:07:03,030 --> 00:07:07,191
+required reviews, required status checks, no force pushes.
+
+100
+00:07:07,191 --> 00:07:11,710
+First we build the mechanism ourselves with a server-side hook,
+
+101
+00:07:11,710 --> 00:07:16,444
+then we use GitHub's branch protection on the practice repository.
+
+102
+00:07:18,200 --> 00:07:22,599
+First, a fresh practice repository for this lesson.
+
+103
+00:07:23,133 --> 00:07:24,274
+How it works:
+
+104
+00:07:24,274 --> 00:07:32,348
+the server runs a pre-receive hook before accepting a push; if it fails, nothing is updated.
+
+105
+00:07:32,348 --> 00:07:38,403
+GitHub's protection is the same idea, configured instead of scripted.
+
+106
+00:07:38,967 --> 00:07:41,283
+Ada pushes to main directly:
+
+107
+00:07:41,283 --> 00:07:47,486
+Branches are allowed; the "merge" is done by the PR system (PUSHER=pr-bot):
+
+108
+00:07:48,033 --> 00:07:54,473
+Branches are allowed; the "merge" is done by the PR system (PUSHER=pr-bot):
+
+109
+00:07:56,233 --> 00:07:57,838
+Let me try something.
+
+110
+00:07:57,838 --> 00:08:03,798
+Push directly to the protected main on GitHub, even as the repository's owner:
+
+111
+00:08:04,333 --> 00:08:04,797
+GH006:
+
+112
+00:08:04,797 --> 00:08:12,455
+Protected branch update failed for refs/heads/main and Changes must be made through a pull request:
+
+113
+00:08:12,455 --> 00:08:17,251
+the rule works, including for the owner (enforced for admins).
+
+114
+00:08:17,251 --> 00:08:21,273
+Nothing changed on GitHub; the commit is only local.
+
+115
+00:08:23,033 --> 00:08:26,283
+The commit belongs on a branch with a PR:
+
+116
+00:08:28,033 --> 00:08:28,747
+Got it.
+
+117
+00:08:28,747 --> 00:08:31,498
+What do I need to remember?
+
+118
+00:08:32,033 --> 00:08:38,318
+Protection is enforced by the server at push time (GitHub rules ≈ a managed pre-receive hook).
+
+119
+00:08:38,867 --> 00:08:45,716
+Require PRs, approvals and checks; disallow force pushes; enforce for admins.
+
+120
+00:08:46,267 --> 00:08:49,518
+A rejected push changes nothing on the server:
+
+121
+00:08:49,518 --> 00:08:52,486
+move the commit to a branch and open a PR.

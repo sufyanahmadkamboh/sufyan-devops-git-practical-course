@@ -1,0 +1,4 @@
+0:00 Lesson 51 · What is a pull request?
+2:22 Lesson 52 · Creating a pull request
+3:58 Lesson 53 · Pull request review
+6:33 Lesson 54 · Merge strategies

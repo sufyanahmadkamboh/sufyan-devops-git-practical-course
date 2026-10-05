@@ -1,0 +1,6 @@
+0:00 Lesson 23 · What is a merge?
+1:56 Lesson 24 · Fast-forward merge
+3:48 Lesson 25 · Three-way merge
+5:23 Lesson 26 · Merge conflicts
+7:16 Lesson 27 · Resolving merge conflicts
+9:02 Lesson 28 · Aborting a merge

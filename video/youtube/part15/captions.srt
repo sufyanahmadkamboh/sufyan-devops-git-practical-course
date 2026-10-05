@@ -1,0 +1,499 @@
+1
+00:00:04,800 --> 00:00:06,859
+How Git stores data?
+
+2
+00:00:07,400 --> 00:00:14,672
+Under every command you have used, Git stores only four kinds of objects in .git/objects,
+
+3
+00:00:14,672 --> 00:00:17,777
+each named by the hash of its content:
+
+4
+00:00:17,777 --> 00:00:24,477
+blobs (file contents), trees (folders), commits (snapshots with history) and tags.
+
+5
+00:00:24,477 --> 00:00:25,784
+Plus references:
+
+6
+00:00:25,784 --> 00:00:30,114
+small files with names like main pointing to commits.
+
+7
+00:00:31,867 --> 00:00:36,266
+First, a fresh practice repository for this lesson.
+
+8
+00:00:36,800 --> 00:00:40,361
+Follow the chain from main down to a file's content:
+
+9
+00:00:40,361 --> 00:00:42,279
+The commit points to a tree.
+
+10
+00:00:42,279 --> 00:00:46,114
+The tree lists names and the blobs holding the contents:
+
+11
+00:00:46,667 --> 00:00:48,695
+The commit points to a tree.
+
+12
+00:00:48,695 --> 00:00:52,751
+The tree lists names and the blobs holding the contents:
+
+13
+00:00:53,300 --> 00:00:55,595
+The ID is the content's hash:
+
+14
+00:00:55,595 --> 00:00:59,869
+Git computes the same ID for the same bytes, anywhere.
+
+15
+00:01:01,633 --> 00:01:03,370
+Let me try something.
+
+16
+00:01:03,370 --> 00:01:09,488
+Corrupt an object file (simulating a disk error), then use the repository:
+
+17
+00:01:10,033 --> 00:01:21,626
+The object file no longer decompresses to content whose hash matches its name; Git detects it (every object is verified by its hash) and refuses to use it.
+
+18
+00:01:21,626 --> 00:01:24,393
+git fsck checks the whole repository:
+
+19
+00:01:26,133 --> 00:01:28,323
+A blob is defined by its content:
+
+20
+00:01:28,323 --> 00:01:33,034
+write the same content again and Git recreates exactly the same object.
+
+21
+00:01:33,034 --> 00:01:40,333
+In real life you get the content back from another clone (git fetch from the remote restores missing objects).
+
+22
+00:01:42,067 --> 00:01:42,780
+Got it.
+
+23
+00:01:42,780 --> 00:01:45,531
+What do I need to remember?
+
+24
+00:01:46,067 --> 00:01:46,968
+Objects:
+
+25
+00:01:46,968 --> 00:01:55,306
+blob (content), tree (folder), commit (snapshot + parents + message), tag.
+
+26
+00:01:55,867 --> 00:02:01,881
+Every object's name is the hash of its content; same content, same object.
+
+27
+00:02:02,433 --> 00:02:08,638
+References (branches, tags, HEAD) are names pointing to commits.
+
+28
+00:02:10,400 --> 00:02:13,452
+I keep hearing about Git objects.
+
+29
+00:02:13,452 --> 00:02:15,209
+What is it, really?
+
+30
+00:02:15,767 --> 00:02:20,310
+We build a commit by hand with plumbing commands (hash-object,
+
+31
+00:02:20,310 --> 00:02:24,047
+update-index, write-tree, commit-tree, update-ref),
+
+32
+00:02:24,047 --> 00:02:29,103
+to see that git add and git commit are nothing more than these steps.
+
+33
+00:02:29,103 --> 00:02:32,181
+git cat-file lets us inspect every result.
+
+34
+00:02:33,933 --> 00:02:38,333
+First, a fresh practice repository for this lesson.
+
+35
+00:02:38,867 --> 00:02:42,094
+Change a file and store its content as a blob:
+
+36
+00:02:42,094 --> 00:02:44,971
+Stage it and write a tree from the index:
+
+37
+00:02:45,533 --> 00:02:48,295
+Stage it and write a tree from the index:
+
+38
+00:02:48,295 --> 00:02:52,808
+Create the commit object with main as parent, then move main to it:
+
+39
+00:02:53,367 --> 00:02:58,429
+Create the commit object with main as parent, then move main to it:
+
+40
+00:02:58,429 --> 00:03:02,358
+A normal commit, made without git add or git commit.
+
+41
+00:03:02,358 --> 00:03:03,869
+git status is clean:
+
+42
+00:03:03,869 --> 00:03:06,891
+index, working directory and main agree.
+
+43
+00:03:08,633 --> 00:03:10,225
+Let me try something.
+
+44
+00:03:10,225 --> 00:03:14,243
+Create a commit object but forget to move the branch:
+
+45
+00:03:14,800 --> 00:03:19,732
+The commit exists in the object store, but no reference points to it,
+
+46
+00:03:19,732 --> 00:03:23,521
+so git log (which starts from HEAD) does not show it.
+
+47
+00:03:23,521 --> 00:03:29,454
+git status shows the staged change as still uncommitted, because HEAD did not move:
+
+48
+00:03:31,200 --> 00:03:36,249
+Move the branch to the commit (what git commit would have done as its last step):
+
+49
+00:03:38,000 --> 00:03:38,713
+Got it.
+
+50
+00:03:38,713 --> 00:03:41,465
+What do I need to remember?
+
+51
+00:03:42,000 --> 00:03:50,095
+git add = store the blob + update the index; git commit = write a tree + create a commit + move the branch.
+
+52
+00:03:50,633 --> 00:03:53,573
+git cat-file inspects any object.
+
+53
+00:03:54,133 --> 00:03:58,928
+An object without a reference is invisible to git log but still in the store.
+
+54
+00:04:00,667 --> 00:04:02,586
+How does HEAD work?
+
+55
+00:04:03,133 --> 00:04:05,457
+HEAD is the answer to "where am I?".
+
+56
+00:04:05,457 --> 00:04:09,716
+Normally it points to a branch, and the branch points to a commit.
+
+57
+00:04:09,716 --> 00:04:13,782
+That indirection is why committing moves the branch you are on,
+
+58
+00:04:13,782 --> 00:04:17,073
+and switching branches changes what HEAD points to.
+
+59
+00:04:18,833 --> 00:04:23,233
+First, a fresh practice repository for this lesson.
+
+60
+00:04:23,767 --> 00:04:24,563
+Switch:
+
+61
+00:04:24,563 --> 00:04:26,611
+only HEAD changes.
+
+62
+00:04:27,167 --> 00:04:27,829
+Switch:
+
+63
+00:04:27,829 --> 00:04:29,533
+only HEAD changes.
+
+64
+00:04:29,533 --> 00:04:30,196
+Commit:
+
+65
+00:04:30,196 --> 00:04:34,551
+the branch moves, HEAD still names the branch.
+
+66
+00:04:35,100 --> 00:04:35,700
+Commit:
+
+67
+00:04:35,700 --> 00:04:39,639
+the branch moves, HEAD still names the branch.
+
+68
+00:04:41,400 --> 00:04:43,035
+Let me try something.
+
+69
+00:04:43,035 --> 00:04:50,119
+Edit .git/HEAD to point to a branch that does not exist (as a broken script or typo would):
+
+70
+00:04:50,667 --> 00:04:53,162
+On branch mian … No commits yet:
+
+71
+00:04:53,162 --> 00:05:00,805
+Git believes you are on a brand-new, empty branch, because HEAD names a branch that has no commit.
+
+72
+00:05:00,805 --> 00:05:02,053
+Nothing is lost:
+
+73
+00:05:02,053 --> 00:05:04,236
+your branches are untouched.
+
+74
+00:05:05,000 --> 00:05:12,369
+Point HEAD back to a real branch (the safe way, with the command instead of editing the file):
+
+75
+00:05:14,133 --> 00:05:14,847
+Got it.
+
+76
+00:05:14,847 --> 00:05:17,598
+What do I need to remember?
+
+77
+00:05:18,133 --> 00:05:23,418
+HEAD → branch → commit; committing moves the branch, switching moves HEAD.
+
+78
+00:05:23,967 --> 00:05:28,526
+HEAD~N, HEAD^2, @ navigate from there.
+
+79
+00:05:29,067 --> 00:05:32,421
+git symbolic-ref reads and sets HEAD safely.
+
+80
+00:05:34,167 --> 00:05:37,051
+Why would I need branches are references?
+
+81
+00:05:37,600 --> 00:05:39,917
+A branch is not a copy of anything:
+
+82
+00:05:39,917 --> 00:05:44,749
+it is a 41-byte file (or a line in packed-refs) containing one commit ID.
+
+83
+00:05:44,749 --> 00:05:49,316
+Creating a branch is instant, deleting one deletes only that pointer,
+
+84
+00:05:49,316 --> 00:05:53,684
+and a "branch's commits" are simply the commits reachable from it.
+
+85
+00:05:55,433 --> 00:05:59,833
+First, a fresh practice repository for this lesson.
+
+86
+00:06:00,367 --> 00:06:05,771
+Create a branch by writing the reference yourself; Git sees a normal branch:
+
+87
+00:06:06,333 --> 00:06:11,738
+Create a branch by writing the reference yourself; Git sees a normal branch:
+
+88
+00:06:13,500 --> 00:06:15,045
+Let me try something.
+
+89
+00:06:15,045 --> 00:06:18,944
+Delete a branch reference and look for "its" commits:
+
+90
+00:06:19,500 --> 00:06:24,873
+The commit "Add green tea to the menu" no longer appears in git log --all:
+
+91
+00:06:24,873 --> 00:06:26,470
+nothing references it.
+
+92
+00:06:26,470 --> 00:06:27,632
+It still exists:
+
+93
+00:06:27,632 --> 00:06:31,189
+deleting a branch deleted a pointer, not commits.
+
+94
+00:06:32,933 --> 00:06:39,728
+Recreate the reference to the same commit (the ID was in the earlier output, or in git reflog):
+
+95
+00:06:41,467 --> 00:06:42,180
+Got it.
+
+96
+00:06:42,180 --> 00:06:44,931
+What do I need to remember?
+
+97
+00:06:45,467 --> 00:06:47,313
+A branch is a reference:
+
+98
+00:06:47,313 --> 00:06:49,621
+a name containing a commit ID.
+
+99
+00:06:50,167 --> 00:06:55,021
+Creating, moving and deleting branches only changes these pointers.
+
+100
+00:06:55,567 --> 00:07:00,121
+Unreferenced commits stay in the object store until garbage collection.
+
+101
+00:07:01,867 --> 00:07:04,561
+What should I know about detached HEAD?
+
+102
+00:07:05,100 --> 00:07:10,362
+"Detached HEAD" means HEAD points directly to a commit instead of to a branch.
+
+103
+00:07:10,362 --> 00:07:14,949
+It happens when you check out a tag, a commit ID or a remote branch.
+
+104
+00:07:14,949 --> 00:07:21,289
+Looking around is perfectly fine; commits made there belong to no branch and are easy to lose.
+
+105
+00:07:23,033 --> 00:07:27,433
+First, a fresh practice repository for this lesson.
+
+106
+00:07:27,967 --> 00:07:29,566
+Let's run it.
+
+107
+00:07:30,100 --> 00:07:33,921
+.git/HEAD contains a commit ID, not ref:
+
+108
+00:07:33,921 --> 00:07:35,354
+refs/heads/....
+
+109
+00:07:35,354 --> 00:07:41,467
+Inspecting old code, running old tests, building an old release:
+
+110
+00:07:41,467 --> 00:07:42,804
+all fine here.
+
+111
+00:07:44,567 --> 00:07:46,235
+Let me try something.
+
+112
+00:07:46,235 --> 00:07:51,161
+Make a hotfix commit while detached, then switch back to main:
+
+113
+00:07:51,700 --> 00:07:52,390
+Git warns:
+
+114
+00:07:52,390 --> 00:07:55,288
+the commit is not connected to any branch,
+
+115
+00:07:55,288 --> 00:08:00,463
+so no branch log shows it and garbage collection will eventually delete it.
+
+116
+00:08:00,463 --> 00:08:03,706
+The warning even prints the command to keep it.
+
+117
+00:08:03,706 --> 00:08:07,569
+If the terminal output is gone, the reflog still has it:
+
+118
+00:08:09,333 --> 00:08:11,133
+Here is the fix.
+
+119
+00:08:12,867 --> 00:08:13,580
+Got it.
+
+120
+00:08:13,580 --> 00:08:16,331
+What do I need to remember?
+
+121
+00:08:16,867 --> 00:08:24,556
+Detached HEAD = HEAD points at a commit, not a branch; normal when inspecting tags or CI checkouts.
+
+122
+00:08:25,100 --> 00:08:28,404
+Commits made while detached belong to no branch:
+
+123
+00:08:28,404 --> 00:08:30,744
+git switch -c NAME before leaving.
+
+124
+00:08:31,300 --> 00:08:32,939
+Lost one anyway?
+
+125
+00:08:32,939 --> 00:08:36,319
+git reflog + git branch NAME SHA.

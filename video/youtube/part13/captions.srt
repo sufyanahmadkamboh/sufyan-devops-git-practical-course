@@ -1,0 +1,707 @@
+1
+00:00:04,800 --> 00:00:06,514
+What is rebase?
+
+2
+00:00:07,067 --> 00:00:13,379
+Rebase replays your branch's commits on top of another commit, as if you had started your work later.
+
+3
+00:00:13,379 --> 00:00:18,879
+The result is a straight history, but the replayed commits are new commits with new IDs.
+
+4
+00:00:18,879 --> 00:00:22,691
+Understanding that one fact explains every rule about rebase.
+
+5
+00:00:24,433 --> 00:00:28,833
+First, a fresh practice repository for this lesson.
+
+6
+00:00:29,367 --> 00:00:33,186
+Remember the branch's commit ID, then rebase:
+
+7
+00:00:33,733 --> 00:00:35,110
+A straight line:
+
+8
+00:00:35,110 --> 00:00:39,583
+"Add green tea" now comes after "Add opening hours".
+
+9
+00:00:39,583 --> 00:00:42,508
+Same message, same change, new ID.
+
+10
+00:00:43,067 --> 00:00:44,443
+A straight line:
+
+11
+00:00:44,443 --> 00:00:48,916
+"Add green tea" now comes after "Add opening hours".
+
+12
+00:00:48,916 --> 00:00:51,841
+Same message, same change, new ID.
+
+13
+00:00:53,600 --> 00:00:55,311
+Let me try something.
+
+14
+00:00:55,311 --> 00:00:59,709
+Rebase a branch that was already pushed, then push it:
+
+15
+00:01:00,267 --> 00:01:06,904
+The server has the old feature-tea (with the old commit); your rebased branch does not contain it,
+
+16
+00:01:06,904 --> 00:01:10,291
+so the push is not a fast-forward and is rejected.
+
+17
+00:01:10,291 --> 00:01:14,354
+Rebase rewrote history that someone else might already have.
+
+18
+00:01:14,354 --> 00:01:15,438
+The golden rule:
+
+19
+00:01:15,438 --> 00:01:18,621
+never rebase commits that others have built on.
+
+20
+00:01:20,367 --> 00:01:25,119
+It is Ada's own feature branch, nobody else works on it:
+
+21
+00:01:25,119 --> 00:01:26,731
+replace it, safely.
+
+22
+00:01:28,467 --> 00:01:29,180
+Got it.
+
+23
+00:01:29,180 --> 00:01:31,931
+What do I need to remember?
+
+24
+00:01:32,467 --> 00:01:35,917
+Rebase replays commits on a new base:
+
+25
+00:01:35,917 --> 00:01:39,181
+same changes, new commits, new IDs.
+
+26
+00:01:39,733 --> 00:01:42,588
+Linear history, but rewritten history:
+
+27
+00:01:42,588 --> 00:01:45,518
+never rebase what others have built on.
+
+28
+00:01:46,067 --> 00:01:48,813
+After rebasing your own pushed branch:
+
+29
+00:01:48,813 --> 00:01:50,836
+git push --force-with-lease.
+
+30
+00:01:52,600 --> 00:01:55,753
+I keep hearing about basic rebase.
+
+31
+00:01:55,753 --> 00:01:57,514
+What is it, really?
+
+32
+00:01:58,067 --> 00:01:59,335
+The everyday rebase:
+
+33
+00:01:59,335 --> 00:02:04,347
+bring your feature branch up to date with main before opening or updating a PR,
+
+34
+00:02:04,347 --> 00:02:09,421
+and git pull --rebase to keep your local commits on top of your teammates' work.
+
+35
+00:02:11,167 --> 00:02:15,566
+First, a fresh practice repository for this lesson.
+
+36
+00:02:16,100 --> 00:02:19,570
+Update the feature branch with main's latest commit:
+
+37
+00:02:19,570 --> 00:02:23,507
+Both feature commits are now on top of "Add opening hours".
+
+38
+00:02:23,507 --> 00:02:26,109
+main can take them with a fast-forward:
+
+39
+00:02:26,667 --> 00:02:30,899
+Both feature commits are now on top of "Add opening hours".
+
+40
+00:02:30,899 --> 00:02:33,696
+main can take them with a fast-forward:
+
+41
+00:02:35,433 --> 00:02:37,042
+Let me try something.
+
+42
+00:02:37,042 --> 00:02:40,643
+Rebase with uncommitted changes in your folder:
+
+43
+00:02:41,200 --> 00:02:42,192
+cannot rebase:
+
+44
+00:02:42,192 --> 00:02:44,105
+You have unstaged changes.:
+
+45
+00:02:44,105 --> 00:02:50,978
+rebase rewrites the working directory commit by commit; it refuses to risk your uncommitted work.
+
+46
+00:02:50,978 --> 00:02:54,380
+git status shows the draft change in prices.txt.
+
+47
+00:02:56,133 --> 00:02:59,608
+Let Git stash and restore it around the rebase:
+
+48
+00:03:01,367 --> 00:03:02,080
+Got it.
+
+49
+00:03:02,080 --> 00:03:04,831
+What do I need to remember?
+
+50
+00:03:05,367 --> 00:03:09,839
+git rebase main puts your branch's commits on top of main:
+
+51
+00:03:09,839 --> 00:03:11,766
+linear, fast-forwardable.
+
+52
+00:03:12,300 --> 00:03:15,935
+git pull --rebase does the same against the upstream.
+
+53
+00:03:16,500 --> 00:03:20,350
+Commit or --autostash uncommitted work before rebasing.
+
+54
+00:03:22,100 --> 00:03:24,939
+How does rebase vs merge work?
+
+55
+00:03:25,500 --> 00:03:30,284
+Merge and rebase both integrate work; they produce different histories.
+
+56
+00:03:30,284 --> 00:03:37,695
+We build both from the same starting point, compare them, and see the one situation where rebase really hurts:
+
+57
+00:03:37,695 --> 00:03:40,659
+rebasing a branch someone else has built on.
+
+58
+00:03:42,400 --> 00:03:46,799
+First, a fresh practice repository for this lesson.
+
+59
+00:03:47,333 --> 00:03:47,935
+Merge:
+
+60
+00:03:47,935 --> 00:03:51,648
+Rebase (then fast-forward main-side):
+
+61
+00:03:52,200 --> 00:03:55,179
+Rebase (then fast-forward main-side):
+
+62
+00:03:55,179 --> 00:03:57,755
+Same content, different history:
+
+63
+00:03:58,300 --> 00:04:01,410
+Same content, different history:
+
+64
+00:04:03,167 --> 00:04:04,873
+Let me try something.
+
+65
+00:04:04,873 --> 00:04:11,211
+Ada pushes feature-tea; Grace builds on it; Ada then rebases and force-pushes.
+
+66
+00:04:11,767 --> 00:04:17,860
+"Add green tea to the menu" and "Price green tea" now appear twice in Grace's history:
+
+67
+00:04:17,860 --> 00:04:24,661
+the originals (which Grace's commit is built on) and the rebased copies (from Ada's force push),
+
+68
+00:04:24,661 --> 00:04:25,936
+joined by a merge.
+
+69
+00:04:25,936 --> 00:04:29,266
+Merged into main, the history would carry both.
+
+70
+00:04:31,000 --> 00:04:36,491
+Grace undoes her merge and rebases her own commit onto the new branch instead.
+
+71
+00:04:36,491 --> 00:04:42,545
+Git recognises that the old copies are already upstream (same patches) and skips them:
+
+72
+00:04:44,300 --> 00:04:45,013
+Got it.
+
+73
+00:04:45,013 --> 00:04:47,764
+What do I need to remember?
+
+74
+00:04:48,300 --> 00:04:53,660
+Merge records history as it happened; rebase rewrites it into a straight line.
+
+75
+00:04:54,200 --> 00:04:57,704
+Same final files, different graphs.
+
+76
+00:04:58,267 --> 00:05:02,831
+Rebasing a shared branch duplicates commits for everyone who built on it.
+
+77
+00:05:04,567 --> 00:05:07,306
+Why would I need interactive rebase?
+
+78
+00:05:07,867 --> 00:05:15,218
+git rebase -i opens a to-do list of your commits, one per line, and lets you decide what happens to each:
+
+79
+00:05:15,218 --> 00:05:19,560
+keep, edit the message, stop to change it, combine, or delete.
+
+80
+00:05:19,560 --> 00:05:26,281
+It is how you turn a messy work-in-progress branch into a clean series of commits before review.
+
+81
+00:05:28,033 --> 00:05:32,433
+First, a fresh practice repository for this lesson.
+
+82
+00:05:32,967 --> 00:05:38,198
+See the to-do list Git would open (cat as the "editor" prints it and changes nothing):
+
+83
+00:05:38,198 --> 00:05:43,551
+squash "Price green tea" into "Add green tea", and fixup "Price mocha" into "Add mocha":
+
+84
+00:05:44,100 --> 00:05:50,258
+squash "Price green tea" into "Add green tea", and fixup "Price mocha" into "Add mocha":
+
+85
+00:05:50,258 --> 00:05:51,938
+Four commits became two.
+
+86
+00:05:51,938 --> 00:06:01,035
+The squashed commit's message combines both messages (you would edit it in the editor; here GIT_EDITOR=true keeps it as proposed).
+
+87
+00:06:01,035 --> 00:06:02,435
+reword the last one:
+
+88
+00:06:03,000 --> 00:06:04,759
+Four commits became two.
+
+89
+00:06:04,759 --> 00:06:14,284
+The squashed commit's message combines both messages (you would edit it in the editor; here GIT_EDITOR=true keeps it as proposed).
+
+90
+00:06:14,284 --> 00:06:15,750
+reword the last one:
+
+91
+00:06:17,500 --> 00:06:19,050
+Let me try something.
+
+92
+00:06:19,050 --> 00:06:24,659
+Two quick commits to clean up, then squash the first line of the to-do list:
+
+93
+00:06:25,200 --> 00:06:28,037
+cannot 'squash' without a previous commit:
+
+94
+00:06:28,037 --> 00:06:34,925
+squash and fixup meld a commit into the one above it in the list; the first line has nothing above it.
+
+95
+00:06:34,925 --> 00:06:37,830
+Git refuses the list before doing anything:
+
+96
+00:06:37,830 --> 00:06:41,206
+the rebase is in progress with "No commands done".
+
+97
+00:06:41,206 --> 00:06:46,610
+Fix the list with git rebase --edit-todo (then git rebase --continue), or abort:
+
+98
+00:06:48,367 --> 00:06:50,814
+Include the commit to meld into:
+
+99
+00:06:50,814 --> 00:06:56,396
+HEAD~2, and fixup the second line; then give the result a proper message.
+
+100
+00:06:58,133 --> 00:06:58,847
+Got it.
+
+101
+00:06:58,847 --> 00:07:01,598
+What do I need to remember?
+
+102
+00:07:02,133 --> 00:07:09,023
+git rebase -i BASE lists the commits after BASE; edit the verbs, save, Git replays.
+
+103
+00:07:09,567 --> 00:07:17,106
+pick, reword, edit, squash, fixup, drop; reorder by moving lines.
+
+104
+00:07:17,667 --> 00:07:23,386
+Only on commits you have not shared (or your own branch, then --force-with-lease).
+
+105
+00:07:25,133 --> 00:07:28,238
+What should I know about rebase conflicts?
+
+106
+00:07:28,800 --> 00:07:34,775
+A rebase replays commits one at a time, so a conflict can happen at each step.
+
+107
+00:07:34,775 --> 00:07:38,835
+We create one on purpose and resolve it step by step:
+
+108
+00:07:38,835 --> 00:07:43,584
+read the status, fix the file, git add, git rebase --continue.
+
+109
+00:07:45,333 --> 00:07:49,733
+First, a fresh practice repository for this lesson.
+
+110
+00:07:50,267 --> 00:07:51,826
+Where are we?
+
+111
+00:07:52,367 --> 00:07:53,376
+Where are we?
+
+112
+00:07:53,376 --> 00:08:01,216
+The status shows the commit being replayed ("Raise the latte price to 3.50") and the one still to do.
+
+113
+00:08:01,767 --> 00:08:10,495
+The status shows the commit being replayed ("Raise the latte price to 3.50") and the one still to do.
+
+114
+00:08:10,495 --> 00:08:11,273
+The file:
+
+115
+00:08:11,273 --> 00:08:19,051
+HEAD is main's version (3.30, Grace); the other side is your commit being replayed (3.50).
+
+116
+00:08:20,800 --> 00:08:22,433
+Let me try something.
+
+117
+00:08:22,433 --> 00:08:27,564
+Recreate the conflict (ORIG_HEAD is the branch before the rebase),
+
+118
+00:08:27,564 --> 00:08:30,985
+edit the file, and continue without git add:
+
+119
+00:08:31,533 --> 00:08:37,800
+Git does not look at the file content to decide whether you are done; it looks at the index.
+
+120
+00:08:37,800 --> 00:08:42,023
+Until git add marks the file resolved, it is still "unmerged":
+
+121
+00:08:43,767 --> 00:08:45,566
+Here is the fix.
+
+122
+00:08:47,300 --> 00:08:48,013
+Got it.
+
+123
+00:08:48,013 --> 00:08:50,764
+What do I need to remember?
+
+124
+00:08:51,300 --> 00:08:56,290
+A rebase stops at each conflicting commit; git status says which one.
+
+125
+00:08:56,833 --> 00:09:03,058
+Fix → git add → git rebase --continue; --skip drops the commit, --abort cancels.
+
+126
+00:09:03,600 --> 00:09:08,055
+During a rebase, "ours" is the new base and "theirs" is your commit.
+
+127
+00:09:09,800 --> 00:09:12,495
+Can you show me aborting a rebase?
+
+128
+00:09:13,033 --> 00:09:19,724
+git rebase --abort cancels a rebase in progress and puts the branch back exactly where it was before,
+
+129
+00:09:19,724 --> 00:09:22,572
+however many commits were already replayed.
+
+130
+00:09:22,572 --> 00:09:26,348
+It is the emergency exit that makes rebasing safe to try.
+
+131
+00:09:28,100 --> 00:09:32,500
+First, a fresh practice repository for this lesson.
+
+132
+00:09:33,033 --> 00:09:41,169
+You are mid-rebase (git status says so, and your prompt may show feature-tea|REBASE 1/2).
+
+133
+00:09:41,169 --> 00:09:41,718
+Abort:
+
+134
+00:09:42,267 --> 00:09:50,162
+You are mid-rebase (git status says so, and your prompt may show feature-tea|REBASE 1/2).
+
+135
+00:09:50,162 --> 00:09:50,695
+Abort:
+
+136
+00:09:50,695 --> 00:09:56,461
+Same commits, same IDs as before the rebase; no conflict markers.
+
+137
+00:09:58,200 --> 00:09:59,833
+Let me try something.
+
+138
+00:09:59,833 --> 00:10:07,455
+Forget that a rebase is still in progress (a terminal closed, a day later), and start another one:
+
+139
+00:10:08,000 --> 00:10:12,227
+It seems that there is already a rebase-merge directory:
+
+140
+00:10:12,227 --> 00:10:18,492
+Git keeps the rebase's state in .git/rebase-merge/ until it is finished or aborted.
+
+141
+00:10:18,492 --> 00:10:20,606
+Only one can be in progress.
+
+142
+00:10:20,606 --> 00:10:21,964
+Check what it was:
+
+143
+00:10:23,700 --> 00:10:24,441
+Decide:
+
+144
+00:10:24,441 --> 00:10:30,050
+finish it (resolve, git add, --continue) or abort it.
+
+145
+00:10:30,050 --> 00:10:31,319
+Here, abort:
+
+146
+00:10:33,067 --> 00:10:33,780
+Got it.
+
+147
+00:10:33,780 --> 00:10:36,531
+What do I need to remember?
+
+148
+00:10:37,067 --> 00:10:41,191
+git rebase --abort restores everything as before the rebase.
+
+149
+00:10:41,733 --> 00:10:47,178
+Only one rebase at a time; git status tells you if one is in progress.
+
+150
+00:10:47,733 --> 00:10:53,748
+After a completed rebase, ORIG_HEAD / reflog bring the old branch back.
+
+151
+00:10:55,500 --> 00:10:59,043
+I keep hearing about continuing a rebase.
+
+152
+00:10:59,043 --> 00:11:00,684
+What is it, really?
+
+153
+00:11:01,233 --> 00:11:04,661
+git rebase --continue resumes a paused rebase.
+
+154
+00:11:04,661 --> 00:11:07,046
+A rebase pauses for two reasons:
+
+155
+00:11:07,046 --> 00:11:10,995
+a conflict (lesson 64) or an edit stop you asked for.
+
+156
+00:11:10,995 --> 00:11:19,043
+We use edit to change an old commit in the middle of the history, and the next commits follow automatically.
+
+157
+00:11:20,800 --> 00:11:25,200
+First, a fresh practice repository for this lesson.
+
+158
+00:11:25,733 --> 00:11:30,867
+The commit "Price green tea" should also have announced the new tea in the README.
+
+159
+00:11:30,867 --> 00:11:32,119
+Stop at that commit:
+
+160
+00:11:32,119 --> 00:11:35,813
+The working directory is the snapshot of "Price green tea".
+
+161
+00:11:36,367 --> 00:11:40,431
+The working directory is the snapshot of "Price green tea".
+
+162
+00:11:40,431 --> 00:11:42,566
+Change it and amend the commit:
+
+163
+00:11:43,100 --> 00:11:43,760
+Continue:
+
+164
+00:11:43,760 --> 00:11:47,939
+the later commits are replayed on top of the changed one.
+
+165
+00:11:49,700 --> 00:11:51,250
+Let me try something.
+
+166
+00:11:51,250 --> 00:11:58,855
+At an edit stop meant to change "Add mocha", commit without --amend (a very common slip), and continue:
+
+167
+00:11:59,400 --> 00:12:00,044
+No error:
+
+168
+00:12:00,044 --> 00:12:02,475
+Git simply kept your extra commit.
+
+169
+00:12:02,475 --> 00:12:09,555
+The history now has "Add mocha" and "Mark mocha as seasonal", instead of one corrected "Add mocha".
+
+170
+00:12:09,555 --> 00:12:15,705
+At an edit stop, git commit adds a commit; git commit --amend changes the stopped one.
+
+171
+00:12:17,467 --> 00:12:24,386
+Fold the extra commit into "Add mocha" with a second interactive rebase (fixup keeps the first message):
+
+172
+00:12:26,133 --> 00:12:26,847
+Got it.
+
+173
+00:12:26,847 --> 00:12:29,598
+What do I need to remember?
+
+174
+00:12:30,133 --> 00:12:36,043
+A rebase pauses on conflicts and edit stops; git rebase --continue resumes.
+
+175
+00:12:36,600 --> 00:12:37,866
+At an edit stop:
+
+176
+00:12:37,866 --> 00:12:41,980
+--amend changes the commit, a plain commit adds one.
+
+177
+00:12:42,533 --> 00:12:46,888
+Fix a slip with another interactive rebase (fixup).

@@ -1,0 +1,18 @@
+0:00 1 · Committed on the wrong branch
+0:53 2 · Merge conflict
+1:37 3 · Accidental commit
+2:19 4 · Accidental reset
+3:09 5 · Deleted branch
+3:48 6 · Detached HEAD
+4:38 7 · Wrong remote
+5:19 8 · Push rejected
+6:00 9 · Non-fast-forward error
+6:49 10 · Authentication failure
+7:50 11 · Wrong upstream branch
+8:32 12 · Accidentally committed secret
+9:17 13 · Large file rejected
+10:20 14 · Rebase conflict
+11:04 15 · Incorrect merge
+11:47 16 · Lost commit
+12:32 17 · Wrong commit needs to be removed
+13:27 18 · Production branch contains an unwanted commit

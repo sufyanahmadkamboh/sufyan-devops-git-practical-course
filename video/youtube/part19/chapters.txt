@@ -1,0 +1,4 @@
+0:00 Lesson 89 · Secrets in Git
+2:15 Lesson 90 · Removing sensitive data
+4:38 Lesson 91 · Commit signing
+6:38 Lesson 92 · Supply chain security

@@ -462,6 +462,12 @@ def run(number: int, what: str = "all") -> None:
         video(part)
     if what in ("post", "all"):
         post(part)
+    if what == "all":                                   # keep the two finished videos, free the disk
+        import shutil
+        for name in ("frames", "clips", "audio", "mix"):
+            shutil.rmtree(part.out / name, ignore_errors=True)
+        for name in ("narration.wav", "video.mp4", "jobs.json"):
+            (part.out / name).unlink(missing_ok=True)
 
 
 if __name__ == "__main__":

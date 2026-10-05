@@ -1,0 +1,7 @@
+0:00 Lesson 37 · What is a remote?
+1:59 Lesson 38 · git remote
+3:40 Lesson 39 · git clone
+5:19 Lesson 40 · git fetch
+6:58 Lesson 41 · git pull
+8:24 Lesson 42 · git push
+10:09 Lesson 43 · Upstream branches

@@ -1,0 +1,9 @@
+0:00 The workflow
+0:32 Developer
+0:40 CI locally, then push
+0:45 Pull request
+1:00 Merge
+1:09 Release
+1:25 Deployment
+1:32 When CI catches a mistake
+2:17 Recap

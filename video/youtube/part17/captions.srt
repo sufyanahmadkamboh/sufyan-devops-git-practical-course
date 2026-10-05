@@ -1,0 +1,379 @@
+1
+00:00:04,800 --> 00:00:06,624
+What are Git hooks?
+
+2
+00:00:07,167 --> 00:00:11,308
+Hooks are scripts Git runs automatically at certain moments:
+
+3
+00:00:11,308 --> 00:00:16,831
+before a commit, after a checkout, before a push, when a server receives a push.
+
+4
+00:00:16,831 --> 00:00:19,523
+They let you automate checks and tasks.
+
+5
+00:00:19,523 --> 00:00:26,426
+We look at where they live, write a first one, and see the most common reason a hook "does nothing".
+
+6
+00:00:28,167 --> 00:00:32,566
+First, a fresh practice repository for this lesson.
+
+7
+00:00:33,100 --> 00:00:37,253
+Every new repository comes with sample hooks (disabled:
+
+8
+00:00:37,253 --> 00:00:38,838
+they end in .sample):
+
+9
+00:00:38,838 --> 00:00:39,820
+A first hook:
+
+10
+00:00:39,820 --> 00:00:43,519
+after every commit, append a line to a local log.
+
+11
+00:00:44,067 --> 00:00:45,146
+A first hook:
+
+12
+00:00:45,146 --> 00:00:49,216
+after every commit, append a line to a local log.
+
+13
+00:00:49,767 --> 00:00:51,366
+Let's run it.
+
+14
+00:00:53,100 --> 00:00:54,475
+Let me try something.
+
+15
+00:00:54,475 --> 00:00:59,646
+A colleague writes a pre-commit hook that should block commits containing TODO,
+
+16
+00:00:59,646 --> 00:01:02,265
+saving it as a nicely named script file:
+
+17
+00:01:02,800 --> 00:01:04,862
+The commit went through:
+
+18
+00:01:04,862 --> 00:01:06,494
+the hook never ran.
+
+19
+00:01:06,494 --> 00:01:13,022
+Git looks for a file named exactly pre-commit; pre-commit.sh is just a file.
+
+20
+00:01:13,022 --> 00:01:13,709
+Ask Git:
+
+21
+00:01:15,467 --> 00:01:19,761
+Rename it, undo the bad commit, and try again:
+
+22
+00:01:21,500 --> 00:01:22,213
+Got it.
+
+23
+00:01:22,213 --> 00:01:24,965
+What do I need to remember?
+
+24
+00:01:25,500 --> 00:01:32,975
+Hooks are scripts in .git/hooks/ named after an event; non-zero exit stops pre-* operations.
+
+25
+00:01:33,533 --> 00:01:37,281
+Exact name, executable, with a #!
+
+26
+00:01:37,281 --> 00:01:41,143
+line; test with git hook run NAME.
+
+27
+00:01:41,700 --> 00:01:44,059
+Hooks are local and not cloned:
+
+28
+00:01:44,059 --> 00:01:46,800
+CI must enforce what really matters.
+
+29
+00:01:48,533 --> 00:01:51,708
+I keep hearing about pre-commit hook.
+
+30
+00:01:51,708 --> 00:01:53,338
+What is it, really?
+
+31
+00:01:53,900 --> 00:01:59,687
+A practical pre-commit hook that checks the staged changes before every commit:
+
+32
+00:01:59,687 --> 00:02:04,522
+it blocks AWS-style access keys, private keys and files over 1 MB.
+
+33
+00:02:04,522 --> 00:02:09,065
+And why a local hook is a convenience, not a security control.
+
+34
+00:02:10,800 --> 00:02:15,199
+First, a fresh practice repository for this lesson.
+
+35
+00:02:15,733 --> 00:02:17,053
+The hook:
+
+36
+00:02:17,600 --> 00:02:19,880
+A normal change passes:
+
+37
+00:02:20,433 --> 00:02:23,827
+A configuration file with a credential does not.
+
+38
+00:02:23,827 --> 00:02:32,028
+(The key is AWS's documentation example, built in two parts so this course itself never contains the full pattern.).
+
+39
+00:02:33,767 --> 00:02:35,703
+Let me try something.
+
+40
+00:02:35,703 --> 00:02:39,206
+In a hurry, someone bypasses the hook:
+
+41
+00:02:39,767 --> 00:02:46,131
+--no-verify skips pre-commit entirely, and so does a fresh clone (hooks are not cloned),
+
+42
+00:02:46,131 --> 00:02:51,411
+a GUI client configured differently, or a commit made on another machine.
+
+43
+00:02:51,411 --> 00:02:53,581
+The secret is now in a commit:
+
+44
+00:02:55,333 --> 00:02:56,469
+Not pushed yet:
+
+45
+00:02:56,469 --> 00:03:01,994
+remove the file from the commit and from Git's tracking, keep it ignored.
+
+46
+00:03:01,994 --> 00:03:07,142
+(If it had been pushed, the key must be revoked and history cleaned:
+
+47
+00:03:07,142 --> 00:03:08,353
+lessons 89–90.).
+
+48
+00:03:10,100 --> 00:03:10,813
+Got it.
+
+49
+00:03:10,813 --> 00:03:13,565
+What do I need to remember?
+
+50
+00:03:14,100 --> 00:03:18,650
+pre-commit checks git diff --cached; exit 1 aborts the commit.
+
+51
+00:03:19,200 --> 00:03:24,935
+Block secrets, private keys and large files early, with clear messages.
+
+52
+00:03:25,500 --> 00:03:27,416
+Local hooks can be skipped:
+
+53
+00:03:27,416 --> 00:03:31,320
+enforce the same checks in CI and with push protection.
+
+54
+00:03:33,067 --> 00:03:35,726
+How does commit message hook work?
+
+55
+00:03:36,267 --> 00:03:42,480
+The commit-msg hook receives the path of the file holding the commit message and can reject it.
+
+56
+00:03:42,480 --> 00:03:45,685
+We enforce the Conventional Commits format (feat:
+
+57
+00:03:45,685 --> 00:03:46,601
+…, fix(scope):
+
+58
+00:03:46,601 --> 00:03:50,721
+…), which tools use to generate changelogs and version numbers.
+
+59
+00:03:52,467 --> 00:03:56,866
+First, a fresh practice repository for this lesson.
+
+60
+00:03:57,400 --> 00:03:59,250
+A valid message:
+
+61
+00:03:59,800 --> 00:04:01,650
+A valid message:
+
+62
+00:04:03,400 --> 00:04:05,424
+Let me try something.
+
+63
+00:04:05,967 --> 00:04:07,553
+The hook printed why:
+
+64
+00:04:07,553 --> 00:04:08,686
+no type prefix.
+
+65
+00:04:08,686 --> 00:04:12,237
+The commit was not created and nothing is lost:
+
+66
+00:04:12,237 --> 00:04:17,071
+the change is still staged and modified, ready for a second try.
+
+67
+00:04:18,833 --> 00:04:20,633
+Here is the fix.
+
+68
+00:04:22,367 --> 00:04:23,080
+Got it.
+
+69
+00:04:23,080 --> 00:04:25,831
+What do I need to remember?
+
+70
+00:04:26,367 --> 00:04:31,776
+commit-msg gets the message file as $1; exit 1 rejects the commit.
+
+71
+00:04:32,333 --> 00:04:33,954
+Conventional Commits:
+
+72
+00:04:33,954 --> 00:04:34,880
+type(scope):
+
+73
+00:04:34,880 --> 00:04:37,813
+description, machine-readable history.
+
+74
+00:04:38,367 --> 00:04:42,471
+Enforce it in CI as well; hooks can be skipped.
+
+75
+00:04:44,233 --> 00:04:46,908
+Why would I need Git hooks in teams?
+
+76
+00:04:47,467 --> 00:04:50,201
+Hooks in .git/hooks/ belong to one clone:
+
+77
+00:04:50,201 --> 00:04:53,069
+they are never committed, cloned or pushed.
+
+78
+00:04:53,069 --> 00:04:59,672
+Teams share hooks by committing them to a normal folder and pointing Git at it with core.hooksPath,
+
+79
+00:04:59,672 --> 00:05:05,541
+and they enforce the important checks in CI, because local hooks are optional by nature.
+
+80
+00:05:07,300 --> 00:05:11,700
+First, a fresh practice repository for this lesson.
+
+81
+00:05:12,233 --> 00:05:15,513
+Ada commits the team's hook to the repository:
+
+82
+00:05:16,067 --> 00:05:18,716
+…and enables it for herself:
+
+83
+00:05:20,467 --> 00:05:22,102
+Let me try something.
+
+84
+00:05:22,102 --> 00:05:26,386
+Grace pulls the hooks, but her commits are not checked:
+
+85
+00:05:26,933 --> 00:05:31,329
+The hook files arrived with git pull, but Git does not run them:
+
+86
+00:05:31,329 --> 00:05:36,481
+core.hooksPath is configuration of Ada's clone, not part of the repository.
+
+87
+00:05:36,481 --> 00:05:44,518
+Git never enables hooks automatically after a clone or pull (that would let any repository run code on your machine).
+
+88
+00:05:46,267 --> 00:05:49,415
+Grace enables the hooks (in real projects:
+
+89
+00:05:49,415 --> 00:05:54,886
+a documented one-time setup step), then fixes her message before pushing:
+
+90
+00:05:56,633 --> 00:05:57,347
+Got it.
+
+91
+00:05:57,347 --> 00:06:00,098
+What do I need to remember?
+
+92
+00:06:00,633 --> 00:06:06,603
+Hooks are not cloned; share them as files in the repository plus core.hooksPath.
+
+93
+00:06:07,167 --> 00:06:09,879
+Git never activates hooks by itself:
+
+94
+00:06:09,879 --> 00:06:12,366
+a setup step is needed per clone.
+
+95
+00:06:12,900 --> 00:06:18,504
+Local hooks give fast feedback; CI with branch protection gives enforcement.

@@ -20,7 +20,7 @@ Things I learned while building and testing it:
 
 ✅ Every lesson is also a test: 1,308 code blocks run automatically in GitHub Actions with the latest Git, in a sandbox, and the outputs in the lessons are the real outputs. The 153 blocks that need GitHub ran against GitHub itself: pull requests, reviews, protection rules, issues, releases and Actions runs.
 
-Also included: an assessment per module, a command reference lab, a final exam with a separate solution, {{VIDEOS}}, a 125-page study guide PDF, a glossary and 35 interview questions.
+Also included: an assessment per module, a command reference lab, a final exam with a separate solution, a 23-video series (3 h 24 min in total, full and silent versions), a 125-page study guide PDF, a glossary and 35 interview questions.
 
 🔗 Repository: https://github.com/sufyanahmadkamboh/sufyan-devops-git-practical-course
 🌐 All my projects: https://sufyanahmadkamboh.github.io/

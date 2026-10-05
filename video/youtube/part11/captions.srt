@@ -1,0 +1,487 @@
+1
+00:00:04,800 --> 00:00:06,909
+What is a pull request?
+
+2
+00:00:07,467 --> 00:00:15,131
+A pull request (PR) is a request to merge one branch into another, wrapped in a page for discussion:
+
+3
+00:00:15,131 --> 00:00:20,266
+the commits, the diff, a merge check, reviews and automated checks.
+
+4
+00:00:20,266 --> 00:00:24,941
+Underneath it is plain Git, which we reproduce locally first.
+
+5
+00:00:26,700 --> 00:00:31,100
+First, a fresh practice repository for this lesson.
+
+6
+00:00:31,633 --> 00:00:36,442
+What a PR from feature-tea into main would show, computed locally.
+
+7
+00:00:36,442 --> 00:00:37,316
+Commits tab:
+
+8
+00:00:37,316 --> 00:00:40,740
+commits on the branch that are not on the base:
+
+9
+00:00:40,740 --> 00:00:42,051
+Files changed tab:
+
+10
+00:00:42,051 --> 00:00:43,800
+the three-dot diff, i.e.
+
+11
+00:00:43,800 --> 00:00:51,668
+the branch's changes since it left main (main's own new commit, "Add opening hours", is not part of the PR):
+
+12
+00:00:52,233 --> 00:00:53,444
+Files changed tab:
+
+13
+00:00:53,444 --> 00:00:55,059
+the three-dot diff, i.e.
+
+14
+00:00:55,059 --> 00:01:02,323
+the branch's changes since it left main (main's own new commit, "Add opening hours", is not part of the PR):
+
+15
+00:01:02,323 --> 00:01:06,763
+Merge check ("This branch has no conflicts with the base branch"):
+
+16
+00:01:06,763 --> 00:01:09,723
+a merge computed without touching any files:
+
+17
+00:01:10,267 --> 00:01:14,607
+Merge check ("This branch has no conflicts with the base branch"):
+
+18
+00:01:14,607 --> 00:01:17,501
+a merge computed without touching any files:
+
+19
+00:01:19,267 --> 00:01:20,788
+Let me try something.
+
+20
+00:01:20,788 --> 00:01:28,901
+A branch that conflicts with its base, like a PR GitHub marks "This branch has conflicts that must be resolved":
+
+21
+00:01:29,467 --> 00:01:32,307
+Exit status 1 and CONFLICT (content):
+
+22
+00:01:32,307 --> 00:01:34,534
+Merge conflict in prices.txt:
+
+23
+00:01:34,534 --> 00:01:37,298
+both branches changed the same line.
+
+24
+00:01:37,298 --> 00:01:42,211
+GitHub cannot merge the PR; the author has to update the branch.
+
+25
+00:01:43,967 --> 00:01:50,832
+The PR author brings main into the branch and resolves the conflict there (lesson 27),
+
+26
+00:01:50,832 --> 00:01:53,626
+then pushes; the PR updates itself:
+
+27
+00:01:55,367 --> 00:01:56,080
+Got it.
+
+28
+00:01:56,080 --> 00:01:58,831
+What do I need to remember?
+
+29
+00:01:59,367 --> 00:02:05,026
+A PR = a branch comparison + discussion + checks + a merge button.
+
+30
+00:02:05,567 --> 00:02:14,226
+Commits tab = base..branch; Files changed = base...branch; conflicts = git merge-tree.
+
+31
+00:02:14,767 --> 00:02:21,631
+Conflicts are fixed on the branch by its author; the PR updates automatically when the branch is pushed.
+
+32
+00:02:23,367 --> 00:02:27,125
+I keep hearing about creating a pull request.
+
+33
+00:02:27,125 --> 00:02:28,711
+What is it, really?
+
+34
+00:02:29,267 --> 00:02:31,934
+The full loop on the real GitHub:
+
+35
+00:02:31,934 --> 00:02:39,775
+branch, commit, push, open a PR with a useful title and description, update it with more commits.
+
+36
+00:02:39,775 --> 00:02:44,221
+We use the GitHub CLI; the web flow is shown alongside.
+
+37
+00:02:45,967 --> 00:02:50,366
+First, a fresh practice repository for this lesson.
+
+38
+00:02:50,900 --> 00:02:55,016
+GitHub even prints the link to create the PR.
+
+39
+00:02:55,016 --> 00:02:56,205
+With the CLI:
+
+40
+00:02:56,767 --> 00:03:00,882
+GitHub even prints the link to create the PR.
+
+41
+00:03:00,882 --> 00:03:02,071
+With the CLI:
+
+42
+00:03:02,633 --> 00:03:04,233
+Let's run it.
+
+43
+00:03:05,967 --> 00:03:07,865
+Let me try something.
+
+44
+00:03:07,865 --> 00:03:11,751
+Run gh pr create again for the same branch:
+
+45
+00:03:12,300 --> 00:03:16,235
+A branch can have only one open PR into the same base.
+
+46
+00:03:16,235 --> 00:03:18,422
+The second one is unnecessary:
+
+47
+00:03:18,422 --> 00:03:22,357
+pushing to the branch already updated the existing PR.
+
+48
+00:03:22,357 --> 00:03:28,625
+If the title or description needs to change, edit the PR instead of opening a new one.
+
+49
+00:03:30,367 --> 00:03:32,166
+Here is the fix.
+
+50
+00:03:33,900 --> 00:03:34,613
+Got it.
+
+51
+00:03:34,613 --> 00:03:37,365
+What do I need to remember?
+
+52
+00:03:37,900 --> 00:03:44,245
+Push the branch, then gh pr create (or the "Compare & pull request" button).
+
+53
+00:03:44,800 --> 00:03:50,495
+New commits on the branch update the PR; one open PR per branch and base.
+
+54
+00:03:51,033 --> 00:03:57,158
+Write the why, what, how-tested in the description; drafts for early feedback.
+
+55
+00:03:58,900 --> 00:04:01,615
+How does pull request review work?
+
+56
+00:04:02,167 --> 00:04:04,379
+How a review works on GitHub:
+
+57
+00:04:04,379 --> 00:04:10,938
+general comments, comments on a line, suggestions the author can apply with one click,
+
+58
+00:04:10,938 --> 00:04:15,972
+and the three review verdicts (comment, approve, request changes).
+
+59
+00:04:15,972 --> 00:04:18,946
+And why you cannot approve your own PR.
+
+60
+00:04:20,700 --> 00:04:25,100
+First, a fresh practice repository for this lesson.
+
+61
+00:04:25,633 --> 00:04:29,140
+A general review comment (verdict "Comment"):
+
+62
+00:04:29,140 --> 00:04:33,348
+A comment on a specific line, containing a suggestion.
+
+63
+00:04:33,348 --> 00:04:38,959
+The CLI has no command for line comments, so we use the API (on the web:
+
+64
+00:04:38,959 --> 00:04:42,388
+hover the line in "Files changed", click +):
+
+65
+00:04:42,933 --> 00:04:47,215
+A comment on a specific line, containing a suggestion.
+
+66
+00:04:47,215 --> 00:04:52,923
+The CLI has no command for line comments, so we use the API (on the web:
+
+67
+00:04:52,923 --> 00:04:56,412
+hover the line in "Files changed", click +):
+
+68
+00:04:56,412 --> 00:05:06,243
+suggestion green tea 2.90 suggestion green tea 2.90 suggestion green tea 2.90 The author applies the suggestion (on the web:
+
+69
+00:05:06,243 --> 00:05:10,683
+"Commit suggestion"; here, the same change as a commit):
+
+70
+00:05:11,233 --> 00:05:21,318
+suggestion green tea 2.90 suggestion green tea 2.90 suggestion green tea 2.90 The author applies the suggestion (on the web:
+
+71
+00:05:21,318 --> 00:05:25,873
+"Commit suggestion"; here, the same change as a commit):
+
+72
+00:05:27,633 --> 00:05:29,810
+Let me try something.
+
+73
+00:05:29,810 --> 00:05:31,883
+Approve your own PR:
+
+74
+00:05:32,433 --> 00:05:35,178
+Can not approve your own pull request:
+
+75
+00:05:35,178 --> 00:05:37,778
+a review is a second person's check.
+
+76
+00:05:37,778 --> 00:05:45,144
+GitHub does not count the author, and "request changes" on your own PR is refused for the same reason.
+
+77
+00:05:45,144 --> 00:05:48,755
+If a repository requires one approval (lesson 59),
+
+78
+00:05:48,755 --> 00:05:53,883
+a PR cannot be merged until someone else with write access approves it.
+
+79
+00:05:55,633 --> 00:06:04,017
+Ask a reviewer (gh pr edit price-green-tea --add-reviewer TEAMMATE, or "Reviewers" on the PR page).
+
+80
+00:06:04,017 --> 00:06:07,743
+The reviewer, logged in as themselves, runs:
+
+81
+00:06:09,500 --> 00:06:10,213
+Got it.
+
+82
+00:06:10,213 --> 00:06:12,965
+What do I need to remember?
+
+83
+00:06:13,500 --> 00:06:14,838
+Review verdicts:
+
+84
+00:06:14,838 --> 00:06:21,615
+comment, approve, request changes; line comments can carry one-click suggestions.
+
+85
+00:06:22,167 --> 00:06:26,696
+The author answers by pushing commits; the PR updates.
+
+86
+00:06:27,233 --> 00:06:29,683
+Nobody can approve their own PR:
+
+87
+00:06:29,683 --> 00:06:32,593
+required reviews need a second person.
+
+88
+00:06:34,333 --> 00:06:36,918
+Why would I need merge strategies?
+
+89
+00:06:37,467 --> 00:06:40,332
+GitHub's merge button has three modes:
+
+90
+00:06:40,332 --> 00:06:44,706
+Create a merge commit, Squash and merge, Rebase and merge.
+
+91
+00:06:44,706 --> 00:06:47,722
+Each leaves a different history on main.
+
+92
+00:06:47,722 --> 00:06:53,076
+We reproduce all three locally to see the graphs, then merge a real PR.
+
+93
+00:06:54,833 --> 00:06:59,233
+First, a fresh practice repository for this lesson.
+
+94
+00:06:59,767 --> 00:07:03,709
+Create a merge commit (GitHub always uses --no-ff here):
+
+95
+00:07:03,709 --> 00:07:04,906
+Squash and merge:
+
+96
+00:07:04,906 --> 00:07:08,496
+the branch's changes become one new commit on main:
+
+97
+00:07:09,033 --> 00:07:10,253
+Squash and merge:
+
+98
+00:07:10,253 --> 00:07:13,910
+the branch's changes become one new commit on main:
+
+99
+00:07:13,910 --> 00:07:15,130
+Rebase and merge:
+
+100
+00:07:15,130 --> 00:07:19,433
+the commits replayed on top of main, without a merge commit:
+
+101
+00:07:19,967 --> 00:07:21,246
+Rebase and merge:
+
+102
+00:07:21,246 --> 00:07:25,760
+the commits replayed on top of main, without a merge commit:
+
+103
+00:07:25,760 --> 00:07:29,146
+Same files on all three, different histories:
+
+104
+00:07:30,900 --> 00:07:32,633
+Let me try something.
+
+105
+00:07:32,633 --> 00:07:37,915
+After a squash merge, delete the PR branch locally the safe way:
+
+106
+00:07:38,467 --> 00:07:38,883
+error:
+
+107
+00:07:38,883 --> 00:07:41,866
+the branch 'pr-squash' is not fully merged:
+
+108
+00:07:41,866 --> 00:07:47,277
+Git checks whether the branch's commits are reachable from the current branch.
+
+109
+00:07:47,277 --> 00:07:52,272
+After a squash they are not (the content is, inside a different commit).
+
+110
+00:07:52,272 --> 00:07:54,076
+Check the content instead:
+
+111
+00:07:55,833 --> 00:07:57,165
+Content verified:
+
+112
+00:07:57,165 --> 00:07:58,340
+delete with -D.
+
+113
+00:07:58,340 --> 00:08:05,938
+On GitHub, enable "Automatically delete head branches" so merged PR branches are deleted for you.
+
+114
+00:08:07,700 --> 00:08:08,413
+Got it.
+
+115
+00:08:08,413 --> 00:08:11,165
+What do I need to remember?
+
+116
+00:08:11,700 --> 00:08:12,960
+Merge commit:
+
+117
+00:08:12,960 --> 00:08:17,127
+keeps everything + the PR boundary; squash:
+
+118
+00:08:17,127 --> 00:08:19,646
+one commit per PR; rebase:
+
+119
+00:08:19,646 --> 00:08:21,585
+linear, all commits.
+
+120
+00:08:22,133 --> 00:08:27,852
+After squash/rebase merges, git branch -d says "not fully merged":
+
+121
+00:08:27,852 --> 00:08:30,018
+compare content, then -D.
+
+122
+00:08:30,567 --> 00:08:34,176
+Configure the allowed strategies per repository.

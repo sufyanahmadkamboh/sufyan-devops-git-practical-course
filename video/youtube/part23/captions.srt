@@ -1,0 +1,115 @@
+1
+00:00:04,800 --> 00:00:07,011
+The team left us a mess.
+
+2
+00:00:07,011 --> 00:00:09,130
+Where do we even begin?
+
+3
+00:00:09,667 --> 00:00:13,022
+A team left you its repository in a bad state:
+
+4
+00:00:13,022 --> 00:00:17,035
+meaningless commit messages, a password in the history,
+
+5
+00:00:17,035 --> 00:00:20,245
+a large video in the history, no .gitignore,
+
+6
+00:00:20,245 --> 00:00:25,789
+a version mismatch that fails CI, a feature branch that conflicts with main,
+
+7
+00:00:25,789 --> 00:00:28,415
+a badly named tag, and no CI at all.
+
+8
+00:00:28,415 --> 00:00:34,251
+Turn it into a professional GitHub repository with a complete delivery pipeline:
+
+9
+00:00:36,000 --> 00:00:37,904
+Assess the damage.
+
+10
+00:00:39,667 --> 00:00:46,136
+The password is fake here; with a real one, rotate it first (lesson 89).
+
+11
+00:00:47,900 --> 00:00:48,796
+At the stop:
+
+12
+00:00:48,796 --> 00:00:55,220
+undo the image tag change, keep the latte price, and give the commit a proper message:
+
+13
+00:00:56,967 --> 00:01:00,246
+Ignore what never belongs in the repository.
+
+14
+00:01:02,000 --> 00:01:09,831
+The chai branch also changed the latte price (3.50 vs 3.30 on main).
+
+15
+00:01:09,831 --> 00:01:12,594
+The team agreed on 3.40:
+
+16
+00:01:14,333 --> 00:01:19,682
+Everything local is fixed except what only exists after the pull requests:
+
+17
+00:01:19,682 --> 00:01:23,441
+chai and the workflows on main, and the release tag.
+
+18
+00:01:23,441 --> 00:01:25,393
+Part 2 does that on GitHub.
+
+19
+00:01:27,133 --> 00:01:30,183
+Create the repository and push main.
+
+20
+00:01:31,933 --> 00:01:34,822
+Pull requests required (0 approvals:
+
+21
+00:01:34,822 --> 00:01:39,796
+a solo learner cannot approve their own PRs; a team uses 1–2),
+
+22
+00:01:39,796 --> 00:01:47,498
+the checks job required and up to date, rules enforced for admins, no force pushes or deletions:
+
+23
+00:01:49,233 --> 00:01:55,418
+The checks run on the pull request; wait for them, add a review comment, merge:
+
+24
+00:01:57,167 --> 00:02:05,531
+(The last line comes from gh updating your local main after the squash merge.) A direct push to main is now impossible,
+
+25
+00:02:05,531 --> 00:02:06,866
+even for the owner:
+
+26
+00:02:08,600 --> 00:02:11,180
+The tag starts the release workflow:
+
+27
+00:02:11,180 --> 00:02:16,841
+checks, image build and push to GHCR, a GitHub release with the packaged chart,
+
+28
+00:02:16,841 --> 00:02:24,724
+then a deploy job that creates a kind cluster on the runner, pulls the image from GHCR and installs the chart:
+
+29
+00:02:26,467 --> 00:02:28,176
+Final check.

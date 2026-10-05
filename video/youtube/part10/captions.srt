@@ -1,0 +1,747 @@
+1
+00:00:04,800 --> 00:00:06,479
+What is GitHub?
+
+2
+00:00:07,033 --> 00:00:13,054
+GitHub is a hosting and collaboration platform built around Git repositories.
+
+3
+00:00:13,054 --> 00:00:17,588
+Git does the version control; GitHub adds a shared server,
+
+4
+00:00:17,588 --> 00:00:23,530
+access control, pull requests, reviews, issues, Actions and releases on top.
+
+5
+00:00:23,530 --> 00:00:27,518
+We talk to a real GitHub repository with plain Git.
+
+6
+00:00:29,267 --> 00:00:33,666
+First, a fresh practice repository for this lesson.
+
+7
+00:00:34,200 --> 00:00:41,423
+Ask GitHub's Git server what a public repository contains, without cloning it:
+
+8
+00:00:41,423 --> 00:00:42,257
+Clone it:
+
+9
+00:00:42,257 --> 00:00:48,369
+the same git clone as in lesson 39, with an https://github.com/...
+
+10
+00:00:48,369 --> 00:00:48,740
+URL.
+
+11
+00:00:49,300 --> 00:00:51,053
+Clone it:
+
+12
+00:00:51,053 --> 00:01:03,910
+the same git clone as in lesson 39, with an https://github.com/...
+
+13
+00:01:03,910 --> 00:01:04,689
+URL.
+
+14
+00:01:06,433 --> 00:01:08,179
+Let me try something.
+
+15
+00:01:08,179 --> 00:01:11,838
+Clone a repository whose name is misspelled:
+
+16
+00:01:12,400 --> 00:01:16,086
+GitHub does not say "this repository does not exist".
+
+17
+00:01:16,086 --> 00:01:20,955
+For a repository you cannot see, it answers "authentication required",
+
+18
+00:01:20,955 --> 00:01:27,841
+because a private repository with that name might exist and GitHub will not reveal it to strangers.
+
+19
+00:01:27,841 --> 00:01:33,197
+So Git asks for a username (in this course's test setup prompts are disabled,
+
+20
+00:01:33,197 --> 00:01:41,057
+so it stops with could not read Username; on your computer a login window or a Username for 'https://github.com':
+
+21
+00:01:41,057 --> 00:01:42,169
+prompt appears).
+
+22
+00:01:43,933 --> 00:01:45,733
+Here is the fix.
+
+23
+00:01:47,467 --> 00:01:48,180
+Got it.
+
+24
+00:01:48,180 --> 00:01:50,931
+What do I need to remember?
+
+25
+00:01:51,467 --> 00:01:59,416
+GitHub = a Git server + collaboration features (PRs, issues, Actions, releases).
+
+26
+00:01:59,967 --> 00:02:04,761
+All Git commands work with GitHub URLs exactly as with any remote.
+
+27
+00:02:05,300 --> 00:02:11,049
+A credential prompt for a "public" repository usually means a wrong name or no access.
+
+28
+00:02:12,800 --> 00:02:16,970
+I keep hearing about creating a GitHub repository.
+
+29
+00:02:16,970 --> 00:02:18,555
+What is it, really?
+
+30
+00:02:19,100 --> 00:02:24,499
+How to create a repository on GitHub, in the web interface and with the GitHub CLI,
+
+31
+00:02:24,499 --> 00:02:29,702
+and which options matter when you are going to push an existing project into it.
+
+32
+00:02:29,702 --> 00:02:34,385
+This lesson and the following GitHub lessons need a free GitHub account.
+
+33
+00:02:34,385 --> 00:02:40,630
+The practice repository is called git-practice-cafe; you can delete it at the end of the course.
+
+34
+00:02:42,367 --> 00:02:46,766
+First, a fresh practice repository for this lesson.
+
+35
+00:02:47,300 --> 00:02:48,607
+In the browser:
+
+36
+00:02:48,607 --> 00:02:54,447
+follow the visual above, with no README, no .gitignore, no license.
+
+37
+00:02:54,447 --> 00:02:57,759
+With the CLI, the same in one command:
+
+38
+00:02:57,759 --> 00:03:10,397
+(In a terminal, gh also prints ✓ Created repository YOU/git-practice-cafe on github.com; the URL is the part scripts use.) The repository exists,
+
+39
+00:03:10,397 --> 00:03:10,919
+empty:
+
+40
+00:03:11,467 --> 00:03:24,108
+(In a terminal, gh also prints ✓ Created repository YOU/git-practice-cafe on github.com; the URL is the part scripts use.) The repository exists,
+
+41
+00:03:24,108 --> 00:03:24,631
+empty:
+
+42
+00:03:26,367 --> 00:03:28,340
+Let me try something.
+
+43
+00:03:28,340 --> 00:03:30,596
+Create it a second time:
+
+44
+00:03:31,133 --> 00:03:33,775
+Name already exists on this account:
+
+45
+00:03:33,775 --> 00:03:36,564
+repository names are unique per owner.
+
+46
+00:03:36,564 --> 00:03:40,013
+Either the repository is already there (use it:
+
+47
+00:03:40,013 --> 00:03:43,902
+gh repo view git-practice-cafe) or pick another name.
+
+48
+00:03:43,902 --> 00:03:45,443
+Also check the owner:
+
+49
+00:03:45,443 --> 00:03:52,708
+in an organisation, the same name can exist under your personal account and under the organisation.
+
+50
+00:03:54,467 --> 00:03:55,980
+Nothing to recreate:
+
+51
+00:03:55,980 --> 00:03:59,611
+list your repositories and use the existing one.
+
+52
+00:04:01,367 --> 00:04:02,080
+Got it.
+
+53
+00:04:02,080 --> 00:04:04,831
+What do I need to remember?
+
+54
+00:04:05,367 --> 00:04:09,896
+Create empty repositories when you will push an existing project.
+
+55
+00:04:10,433 --> 00:04:15,953
+gh repo create does the same as the web form; names are unique per owner.
+
+56
+00:04:16,500 --> 00:04:20,500
+Organisations and templates are the usual way in teams.
+
+57
+00:04:22,233 --> 00:04:25,498
+How does connecting local Git to GitHub work?
+
+58
+00:04:26,033 --> 00:04:32,494
+How to push an existing local repository into the empty GitHub repository from lesson 45:
+
+59
+00:04:32,494 --> 00:04:35,035
+add the remote, push with upstream.
+
+60
+00:04:35,035 --> 00:04:41,713
+Exactly what GitHub's "…or push an existing repository from the command line" box tells you.
+
+61
+00:04:43,467 --> 00:04:47,866
+First, a fresh practice repository for this lesson.
+
+62
+00:04:48,400 --> 00:04:53,045
+The first push creates main on GitHub and connects your local main to it:
+
+63
+00:04:53,600 --> 00:04:58,508
+The first push creates main on GitHub and connects your local main to it:
+
+64
+00:04:58,508 --> 00:05:03,080
+(If Git asks for a username and password here, read lesson 48 first:
+
+65
+00:05:03,080 --> 00:05:06,240
+GitHub does not accept your account password.).
+
+66
+00:05:06,800 --> 00:05:11,675
+(If Git asks for a username and password here, read lesson 48 first:
+
+67
+00:05:11,675 --> 00:05:18,845
+GitHub does not accept your account password.) GitHub's main starts with exactly your three commits,
+
+68
+00:05:18,845 --> 00:05:20,136
+with the same IDs:
+
+69
+00:05:20,136 --> 00:05:21,785
+it is the same history.
+
+70
+00:05:21,785 --> 00:05:24,940
+(Later lessons add commits on top of them.).
+
+71
+00:05:26,700 --> 00:05:28,347
+Let me try something.
+
+72
+00:05:28,347 --> 00:05:32,505
+A typo in the repository name when adding the remote:
+
+73
+00:05:33,067 --> 00:05:33,621
+remote:
+
+74
+00:05:33,621 --> 00:05:35,285
+Repository not found.
+
+75
+00:05:35,285 --> 00:05:41,068
+Now that Git is authenticated (unlike lesson 44), GitHub says it clearly:
+
+76
+00:05:41,068 --> 00:05:47,723
+under this owner there is no repository with that name, or you have no access to it.
+
+77
+00:05:47,723 --> 00:05:50,971
+Compare the remote URL with the page URL:
+
+78
+00:05:52,733 --> 00:05:54,533
+Here is the fix.
+
+79
+00:05:56,267 --> 00:05:56,980
+Got it.
+
+80
+00:05:56,980 --> 00:05:59,731
+What do I need to remember?
+
+81
+00:06:00,267 --> 00:06:06,471
+git remote add origin URL + git push -u origin main publishes a local repository.
+
+82
+00:06:07,033 --> 00:06:12,878
+An authenticated Repository not found means a wrong owner/name or no access.
+
+83
+00:06:13,433 --> 00:06:17,398
+The commit IDs are identical locally and on GitHub.
+
+84
+00:06:19,133 --> 00:06:22,488
+Why would I need GitHub repository structure?
+
+85
+00:06:23,033 --> 00:06:26,948
+What each tab of a GitHub repository page is for,
+
+86
+00:06:26,948 --> 00:06:30,464
+which of them are plain Git (Code, Branches,
+
+87
+00:06:30,464 --> 00:06:39,093
+Tags) and which are GitHub features stored outside Git (Issues, Pull requests, Actions, Releases, Settings).
+
+88
+00:06:39,093 --> 00:06:42,928
+For each tab we use the command-line equivalent.
+
+89
+00:06:44,667 --> 00:06:49,066
+First, a fresh practice repository for this lesson.
+
+90
+00:06:49,600 --> 00:06:51,483
+Code, Branches, Tags:
+
+91
+00:06:51,483 --> 00:06:55,249
+Git data, available offline after cloning:
+
+92
+00:06:55,249 --> 00:06:58,926
+Issues, Pull requests, Actions, Releases:
+
+93
+00:06:58,926 --> 00:07:01,975
+GitHub data, read through the API.
+
+94
+00:07:01,975 --> 00:07:06,190
+gh finds the repository from the origin remote:
+
+95
+00:07:06,733 --> 00:07:09,849
+Issues, Pull requests, Actions, Releases:
+
+96
+00:07:09,849 --> 00:07:12,433
+GitHub data, read through the API.
+
+97
+00:07:12,433 --> 00:07:16,005
+gh finds the repository from the origin remote:
+
+98
+00:07:16,005 --> 00:07:16,688
+Settings:
+
+99
+00:07:16,688 --> 00:07:21,400
+repository options, branch protection, collaborators, secrets.
+
+100
+00:07:21,400 --> 00:07:23,908
+Some are visible through the API:
+
+101
+00:07:24,467 --> 00:07:25,303
+Settings:
+
+102
+00:07:25,303 --> 00:07:31,065
+repository options, branch protection, collaborators, secrets.
+
+103
+00:07:31,065 --> 00:07:34,131
+Some are visible through the API:
+
+104
+00:07:35,867 --> 00:07:37,938
+Let me try something.
+
+105
+00:07:37,938 --> 00:07:41,391
+Use gh outside a repository folder:
+
+106
+00:07:41,933 --> 00:07:43,491
+no git remotes found:
+
+107
+00:07:43,491 --> 00:07:48,091
+gh picks the repository from the current folder's Git remotes.
+
+108
+00:07:48,091 --> 00:07:56,178
+The lab folder is a Git repository, but without a GitHub remote, so gh cannot know which repository you mean.
+
+109
+00:07:56,178 --> 00:08:00,778
+(Outside any repository the message is not a git repository.).
+
+110
+00:08:02,533 --> 00:08:07,878
+Name it explicitly with -R OWNER/REPO, or cd into the clone:
+
+111
+00:08:09,633 --> 00:08:10,347
+Got it.
+
+112
+00:08:10,347 --> 00:08:13,098
+What do I need to remember?
+
+113
+00:08:13,633 --> 00:08:22,028
+Code, branches and tags are Git; issues, PRs, Actions, releases and settings are GitHub.
+
+114
+00:08:22,567 --> 00:08:25,431
+A clone contains only the Git part.
+
+115
+00:08:25,967 --> 00:08:32,326
+gh is the command-line window to the GitHub part (-R OWNER/REPO outside a clone).
+
+116
+00:08:34,067 --> 00:08:38,241
+What should I know about HTTPS authentication?
+
+117
+00:08:38,800 --> 00:08:42,356
+How Git proves who you are to GitHub over HTTPS:
+
+118
+00:08:42,356 --> 00:08:48,060
+not with your account password (GitHub stopped accepting it for Git in 2021),
+
+119
+00:08:48,060 --> 00:08:53,690
+but with a token, handed to Git by a credential helper so you never type it.
+
+120
+00:08:55,433 --> 00:08:59,833
+First, a fresh practice repository for this lesson.
+
+121
+00:09:00,367 --> 00:09:04,407
+Reading a public repository needs no credentials:
+
+122
+00:09:04,407 --> 00:09:05,478
+Writing does.
+
+123
+00:09:05,478 --> 00:09:10,260
+With no helper, Git has to ask (here prompts are disabled,
+
+124
+00:09:10,260 --> 00:09:16,856
+so it stops; on your computer you would see Username for 'https://github.com':):
+
+125
+00:09:17,400 --> 00:09:18,542
+Writing does.
+
+126
+00:09:18,542 --> 00:09:23,635
+With no helper, Git has to ask (here prompts are disabled,
+
+127
+00:09:23,635 --> 00:09:30,659
+so it stops; on your computer you would see Username for 'https://github.com':):
+
+128
+00:09:32,400 --> 00:09:33,987
+Let me try something.
+
+129
+00:09:33,987 --> 00:09:36,254
+Do what many people try first:
+
+130
+00:09:36,254 --> 00:09:39,580
+answer the prompt with the account password.
+
+131
+00:09:40,133 --> 00:09:42,367
+Invalid username or token.
+
+132
+00:09:42,367 --> 00:09:47,607
+Password authentication is not supported for Git operations.:
+
+133
+00:09:47,607 --> 00:09:50,871
+GitHub accepts only tokens over HTTPS.
+
+134
+00:09:50,871 --> 00:09:53,448
+Even a correct password fails.
+
+135
+00:09:55,200 --> 00:10:03,255
+Log in once with the GitHub CLI (gh auth login, done in lesson 45) and connect it to Git:
+
+136
+00:10:05,000 --> 00:10:05,713
+Got it.
+
+137
+00:10:05,713 --> 00:10:08,464
+What do I need to remember?
+
+138
+00:10:09,000 --> 00:10:15,135
+GitHub never accepts your account password for Git; HTTPS needs a token.
+
+139
+00:10:15,700 --> 00:10:22,975
+A credential helper (Git Credential Manager, gh auth setup-git) stores and supplies it.
+
+140
+00:10:23,533 --> 00:10:30,408
+Prefer fine-grained, expiring, least-privilege tokens; in Actions use GITHUB_TOKEN.
+
+141
+00:10:32,167 --> 00:10:35,451
+Can you show me SSH authentication?
+
+142
+00:10:36,000 --> 00:10:39,699
+How to authenticate to GitHub with an SSH key pair:
+
+143
+00:10:39,699 --> 00:10:43,762
+create the key with ssh-keygen, trust GitHub's host key,
+
+144
+00:10:43,762 --> 00:10:49,130
+add the public key to your account, and verify with ssh -T [email].
+
+145
+00:10:50,867 --> 00:10:55,266
+First, a fresh practice repository for this lesson.
+
+146
+00:10:55,800 --> 00:10:56,009
+1.
+
+147
+00:10:56,009 --> 00:10:57,889
+Create a key pair.
+
+148
+00:10:58,433 --> 00:11:04,478
+The .pub file is the part you share; id_ed25519 is the secret.
+
+149
+00:11:04,478 --> 00:11:04,673
+2.
+
+150
+00:11:04,673 --> 00:11:07,013
+Trust GitHub's host key.
+
+151
+00:11:08,767 --> 00:11:10,332
+Let me try something.
+
+152
+00:11:10,332 --> 00:11:13,836
+Test the connection before registering the key:
+
+153
+00:11:14,400 --> 00:11:16,439
+Permission denied (publickey):
+
+154
+00:11:16,439 --> 00:11:21,809
+the network and GitHub's host key are fine (we reached GitHub and it answered),
+
+155
+00:11:21,809 --> 00:11:25,344
+but no key ssh offered is registered on any account.
+
+156
+00:11:25,344 --> 00:11:28,335
+The debug log shows which keys were offered:
+
+157
+00:11:30,100 --> 00:11:34,209
+Register the public key with your account (web:
+
+158
+00:11:34,209 --> 00:11:39,805
+Settings → SSH and GPG keys → New SSH key, paste the .pub line):
+
+159
+00:11:41,567 --> 00:11:42,280
+Got it.
+
+160
+00:11:42,280 --> 00:11:45,031
+What do I need to remember?
+
+161
+00:11:45,567 --> 00:11:52,896
+ssh-keygen -t ed25519 creates the pair; only the .pub part goes to GitHub.
+
+162
+00:11:53,433 --> 00:11:58,513
+Verify GitHub's host key fingerprint once; known_hosts remembers it.
+
+163
+00:11:59,067 --> 00:12:05,736
+ssh -T [email] tests; Permission denied (publickey) = no registered key was offered.
+
+164
+00:12:07,500 --> 00:12:11,740
+I keep hearing about SSH vs HTTPS.
+
+165
+00:12:11,740 --> 00:12:14,110
+What is it, really?
+
+166
+00:12:14,667 --> 00:12:17,706
+Both protocols reach the same repository.
+
+167
+00:12:17,706 --> 00:12:25,637
+We compare them in practice, switch a clone from one to the other, and fix the most common network problem:
+
+168
+00:12:25,637 --> 00:12:27,861
+port 22 blocked by a firewall.
+
+169
+00:12:29,600 --> 00:12:33,000
+First, a fresh practice repository for this lesson.
+
+170
+00:12:34,533 --> 00:12:36,811
+Switch the remote to SSH:
+
+171
+00:12:36,811 --> 00:12:42,188
+only the URL changes; branches, history and upstreams stay.
+
+172
+00:12:42,188 --> 00:12:49,933
+Or let Git rewrite every GitHub HTTPS URL to SSH automatically, for all repositories:
+
+173
+00:12:50,467 --> 00:12:57,797
+Or let Git rewrite every GitHub HTTPS URL to SSH automatically, for all repositories:
+
+174
+00:12:57,797 --> 00:13:04,696
+git remote -v already shows the rewritten URL; the config file still says HTTPS.
+
+175
+00:13:06,433 --> 00:13:08,338
+Let me try something.
+
+176
+00:13:08,338 --> 00:13:14,598
+A network where outgoing port 22 is blocked (hotel, corporate proxy).
+
+177
+00:13:15,133 --> 00:13:21,119
+Connection timed out / Connection refused comes before any authentication:
+
+178
+00:13:21,119 --> 00:13:29,209
+it is a network problem, not a key problem (compare with Permission denied (publickey) in lesson 49,
+
+179
+00:13:29,209 --> 00:13:31,797
+which means the network worked).
+
+180
+00:13:31,797 --> 00:13:36,813
+GitHub offers SSH on port 443 too, at the host ssh.github.com:
+
+181
+00:13:38,567 --> 00:13:45,586
+Make port 443 permanent for github.com, so the normal URLs keep working:
+
+182
+00:13:47,333 --> 00:13:48,047
+Got it.
+
+183
+00:13:48,047 --> 00:13:50,798
+What do I need to remember?
+
+184
+00:13:51,333 --> 00:13:56,460
+Same repository, two transports:
+
+185
+00:13:56,460 --> 00:14:05,433
+HTTPS (port 443, tokens) and SSH (port 22 or 443, keys).
+
+186
+00:14:05,967 --> 00:14:11,966
+git remote set-url or url.<base>.insteadOf switch between them.
+
+187
+00:14:12,500 --> 00:14:17,984
+Timeouts = network; Permission denied (publickey) = authentication.

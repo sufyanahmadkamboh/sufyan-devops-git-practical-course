@@ -1,0 +1,4 @@
+0:00 Lesson 13 · git log
+1:57 Lesson 14 · git show
+3:23 Lesson 15 · git diff
+5:08 Lesson 16 · Commit history visualization

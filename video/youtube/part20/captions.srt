@@ -1,0 +1,591 @@
+1
+00:00:04,800 --> 00:00:07,374
+Can you show me GitHub Issues?
+
+2
+00:00:07,933 --> 00:00:09,269
+Issues track work:
+
+3
+00:00:09,269 --> 00:00:11,495
+bugs, feature requests, tasks.
+
+4
+00:00:11,495 --> 00:00:16,615
+The useful part for Git users is the link between issues and commits:
+
+5
+00:00:16,615 --> 00:00:24,776
+writing Fixes #12 in a commit or PR closes the issue automatically when the change reaches the default branch.
+
+6
+00:00:24,776 --> 00:00:28,338
+We run that workflow on the practice repository.
+
+7
+00:00:30,100 --> 00:00:34,499
+First, a fresh practice repository for this lesson.
+
+8
+00:00:35,033 --> 00:00:36,778
+Report the bug:
+
+9
+00:00:37,333 --> 00:00:43,126
+Fix it with a commit that references the issue, and push to main (on a team:
+
+10
+00:00:43,126 --> 00:00:46,633
+through a PR whose description says Fixes #N):
+
+11
+00:00:47,167 --> 00:00:52,420
+Fix it with a commit that references the issue, and push to main (on a team:
+
+12
+00:00:52,420 --> 00:00:55,600
+through a PR whose description says Fixes #N):
+
+13
+00:00:55,600 --> 00:01:00,646
+GitHub closes the issue and links the commit (it can take a few seconds):
+
+14
+00:01:02,400 --> 00:01:03,985
+Let me try something.
+
+15
+00:01:03,985 --> 00:01:10,855
+Fix the chai issue on a feature branch, with the closing keyword, and push only the branch:
+
+16
+00:01:11,400 --> 00:01:12,143
+Still OPEN:
+
+17
+00:01:12,143 --> 00:01:17,345
+closing keywords act only when the commit lands on the default branch (main).
+
+18
+00:01:17,345 --> 00:01:23,628
+On a feature branch the commit is linked from the issue's timeline ("referenced this issue"),
+
+19
+00:01:23,628 --> 00:01:27,344
+but the work is not considered done until it is merged.
+
+20
+00:01:27,344 --> 00:01:28,493
+That is intended:
+
+21
+00:01:28,493 --> 00:01:30,520
+the fix might never be merged.
+
+22
+00:01:32,267 --> 00:01:38,181
+Merge it into main (here directly; on a team, by merging the PR):
+
+23
+00:01:39,933 --> 00:01:40,647
+Got it.
+
+24
+00:01:40,647 --> 00:01:43,398
+What do I need to remember?
+
+25
+00:01:43,933 --> 00:01:50,643
+Issues track work; gh issue create/list/view/comment/close.
+
+26
+00:01:51,200 --> 00:01:58,915
+Fixes #N / Closes #N in a commit or PR closes the issue when it reaches the default branch.
+
+27
+00:01:59,467 --> 00:02:04,371
+On other branches the commit is only referenced; merging closes it.
+
+28
+00:02:06,133 --> 00:02:08,793
+I keep hearing about labels.
+
+29
+00:02:08,793 --> 00:02:10,598
+What is it, really?
+
+30
+00:02:11,133 --> 00:02:14,794
+Labels categorise issues and pull requests:
+
+31
+00:02:14,794 --> 00:02:21,690
+type (bug, enhancement), priority, area (helm, terraform), status (needs-review).
+
+32
+00:02:21,690 --> 00:02:27,735
+They make lists filterable and drive automation (a release-notes label,
+
+33
+00:02:27,735 --> 00:02:31,481
+a CI job that runs only for deploy-preview).
+
+34
+00:02:31,481 --> 00:02:35,568
+We create labels, apply them and filter by them.
+
+35
+00:02:37,333 --> 00:02:41,733
+First, a fresh practice repository for this lesson.
+
+36
+00:02:42,267 --> 00:02:45,044
+Every new repository has default labels:
+
+37
+00:02:45,044 --> 00:02:50,181
+Create the team's own labels (--force updates them if they already exist):
+
+38
+00:02:50,733 --> 00:02:55,589
+Create the team's own labels (--force updates them if they already exist):
+
+39
+00:02:55,589 --> 00:02:58,083
+Open an issue with labels, and filter:
+
+40
+00:02:58,633 --> 00:03:01,923
+Open an issue with labels, and filter:
+
+41
+00:03:03,667 --> 00:03:05,668
+Let me try something.
+
+42
+00:03:05,668 --> 00:03:08,051
+A typo in the label name:
+
+43
+00:03:08,600 --> 00:03:10,518
+'priority:hihg' not found:
+
+44
+00:03:10,518 --> 00:03:21,365
+labels must exist in the repository before they can be applied (the web interface only offers existing ones; the CLI and API refuse unknown names).
+
+45
+00:03:21,365 --> 00:03:23,210
+Check the exact spelling:
+
+46
+00:03:24,967 --> 00:03:26,766
+Here is the fix.
+
+47
+00:03:28,500 --> 00:03:29,213
+Got it.
+
+48
+00:03:29,213 --> 00:03:31,965
+What do I need to remember?
+
+49
+00:03:32,500 --> 00:03:39,145
+Labels categorise issues and PRs by type, priority, area, status.
+
+50
+00:03:39,700 --> 00:03:46,725
+gh label create/list/edit/delete; apply with gh issue edit --add-label.
+
+51
+00:03:47,267 --> 00:03:52,621
+Labels must exist before use; share one scheme across repositories.
+
+52
+00:03:54,367 --> 00:03:56,781
+How does milestones work?
+
+53
+00:03:57,333 --> 00:04:03,989
+A milestone groups issues and pull requests toward a goal with an optional due date,
+
+54
+00:04:03,989 --> 00:04:06,445
+typically a release ("v1.1.0").
+
+55
+00:04:06,445 --> 00:04:10,802
+GitHub shows its progress as the share of closed items.
+
+56
+00:04:10,802 --> 00:04:15,873
+We create one, assign issues, close them, and read the progress.
+
+57
+00:04:17,633 --> 00:04:22,033
+First, a fresh practice repository for this lesson.
+
+58
+00:04:22,567 --> 00:04:27,467
+The CLI has no milestone command; the API does it (on the web:
+
+59
+00:04:27,467 --> 00:04:30,391
+Issues → Milestones → New milestone):
+
+60
+00:04:30,391 --> 00:04:32,446
+Plan three issues into it:
+
+61
+00:04:33,000 --> 00:04:35,479
+Plan three issues into it:
+
+62
+00:04:36,033 --> 00:04:37,588
+Two are done:
+
+63
+00:04:39,333 --> 00:04:40,899
+Let me try something.
+
+64
+00:04:40,899 --> 00:04:46,638
+Assign an issue to a milestone that does not exist (the release was renamed):
+
+65
+00:04:47,200 --> 00:04:49,968
+could not add to milestone 'v1.1':
+
+66
+00:04:49,968 --> 00:04:51,352
+'v1.1' not found:
+
+67
+00:04:51,352 --> 00:04:54,445
+milestones are matched by exact title.
+
+68
+00:04:54,445 --> 00:04:59,167
+The issue was not created (the command failed as a whole).
+
+69
+00:04:59,167 --> 00:05:01,040
+List the existing ones:
+
+70
+00:05:02,800 --> 00:05:04,600
+Here is the fix.
+
+71
+00:05:06,333 --> 00:05:07,047
+Got it.
+
+72
+00:05:07,047 --> 00:05:09,798
+What do I need to remember?
+
+73
+00:05:10,333 --> 00:05:17,563
+A milestone groups issues/PRs toward a goal, usually a release, with progress and a due date.
+
+74
+00:05:18,100 --> 00:05:25,510
+Create and inspect with gh api …/milestones; assign with --milestone TITLE.
+
+75
+00:05:26,067 --> 00:05:28,606
+Titles must match exactly.
+
+76
+00:05:30,367 --> 00:05:32,596
+Why would I need projects?
+
+77
+00:05:33,133 --> 00:05:39,650
+GitHub Projects are planning boards and tables built on top of issues and pull requests,
+
+78
+00:05:39,650 --> 00:05:42,019
+across one or many repositories:
+
+79
+00:05:42,019 --> 00:05:49,424
+columns such as Todo / In progress / Done, custom fields (priority, estimate, iteration), and views.
+
+80
+00:05:49,424 --> 00:05:54,163
+They do not change Git at all; they organise the work around it.
+
+81
+00:05:55,900 --> 00:06:00,300
+First, a fresh practice repository for this lesson.
+
+82
+00:06:00,833 --> 00:06:08,673
+With the project scope (see "Fix" below), create a project, add an issue, and move it across the board:
+
+83
+00:06:10,433 --> 00:06:11,886
+Let me try something.
+
+84
+00:06:11,886 --> 00:06:19,703
+Use the project commands with a token that was created without the project scope (the default for gh auth login):
+
+85
+00:06:20,267 --> 00:06:25,243
+your authentication token is missing required scopes [read:project]:
+
+86
+00:06:25,243 --> 00:06:30,365
+OAuth tokens carry scopes, the list of things they may do (lesson 48).
+
+87
+00:06:30,365 --> 00:06:35,707
+repo covers code, issues and PRs, but Projects are a separate permission,
+
+88
+00:06:35,707 --> 00:06:40,684
+so the same token that pushes and opens issues cannot read projects.
+
+89
+00:06:40,684 --> 00:06:44,196
+GitHub tells you exactly which scope is missing.
+
+90
+00:06:45,933 --> 00:06:50,873
+Grant the scope (opens the browser to confirm), then retry:
+
+91
+00:06:52,633 --> 00:06:53,347
+Got it.
+
+92
+00:06:53,347 --> 00:06:56,098
+What do I need to remember?
+
+93
+00:06:56,633 --> 00:07:04,028
+Projects organise issues and PRs into boards, tables and roadmaps, across repositories.
+
+94
+00:07:04,567 --> 00:07:09,320
+The CLI needs the project (or read:project) scope:
+
+95
+00:07:09,320 --> 00:07:11,886
+gh auth refresh -s project.
+
+96
+00:07:12,433 --> 00:07:17,828
+Project workflows keep the board in sync with issue and PR states automatically.
+
+97
+00:07:19,567 --> 00:07:22,101
+What should I know about releases?
+
+98
+00:07:22,667 --> 00:07:27,597
+A GitHub Release is a tag (lesson 68) plus a page:
+
+99
+00:07:27,597 --> 00:07:35,191
+title, release notes, and downloadable files (binaries, archives, checksums).
+
+100
+00:07:35,191 --> 00:07:39,431
+We publish three versions of the cafe menu,
+
+101
+00:07:39,431 --> 00:07:49,391
+v1.0.0, v1.1.0 and v2.0.0, following semantic versioning, with generated notes and an attached asset.
+
+102
+00:07:51,133 --> 00:07:55,533
+First, a fresh practice repository for this lesson.
+
+103
+00:07:56,067 --> 00:08:00,989
+v1.0.0 on the commit that completed the first menu with prices,
+
+104
+00:08:00,989 --> 00:08:08,099
+with the menu as a downloadable archive (--target takes a branch name or a full commit ID):
+
+105
+00:08:08,099 --> 00:08:08,646
+v1.1.0:
+
+106
+00:08:08,646 --> 00:08:13,881
+new drinks were added since (a minor version), on the current main:
+
+107
+00:08:14,433 --> 00:08:15,085
+v1.1.0:
+
+108
+00:08:15,085 --> 00:08:21,318
+new drinks were added since (a minor version), on the current main:
+
+109
+00:08:21,318 --> 00:08:21,969
+v2.0.0:
+
+110
+00:08:21,969 --> 00:08:30,715
+an incompatible change, the price file format becomes CSV; tools reading the old format break,
+
+111
+00:08:30,715 --> 00:08:33,413
+so the major version changes:
+
+112
+00:08:33,967 --> 00:08:34,612
+v2.0.0:
+
+113
+00:08:34,612 --> 00:08:43,282
+an incompatible change, the price file format becomes CSV; tools reading the old format break,
+
+114
+00:08:43,282 --> 00:08:45,956
+so the major version changes:
+
+115
+00:08:47,700 --> 00:08:49,892
+Let me try something.
+
+116
+00:08:49,892 --> 00:08:54,275
+Publish v1.1.0 again with corrected notes:
+
+117
+00:08:54,833 --> 00:09:02,323
+A tag can have one release, and a published version number must never be reused for different content (users,
+
+118
+00:09:02,323 --> 00:09:05,278
+caches and lock files already refer to it).
+
+119
+00:09:05,278 --> 00:09:10,638
+Changing the text of a release is fine; changing its code means a new version.
+
+120
+00:09:12,400 --> 00:09:14,200
+Here is the fix.
+
+121
+00:09:15,933 --> 00:09:16,647
+Got it.
+
+122
+00:09:16,647 --> 00:09:19,398
+What do I need to remember?
+
+123
+00:09:19,933 --> 00:09:26,393
+Release = tag + notes + assets; versions follow MAJOR.MINOR.PATCH.
+
+124
+00:09:26,933 --> 00:09:34,248
+gh release create/list/view/edit/delete; --generate-notes for automatic notes.
+
+125
+00:09:34,800 --> 00:09:38,180
+Never reuse a version for different content:
+
+126
+00:09:38,180 --> 00:09:40,715
+edit notes, release new versions.
+
+127
+00:09:42,467 --> 00:09:45,706
+Can you show me GitHub Actions introduction?
+
+128
+00:09:46,267 --> 00:09:48,968
+How Git events start automation:
+
+129
+00:09:48,968 --> 00:09:57,155
+a push or a pull request triggers a workflow defined in the repository (.github/workflows/*.yml),
+
+130
+00:09:57,155 --> 00:10:00,363
+and GitHub runs it on a fresh machine.
+
+131
+00:10:00,363 --> 00:10:04,077
+This lesson is the bridge from Git to CI/CD:
+
+132
+00:10:04,077 --> 00:10:08,044
+one small workflow, a failing run, and the fix.
+
+133
+00:10:08,044 --> 00:10:15,641
+GitHub Actions itself (jobs, matrices, secrets, OIDC, deployments) is a course of its own.
+
+134
+00:10:17,400 --> 00:10:21,799
+First, a fresh practice repository for this lesson.
+
+135
+00:10:22,333 --> 00:10:31,543
+A workflow that checks every line of prices.csv (lesson 97 turned prices into CSV) has a name and a number:
+
+136
+00:10:32,100 --> 00:10:33,907
+The push started a run.
+
+137
+00:10:33,907 --> 00:10:39,879
+Wait for it (GitHub needs a few seconds to register it) and show the result:
+
+138
+00:10:41,633 --> 00:10:43,366
+Let me try something.
+
+139
+00:10:43,366 --> 00:10:45,925
+A careless edit pushed to main:
+
+140
+00:10:45,925 --> 00:10:47,988
+a price without decimals.
+
+141
+00:10:48,533 --> 00:10:51,166
+The commit shows a red ✗ on GitHub.
+
+142
+00:10:51,166 --> 00:10:54,853
+The failed step's log says exactly what is wrong:
+
+143
+00:10:56,600 --> 00:11:00,784
+Fix the data in a new commit; the next run goes green:
+
+144
+00:11:02,533 --> 00:11:03,247
+Got it.
+
+145
+00:11:03,247 --> 00:11:05,998
+What do I need to remember?
+
+146
+00:11:06,533 --> 00:11:15,793
+Workflows in .github/workflows/ run on Git events (push, pull_request, tags, manual).
+
+147
+00:11:16,333 --> 00:11:21,668
+gh run list / watch / view --log-failed to follow and debug runs.
+
+148
+00:11:22,233 --> 00:11:27,168
+Required checks plus branch protection turn CI into a gate for main.
