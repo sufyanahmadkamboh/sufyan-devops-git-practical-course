@@ -42,7 +42,7 @@ git commit -m "Raise the latte price to 3.30" -m "Milk prices went up 8 % this q
 ```
 
 ```text
-[main 1d3cadc] Raise the latte price to 3.30
+[main b9f1597] Raise the latte price to 3.30
  1 file changed, 1 insertion(+), 1 deletion(-)
 ```
 
@@ -54,9 +54,9 @@ git log -1
 ```
 
 ```text
-commit 1d3cadccbb1482c24e1458b3305ec3208918785c
+commit b9f159714f72da1fe83650bedeab8f9bdfc44a49 (HEAD -> main)
 Author: Ada Lovelace <ada@example.com>
-Date:   Mon Oct 5 02:51:51 2026 +0200
+Date:   Mon Oct 5 02:54:31 2026 +0200
 
     Raise the latte price to 3.30
     
@@ -138,7 +138,7 @@ git show --stat --format= HEAD
 ```
 
 ```text
-026b507 Add the opening hours
+b6da377 (HEAD -> main) Add the opening hours
  holidays.txt | 1 +
  hours.txt    | 1 +
  2 files changed, 2 insertions(+)

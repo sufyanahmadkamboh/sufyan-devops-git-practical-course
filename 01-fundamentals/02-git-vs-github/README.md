@@ -47,7 +47,7 @@ echo "remotes: $(git remote | wc -l)"
 ```
 
 ```text
-4267004 Add prices
+4267004 (HEAD -> main) Add prices
 fc345e6 Add the menu
 d6df412 Add README
 remotes: 0
@@ -67,7 +67,7 @@ git push origin main 2>&1
 ```
 
 ```text
-To /tmp/tmp.4t0bo0lUV9/git-practice/lesson-02-server/cafe.git
+To /tmp/tmp.LhlSYiWu4E/git-practice/lesson-02-server/cafe.git
  * [new branch]      main -> main
 ```
 
@@ -127,7 +127,7 @@ git push backup main 2>&1
 ```
 
 ```text
-fatal: '/tmp/tmp.4t0bo0lUV9/git-practice/no-such-server/cafe.git' does not appear to be a git repository
+fatal: '/tmp/tmp.LhlSYiWu4E/git-practice/no-such-server/cafe.git' does not appear to be a git repository
 fatal: Could not read from remote repository.
 
 Please make sure you have the correct access rights

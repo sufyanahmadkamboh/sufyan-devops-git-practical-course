@@ -77,7 +77,7 @@ git log --oneline -1
 ```text
 ref: refs/heads/main
 4267004871ae95e12690719f02460f9e3c935cf5
-4267004 Add prices
+4267004 (HEAD -> main) Add prices
 ```
 
 `HEAD` says "the current branch is `main`"; `refs/heads/main` holds a commit ID; that ID is the latest commit. A branch

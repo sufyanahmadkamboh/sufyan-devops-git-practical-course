@@ -16,6 +16,9 @@ if pwd -W > /dev/null 2>&1; then masked=$(cd "$lab_home" && pwd -W); else masked
 
 export HOME="$lab_home" MDRUN_HOME="$masked"
 export GIT_CONFIG_NOSYSTEM=1 GIT_PAGER=cat PAGER=cat GIT_EDITOR=true GIT_TERMINAL_PROMPT=0
+# In a terminal, git log shows branch labels (HEAD -> main); piped into the runner it would not.
+# Show them anyway, so the recorded outputs look like your terminal (environment-only config, no file is changed).
+export GIT_CONFIG_COUNT=1 GIT_CONFIG_KEY_0=log.decorate GIT_CONFIG_VALUE_0=short
 unset GIT_CONFIG_GLOBAL GIT_DIR GIT_WORK_TREE
 
 py=python3

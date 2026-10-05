@@ -88,8 +88,8 @@ git log --oneline -3
 ```
 
 ```text
-4549c76 Add green tea
-ba6e799 Describe the cafe
+2bc09cc (HEAD -> main) Add green tea
+b8be929 Describe the cafe
 4267004 Add prices
 ```
 
@@ -204,8 +204,8 @@ index 02e91d0..52d5b90 100644
  green tea
  chai
 +mocha
-9ebd512 Add mocha
-6698389 Rename espresso to ristretto
+9ea0747 (HEAD -> main) Add mocha
+951d860 Rename espresso to ristretto
 ```
 
 `git add -p` splits a file's changes into hunks and asks for each one (`y` yes, `n` no, `s` split, `q` quit, `?`

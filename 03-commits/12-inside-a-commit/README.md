@@ -34,7 +34,7 @@ git log --oneline
 
 ```text
 lab ready: ~/git-practice/lesson-12 (basic)
-4267004 Add prices
+4267004 (HEAD -> main) Add prices
 fc345e6 Add the menu
 d6df412 Add README
 ```

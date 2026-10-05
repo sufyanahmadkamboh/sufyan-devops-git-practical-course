@@ -70,9 +70,9 @@ git log --oneline
 ```
 
 ```text
-eb6c266 Raise the latte price
-94f0628 Add cappuccino
-bdda440 Add prices
+0a9b8c0 (HEAD -> main) Raise the latte price
+218782d Add cappuccino
+6f74527 Add prices
 ```
 
 One file, three recorded versions. Ask Git what the last change was:
@@ -84,7 +84,7 @@ git diff HEAD~1 HEAD
 ```
 
 ```text
-eb6c266 Ada Lovelace 2026-10-05
+0a9b8c0 Ada Lovelace 2026-10-05
 Raise the latte price
 
  prices.txt | 2 +-
