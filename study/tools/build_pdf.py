@@ -110,9 +110,28 @@ def render(text: str, path: Path) -> str:
     return re.sub(r'(href|src)="([^"]+)"', link, html)
 
 
-def section(text: str, name: str) -> str:
-    m = re.search(rf"^## {re.escape(name)}\s*$(.*?)(?=^## |\Z)", text, re.M | re.S)
-    return m.group(1).strip() if m else ""
+def section(text: str, name: str, level: int = 2) -> str:
+    """The body of the heading `name` (at `level`), up to the next heading of the same or a higher level.
+    Lines inside fenced code blocks are never headings (outputs can contain "# Cafe")."""
+    out, inside, fence = [], False, False
+    for ln in text.split("\n"):
+        if ln.startswith("```"):
+            fence = not fence
+        heading = None if fence or ln.startswith("```") else re_heading(ln)
+        if heading and heading[0] <= level:
+            if inside:
+                break
+            inside = heading[0] == level and heading[1] == name
+            continue
+        if inside:
+            out.append(ln)
+    return "\n".join(out).strip()
+
+
+def re_heading(ln: str):
+    m = re.match(r"^(#{1,6}) (.+?)\s*$", ln)
+    return (len(m.group(1)), m.group(2)) if m else None
+
 
 
 def lesson_summary(readme: Path) -> str:

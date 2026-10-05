@@ -54,12 +54,14 @@ in [21-devops-workflow/devops-project/.github/workflows](../21-devops-workflow/d
 
 Inside your capstone repository, the local part:
 
+<!-- test: skip -->
 ```bash
 bash ../check-capstone.sh
 ```
 
 and, after publishing, the GitHub part too:
 
+<!-- test: skip -->
 ```bash
 bash ../check-capstone.sh YOUR-ACCOUNT/git-course-capstone
 ```

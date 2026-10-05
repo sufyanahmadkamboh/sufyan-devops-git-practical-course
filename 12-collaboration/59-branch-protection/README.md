@@ -111,6 +111,7 @@ for administrators.
 
 The command (the JSON body is what the Settings page sends):
 
+<!-- test: skip -->
 ```bash
 me=$(gh api user --jq .login)
 printf '{"required_status_checks":null,"enforce_admins":true,"required_pull_request_reviews":{"required_approving_review_count":1},"restrictions":null,"allow_force_pushes":false,"allow_deletions":false}' |

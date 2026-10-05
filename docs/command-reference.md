@@ -95,10 +95,10 @@ git show --stat --format='%h %an %s' HEAD
 ```
 
 ```text
-* e798c1c (HEAD -> main) feat(menu): add chai
+* e82f06e (HEAD -> main) feat(menu): add chai
 * 4267004 Add prices
 * fc345e6 Add the menu
-e798c1c Ada Lovelace feat(menu): add chai
+e82f06e Ada Lovelace feat(menu): add chai
 
  menu.txt | 1 +
  1 file changed, 1 insertion(+)
@@ -127,7 +127,7 @@ git log --oneline --graph -4
 ```text
   feature-tea bb67674 Add green tea to the menu
 * main        f40d080 Add opening hours
-*   38c0668 (HEAD -> main) Merge branch 'feature-tea'
+*   f5d438e (HEAD -> main) Merge branch 'feature-tea'
 |\  
 | * bb67674 (feature-tea) Add green tea to the menu
 * | f40d080 Add opening hours
@@ -158,7 +158,7 @@ git log --oneline main..origin/main
 
 ```text
 Your branch is behind 'origin/main' by 1 commit, and can be fast-forwarded.
-a95a032 (origin/main, origin/HEAD) Add chai
+17bfab9 (origin/main, origin/HEAD) Add chai
 ```
 
 ## 6 · Recovery
@@ -202,17 +202,18 @@ ecff18a (HEAD -> main) Price mocha
 
 Practise:
 
-<!-- test: contains=is the first bad commit; output -->
+<!-- test: contains=first bad commit: ; contains=Add mocha; output -->
 ```bash
 cd ~/git-practice/ref-advanced
 git bisect start HEAD "$(git rev-list --max-parents=0 HEAD)" > /dev/null
-git bisect run bash check.sh 2>&1 | grep "is the first bad commit"
+git bisect run bash check.sh > /dev/null 2>&1
+git log -1 --format='first bad commit: %h %s' refs/bisect/bad
 git bisect reset > /dev/null 2>&1
 git stash list | wc -l
 ```
 
 ```text
-3ceea031d6f34d67cc8f33c993ea0784c54ae95f is the first bad commit
+first bad commit: 3ceea03 Add mocha
 0
 ```
 
