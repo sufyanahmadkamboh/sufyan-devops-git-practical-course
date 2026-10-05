@@ -148,7 +148,7 @@ git config --global user.email >/dev/null && git commit -q -m "First note" && gi
 ```
 
 ```text
-f44b75e Ada Lovelace <ada@example.com> First note
+a74edc2 Ada Lovelace <ada@example.com> First note
 ```
 
 ## Real-world example

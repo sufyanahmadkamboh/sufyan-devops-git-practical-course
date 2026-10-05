@@ -9,6 +9,14 @@
 set -euo pipefail
 
 root=$(cd "$(dirname "$0")/.." && pwd)
+py=python3
+command -v python3 > /dev/null 2>&1 && python3 -c "" > /dev/null 2>&1 || py=python
+
+# tools installed with "pip install --user" (git-filter-repo, lesson 90) live in the user's scripts folder;
+# find it before HOME changes, since on Linux it is inside HOME
+user_scripts=$("$py" -c 'import os, sysconfig; print(sysconfig.get_path("scripts", os.name + "_user"))' 2> /dev/null || true)
+if [ -n "$user_scripts" ] && command -v cygpath > /dev/null 2>&1; then user_scripts=$(cygpath -u "$user_scripts"); fi
+
 lab_home="${LAB_HOME:-$(mktemp -d)}"
 mkdir -p "$lab_home"
 # the form Git prints (C:/Users/... on Windows) is what the output masking needs
@@ -21,13 +29,11 @@ rm -rf "$work" && mkdir -p "$work"
 (cd "$root" && tar --exclude=./.git --exclude=./video --exclude=./tests/out -cf - .) | tar -xf - -C "$work"
 export MDRUN_CWD="posix:$work"  # the prefix stops MSYS from converting the path
 export GIT_CEILING_DIRECTORIES="$(dirname "$lab_home")"  # Git never looks for a repository above the sandbox
-export PATH="$root/tests/shims:$PATH"  # ssh uses the sandbox ~/.ssh
+export PATH="$root/tests/shims:$PATH${user_scripts:+:$user_scripts}"  # ssh uses the sandbox ~/.ssh
 export GIT_CONFIG_NOSYSTEM=1 GIT_PAGER=cat PAGER=cat GIT_EDITOR=true GIT_TERMINAL_PROMPT=0
 # In a terminal, git log shows branch labels (HEAD -> main); piped into the runner it would not.
 # Show them anyway, so the recorded outputs look like your terminal (environment-only config, no file is changed).
 export GIT_CONFIG_COUNT=1 GIT_CONFIG_KEY_0=log.decorate GIT_CONFIG_VALUE_0=short
 unset GIT_CONFIG_GLOBAL GIT_DIR GIT_WORK_TREE GIT_ASKPASS SSH_ASKPASS  # never a GUI password dialog
 
-py=python3
-command -v python3 > /dev/null 2>&1 && python3 -c "" > /dev/null 2>&1 || py=python
 exec "$py" "$root/tests/mdrun.py" "$@"
