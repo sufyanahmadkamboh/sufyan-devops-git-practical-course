@@ -185,7 +185,9 @@ def execute(code: str, cwd: str, timeout: int, vm: str | None) -> tuple[str, int
             return partial + f"\n[timed out after {timeout}s]", 124, cwd
     state = tempfile.NamedTemporaryFile(delete=False, suffix=".cwd")
     state.close()
-    script = "\n".join(["set -e", f"cd {shlex.quote(cwd)}", code, f"pwd > {shlex.quote(Path(state.name).as_posix())}", ""])
+    # the trap records the final directory even when the block fails (a "fail" block keeps the learner's cd)
+    save = shlex.quote(f"pwd > {shlex.quote(Path(state.name).as_posix())}")
+    script = "\n".join(["set -e", f"trap {save} EXIT", f"cd {shlex.quote(cwd)}", code, ""])
     try:
         p = subprocess.run(shell() + ["-c", script], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True,
                            encoding="utf-8", errors="replace", timeout=timeout, env=ENV)
