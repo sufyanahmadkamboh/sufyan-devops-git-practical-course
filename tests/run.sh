@@ -16,6 +16,9 @@ command -v python3 > /dev/null 2>&1 && python3 -c "" > /dev/null 2>&1 || py=pyth
 # find it before HOME changes, since on Linux it is inside HOME
 user_scripts=$("$py" -c 'import os, sysconfig; print(sysconfig.get_path("scripts", os.name + "_user"))' 2> /dev/null || true)
 if [ -n "$user_scripts" ] && command -v cygpath > /dev/null 2>&1; then user_scripts=$(cygpath -u "$user_scripts"); fi
+# their Python modules live in the user site directory, which is inside HOME on Linux: keep finding them
+user_base=$("$py" -m site --user-base 2> /dev/null || true)
+[ -n "$user_base" ] && export PYTHONUSERBASE="$user_base"
 
 lab_home="${LAB_HOME:-$(mktemp -d)}"
 mkdir -p "$lab_home"

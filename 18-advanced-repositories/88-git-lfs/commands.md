@@ -32,7 +32,8 @@ git cat-file -s HEAD:menu-video.bin
 ```
 
 ```bash
-git push -u origin main 2>&1 | grep -v "^To \|new branch\|set up to track"
+git push -q -u origin main 2>&1
+echo "LFS objects on the server: $(find ../lesson-88-server.git/lfs/objects -type f | wc -l)"
 ```
 
 ## Hands-on exercise

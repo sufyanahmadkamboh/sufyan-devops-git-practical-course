@@ -80,15 +80,17 @@ size 2000000
 132
 ```
 
-A push uploads the content to the LFS store, then the commits to Git:
+A push uploads the content to the LFS store (on the server, next to the Git objects), then the commits to Git:
 
-<!-- test: contains=Uploading LFS objects; output -->
+<!-- test: contains=LFS objects on the server: 1; output -->
 ```bash
-git push -u origin main 2>&1 | grep -v "^To \|new branch\|set up to track"
+git push -q -u origin main 2>&1
+echo "LFS objects on the server: $(find ../lesson-88-server.git/lfs/objects -type f | wc -l)"
 ```
 
 ```text
 Uploading LFS objects: 100% (1/1), 0 B | 0 B/s, done.
+LFS objects on the server: 1
 ```
 
 ## Command breakdown
