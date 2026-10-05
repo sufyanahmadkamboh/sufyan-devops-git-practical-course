@@ -29,7 +29,7 @@ git bisect good "$first"
 while true; do
   if bash check.sh; then result=$(git bisect good); else result=$(git bisect bad); fi
   echo "$result" | head -1
-  case "$result" in *"is the first bad commit"*) break ;; esac
+  case "$result" in *"is the first"*) break ;; esac
 done
 ```
 
@@ -61,7 +61,7 @@ git bisect bad "$(git rev-list --max-parents=0 HEAD)" 2>&1
 ```bash
 git bisect reset > /dev/null 2>&1
 git bisect start HEAD "$(git rev-list --max-parents=0 HEAD)" > /dev/null
-git bisect run bash check.sh 2>&1 | grep "is the first bad commit"
+git bisect run bash check.sh 2>&1 | grep "is the first"
 git bisect reset > /dev/null 2>&1
 ```
 

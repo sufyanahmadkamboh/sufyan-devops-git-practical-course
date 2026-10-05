@@ -1,0 +1,4 @@
+0:00 Lesson 01 · What is Git?
+1:39 Lesson 02 · Git vs GitHub
+3:49 Lesson 03 · Installing Git
+5:35 Lesson 04 · First Git configuration

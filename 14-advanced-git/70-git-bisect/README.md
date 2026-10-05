@@ -66,12 +66,12 @@ Bisecting: 4 revisions left to test after this (roughly 2 steps)
 
 Git checked out a commit in the middle. Test it and tell Git, until it names the culprit:
 
-<!-- test: contains=is the first bad commit; output -->
+<!-- test: contains=is the first; output -->
 ```bash
 while true; do
   if bash check.sh; then result=$(git bisect good); else result=$(git bisect bad); fi
   echo "$result" | head -1
-  case "$result" in *"is the first bad commit"*) break ;; esac
+  case "$result" in *"is the first"*) break ;; esac
 done
 ```
 
@@ -121,7 +121,7 @@ git bisect reset > /dev/null 2>&1
 
 Mark the commits the wrong way round:
 
-<!-- test: fail; contains=Maybe you mistook good and bad revs; output -->
+<!-- test: fail; contains=Maybe you mistook; output -->
 ```bash
 git bisect start
 git bisect good HEAD
@@ -138,18 +138,19 @@ Maybe you mistook good and bad revs?
 
 ## Troubleshoot
 
-`Some good revs are not ancestors of the bad rev … Maybe you mistook good and bad revs?`: bisect searches for the
+`Some good revs are not ancestors of the bad rev … Maybe you mistook good and bad revs?` (newer Git versions
+quote the terms: `'good'`, `'bad'`): bisect searches for the
 commit where things went from good to bad, so the good commit must be older than the bad one. Here it is reversed.
 
 ## Fix
 
 Start over with the right order:
 
-<!-- test: contains=is the first bad commit; output -->
+<!-- test: contains=is the first; output -->
 ```bash
 git bisect reset > /dev/null 2>&1
 git bisect start HEAD "$(git rev-list --max-parents=0 HEAD)" > /dev/null
-git bisect run bash check.sh 2>&1 | grep "is the first bad commit"
+git bisect run bash check.sh 2>&1 | grep "is the first"
 git bisect reset > /dev/null 2>&1
 ```
 
