@@ -4,5 +4,8 @@ image:
   repository: ghcr.io/your-account/cafe
   tag: "1.0.0"
 
+# for a private registry: a docker-registry secret, e.g. [{name: ghcr}]
+imagePullSecrets: []
+
 service:
   port: 80

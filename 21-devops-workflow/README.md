@@ -111,7 +111,7 @@ git switch -q --detach origin/feat/add-chai && bash scripts/ci.sh | tail -1 && g
 ```
 
 ```text
-45125aa (origin/feat/add-chai) feat(menu): add chai
+a5addca (origin/feat/add-chai) feat(menu): add chai
 diff --git a/application/menu.json b/application/menu.json
 index 6ed58dd..e10981d 100644
 --- a/application/menu.json
@@ -140,11 +140,11 @@ git log --oneline --graph -4
 ```
 
 ```text
-*   5755737 (HEAD -> main, origin/main, origin/HEAD) Merge pull request #1 from feat/add-chai
+*   92e6a18 (HEAD -> main, origin/main, origin/HEAD) Merge pull request #1 from feat/add-chai
 |\  
-| * 45125aa feat(menu): add chai
+| * a5addca feat(menu): add chai
 |/  
-* 73ad8bc (tag: v1.0.0) chore: initial cafe DevOps repository
+* c12c5f4 (tag: v1.0.0) chore: initial cafe DevOps repository
 ```
 
 ### 5. Release
@@ -161,10 +161,10 @@ git log --oneline --decorate -2
 ```
 
 ```text
-Deleted branch feat/add-chai (was 45125aa).
+Deleted branch feat/add-chai (was a5addca).
 released v1.1.0: push with  git push --follow-tags
-4e4ff72 (HEAD -> main, tag: v1.1.0, origin/main, origin/HEAD) chore(release): 1.1.0
-5755737 Merge pull request #1 from feat/add-chai
+a594614 (HEAD -> main, tag: v1.1.0, origin/main, origin/HEAD) chore(release): 1.1.0
+92e6a18 Merge pull request #1 from feat/add-chai
 ```
 
 On GitHub, pushing the tag `v1.1.0` starts `release.yml`: image `ghcr.io/…/cafe:1.1.0` and a GitHub release with
@@ -250,7 +250,7 @@ git switch -q main
 
 ```text
 diff --git a/helm/cafe/values.yaml b/helm/cafe/values.yaml
-index 7fd6967..8803cc1 100644
+index 1b84e81..b6a69a1 100644
 --- a/helm/cafe/values.yaml
 +++ b/helm/cafe/values.yaml
 @@ -2,7 +2,7 @@ replicaCount: 2
@@ -260,8 +260,8 @@ index 7fd6967..8803cc1 100644
 -  tag: "1.1.0"
 +  tag: "1.1.1"
  
- service:
-   port: 80
+ # for a private registry: a docker-registry secret, e.g. [{name: ghcr}]
+ imagePullSecrets: []
 ```
 
 Versions are changed **only** by the release script, at release time; a PR changes the application.

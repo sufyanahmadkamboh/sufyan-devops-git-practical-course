@@ -163,7 +163,7 @@ def sanitize(text: str) -> str:
     text = re.sub(r"(?<![\w.+-])(?!git@)[\w.+-]+@(?!(?:[\w-]+\.)*example\.(?:com|org|net)\b)[\w-]+(?:\.[\w-]+)*\.[a-z]{2,}(?=@|\b)", "<iam-user>", text)
     # never publish an AWS account ID (12 digits), also inside ARNs and ECR host names
     # (not inside hex IDs such as container or image IDs, which are letters and digits)
-    text = re.sub(r"(?<![0-9a-f])\d{12}(?![0-9a-f])", "<account-id>", text)
+    text = re.sub(r"(?<![0-9a-f])(?<!job/)(?<!runs/)\d{12}(?![0-9a-f])", "<account-id>", text)  # GitHub job IDs stay
     return text.rstrip("\n")
 
 

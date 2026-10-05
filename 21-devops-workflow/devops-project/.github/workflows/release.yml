@@ -8,19 +8,52 @@ permissions:
 jobs:
   release:
     runs-on: ubuntu-latest
+    outputs:
+      image: ${{ steps.image.outputs.image }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
       - name: Checks
         run: bash scripts/ci.sh
-      - name: Build and push the image
+      - name: The tag must match VERSION
+        run: test "${GITHUB_REF_NAME#v}" = "$(cat VERSION)"
+      - name: Build and push the image to GHCR
+        id: image
         run: |
+          image="ghcr.io/${GITHUB_REPOSITORY,,}:$(cat VERSION)"
           echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
-          image="ghcr.io/${{ github.repository_owner }}/cafe:$(cat VERSION)"
           docker build -t "$image" .
           docker push "$image"
-      - name: GitHub release with the Helm chart
+          echo "image=$image" >> "$GITHUB_OUTPUT"
+      - name: GitHub release with the packaged Helm chart
         run: |
           helm package helm/cafe
-          gh release create "${{ github.ref_name }}" cafe-*.tgz --generate-notes
+          gh release create "$GITHUB_REF_NAME" cafe-*.tgz --title "Cafe $GITHUB_REF_NAME" --generate-notes
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  deploy:
+    needs: release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read    # pull the image from GHCR
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - name: A Kubernetes cluster (kind)
+        uses: helm/kind-action@06c1ae10762d3b9c1644e7fe69596ae519e015a2 # v1.15.0
+        with:
+          cluster_name: cafe
+      - name: Deploy the released image with Helm
+        run: |
+          image="${{ needs.release.outputs.image }}"
+          kubectl create secret docker-registry ghcr --docker-server=ghcr.io \
+            --docker-username="${{ github.actor }}" --docker-password="${{ secrets.GITHUB_TOKEN }}"
+          helm upgrade --install cafe helm/cafe \
+            --set image.repository="${image%:*}" --set image.tag="${image##*:}" \
+            --set "imagePullSecrets[0].name=ghcr" --wait --timeout 180s
+          kubectl get deploy,pods -l app.kubernetes.io/name=cafe -o wide
+      - name: Smoke test
+        run: |
+          kubectl run smoke --rm -i --restart=Never --image=busybox:1.36 -- \
+            wget -qO- http://cafe/menu.json | tee menu.json
+          grep -q '"items"' menu.json
