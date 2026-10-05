@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# OpenSSH takes its ~/.ssh from the user database, not from $HOME. The test runner gives every run a sandbox HOME,
+# so this shim points ssh at the sandbox's ~/.ssh: lessons never read or change the real keys and known_hosts.
+self_dir=$(cd "$(dirname "$0")" && pwd)
+real=""
+IFS=: read -r -a dirs <<< "$PATH"
+for d in "${dirs[@]}"; do
+  [ "$(cd "$d" 2> /dev/null && pwd)" = "$self_dir" ] && continue
+  if [ -x "$d/ssh" ] || [ -x "$d/ssh.exe" ]; then real="$d/ssh"; break; fi
+done
+[ -n "$real" ] || { echo "ssh shim: no real ssh found" >&2; exit 127; }
+config="$HOME/.ssh/config"
+[ -f "$config" ] || config=/dev/null
+exec "$real" -F "$config" -o UserKnownHostsFile="$HOME/.ssh/known_hosts" -o IdentityFile="$HOME/.ssh/id_ed25519" \
+  -o IdentitiesOnly=yes -o BatchMode=yes "$@"

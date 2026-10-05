@@ -22,6 +22,7 @@ Hidden test-only steps (not shown to readers), on the computer or in a VM:
 
     <!-- test-run: tests/vm.sh launch k8s-cp 2 4G -->
     <!-- test-run on=k8s-worker: sudo systemctl stop kubelet -->
+    <!-- test-run github: gh auth setup-git -->        (hidden, only with MDRUN_GITHUB=1)
 
 How a VM block is executed is configurable, so the same lessons run against Multipass (a learner's laptop) or LXD
 (the CI machines): MDRUN_VM_EXEC is a command template with {vm}; the block's script arrives on standard input.
@@ -50,7 +51,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 FENCE = re.compile(r"^(\s*)```(\w*)\s*$")
 ANNOT = re.compile(r"^\s*<!--\s*test:\s*(.*?)\s*-->\s*$")
-HIDDEN = re.compile(r"^\s*<!--\s*test-run(?:\s+on=([\w-]+))?:\s*(.*?)\s*-->\s*$")
+HIDDEN = re.compile(r"^\s*<!--\s*test-run(?:\s+on=([\w-]+))?(\s+github)?:\s*(.*?)\s*-->\s*$")
 ANSI = re.compile(r"\x1b\[[0-9;?]*[A-Za-z]")
 WINDOWS = os.name == "nt"
 VM_EXEC = os.environ.get("MDRUN_VM_EXEC", "multipass exec {vm} -- bash -e")
@@ -89,9 +90,11 @@ def parse(path: Path) -> tuple[list[str], list[Block]]:
     while i < len(lines):
         hidden = HIDDEN.match(lines[i])
         if hidden:
-            b = Block(line=i + 1, code=hidden.group(2), hidden=True)
+            b = Block(line=i + 1, code=hidden.group(3), hidden=True)
             if hidden.group(1):
                 b.opts["on"] = hidden.group(1)
+            if hidden.group(2):
+                b.opts["github"] = True
             blocks.append(b)
             i += 1
             continue
@@ -141,6 +144,9 @@ def sanitize(text: str) -> str:
     if len(lab_home) > 3:
         for form in {lab_home, lab_home.replace("\\", "/"), "/" + lab_home[0].lower() + lab_home[2:].replace("\\", "/")}:
             text = text.replace(form, "~")
+    posix_home = os.environ.get("MDRUN_HOME_POSIX", "").removeprefix("posix:")
+    if len(posix_home) > 3:
+        text = text.replace(posix_home, "~")
     home = str(Path.home())
     for form in {home, home.replace("\\", "/"), "/" + home[0].lower() + home[2:].replace("\\", "/")}:
         if len(home) > 3:
@@ -152,8 +158,9 @@ def sanitize(text: str) -> str:
     text = re.sub(r"\b(?!abcdef\.0123456789abcdef)[a-z0-9]{6}\.[a-z0-9]{16}\b", "<bootstrap-token>", text)
     # never publish who ran it: IAM user names (in ARNs, eksctl context names) and e-mail addresses
     text = re.sub(r"(:user/)[\w+=,.@-]+", r"\1<iam-user>", text)
-    # (addresses at the reserved example domains of RFC 2606, used as sample data, stay readable)
-    text = re.sub(r"[\w.+-]+@(?!(?:[\w-]+\.)*example\.(?:com|org|net)\b)[\w-]+(?:\.[\w-]+)*\.[a-z]{2,}(?=@|\b)", "<iam-user>", text)
+    # (addresses at the reserved example domains of RFC 2606, used as sample data, stay readable, and so does the
+    # SSH user of Git hosts: git@github.com is not an e-mail address)
+    text = re.sub(r"(?<![\w.+-])(?!git@)[\w.+-]+@(?!(?:[\w-]+\.)*example\.(?:com|org|net)\b)[\w-]+(?:\.[\w-]+)*\.[a-z]{2,}(?=@|\b)", "<iam-user>", text)
     # never publish an AWS account ID (12 digits), also inside ARNs and ECR host names
     # (not inside hex IDs such as container or image IDs, which are letters and digits)
     text = re.sub(r"(?<![0-9a-f])\d{12}(?![0-9a-f])", "<account-id>", text)
