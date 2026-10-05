@@ -101,7 +101,7 @@ kubectl exec deploy/cafe -- wget -qO- http://127.0.0.1:8080/menu.json | grep -c 
 ```text
 deployed v1.0.0
 NAME   READY   UP-TO-DATE   AVAILABLE   AGE
-cafe   2/2     2            2           1s
+cafe   2/2     2            2           2s
 3
 ```
 
@@ -158,10 +158,10 @@ kubectl exec deploy/cafe -- wget -qO- http://127.0.0.1:8080/menu.json | grep cha
 ```text
 Rollback was a success! Happy Helming!
 REVISION	UPDATED                 	STATUS    	CHART     	APP VERSION	DESCRIPTION                                                                                                 
-1       	Mon Oct  5 04:27:51 2026	superseded	cafe-1.0.0	1.0.0      	Install complete                                                                                            
-2       	Mon Oct  5 04:27:57 2026	superseded	cafe-1.1.0	1.1.0      	Upgrade complete                                                                                            
-3       	Mon Oct  5 04:28:00 2026	failed    	cafe-1.2.0	1.2.0      	Upgrade "cafe" failed: resource Deployment/default/cafe not ready. status: InProgress, message: Updated: ...
-4       	Mon Oct  5 04:29:00 2026	deployed  	cafe-1.1.0	1.1.0      	Rollback to 2                                                                                               
+1       	Mon Oct  5 04:31:33 2026	superseded	cafe-1.0.0	1.0.0      	Install complete                                                                                            
+2       	Mon Oct  5 04:31:39 2026	superseded	cafe-1.1.0	1.1.0      	Upgrade complete                                                                                            
+3       	Mon Oct  5 04:31:43 2026	failed    	cafe-1.2.0	1.2.0      	Upgrade "cafe" failed: resource Deployment/default/cafe not ready. status: InProgress, message: Updated: ...
+4       	Mon Oct  5 04:32:43 2026	deployed  	cafe-1.1.0	1.1.0      	Rollback to 2                                                                                               
     {"name": "chai", "price": "3.10"}
 ```
 

@@ -3,6 +3,7 @@
 #
 # Run inside your capstone repository. Without an argument it checks the local repository; with OWNER/REPO it also
 # checks the GitHub side (needs gh, logged in).
+# shellcheck disable=SC2016  # the checks are single-quoted on purpose: check() evaluates them later
 set -u  # no pipefail: "git log | grep -q" must not fail when grep stops reading early
 repo="${1:-}"
 missing=0

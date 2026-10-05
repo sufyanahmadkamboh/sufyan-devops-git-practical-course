@@ -1,0 +1,91 @@
+# Proves that every command in the course still works:
+#   static    links, generated lesson files up to date, scripts (ShellCheck)
+#   lessons   every lesson, assessment, troubleshooting lab, project, the capstone (local part) and the final exam,
+#             in course order, with the latest Git, in four parallel groups
+# Blocks that need a GitHub account (marked "github") run only when MDRUN_GITHUB=1 (on the author's computer).
+name: test-lessons
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 5 * * 1"     # weekly: catch changes in new Git releases
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  HELM_VERSION: v4.3.0
+  KIND_VERSION: v0.33.0
+  KUBECTL_VERSION: v1.37.1
+
+jobs:
+  static:
+    name: Static checks (links, lesson files, scripts)
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+      - name: Relative links in every Markdown file
+        run: python3 tests/check_links.py
+      - name: Generated lesson files (commands, exercise, challenge, troubleshooting) are up to date
+        run: python3 tools/lesson_files.py --check
+      - name: Scripts (ShellCheck)
+        run: |
+          shellcheck -S style scripts/new-lab.sh tests/run.sh tests/shims/ssh \
+            24-capstone/start-capstone.sh 24-capstone/check-capstone.sh \
+            24-capstone/final-exam/final-exam.sh 24-capstone/final-exam/check-exam.sh \
+            21-devops-workflow/devops-project/scripts/*.sh
+
+  lessons:
+    name: Lessons (${{ matrix.group }})
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        group: [modules-01-08, modules-09-16, modules-17-22, projects-capstone]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+      - name: Latest Git (git-core PPA), Git LFS, git-filter-repo
+        run: |
+          sudo add-apt-repository -y ppa:git-core/ppa > /dev/null
+          sudo apt-get update -qq && sudo apt-get install -y -qq git git-lfs > /dev/null
+          pip install --user --quiet git-filter-repo
+          git --version && git lfs version && git filter-repo --version
+      - name: Kubernetes tools (kind, kubectl, Helm) for project 6
+        if: matrix.group == 'projects-capstone'
+        run: |
+          f="helm-${HELM_VERSION}-linux-amd64.tar.gz"
+          curl -fsSLO "https://get.helm.sh/$f" && curl -fsSLO "https://get.helm.sh/$f.sha256sum"
+          sha256sum -c "$f.sha256sum"
+          tar xzf "$f" linux-amd64/helm && sudo mv linux-amd64/helm /usr/local/bin/helm && rm -rf "$f" "$f.sha256sum" linux-amd64
+          curl -fsSLo kind "https://kind.sigs.k8s.io/dl/${KIND_VERSION}/kind-linux-amd64"
+          curl -fsSLo kubectl "https://dl.k8s.io/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl"
+          chmod +x kind kubectl && sudo mv kind kubectl /usr/local/bin/
+          helm version --short && kind version && kubectl version --client
+      - name: Run the group, in course order
+        run: |
+          set -euo pipefail
+          lessons() { for m in "$@"; do ls "$m"-*/[0-9][0-9]-*/README.md; ls "$m"-*/assessment.md 2> /dev/null || true; done; }
+          first="01-fundamentals/04-first-configuration/README.md"   # the identity every lab after lesson 04 uses
+          case "${{ matrix.group }}" in
+            modules-01-08)     files=$(lessons 01 02 03 04 05 06 07 08) ;;
+            modules-09-16)     files="$first $(lessons 09 10 11 12 13 14 15 16)" ;;
+            modules-17-22)     files="$first $(lessons 17 18 19 20) 21-devops-workflow/README.md 22-troubleshooting/problem-*.md docs/command-reference.md" ;;
+            projects-capstone) files="$first 23-projects/project-*.md 24-capstone/walkthrough.md 24-capstone/final-exam/README.md 24-capstone/final-exam/SOLUTION.md 24-capstone/README.md" ;;
+          esac
+          bash tests/run.sh --update --record tests/out --stop-on-failure $files
+      - name: Keep the real outputs and recordings
+        if: always()
+        run: git diff > tests/out/outputs.patch || true
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a  # v7.0.1
+        if: always()
+        with:
+          name: run-${{ matrix.group }}
+          path: tests/out/
+          retention-days: 14

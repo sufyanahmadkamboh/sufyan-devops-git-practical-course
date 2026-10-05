@@ -30,10 +30,11 @@ rm -rf "$work" && mkdir -p "$work"
 export MDRUN_CWD="posix:$work"  # the prefix stops MSYS from converting the path
 # kind and kubectl use this file only (never your real ~/.kube/config); masked as ~/.kube/config in outputs
 mkdir -p "$lab_home/.kube" && export KUBECONFIG="$lab_home/.kube/config"
-export GIT_CEILING_DIRECTORIES="$(dirname "$lab_home")"  # Git never looks for a repository above the sandbox
+GIT_CEILING_DIRECTORIES=$(dirname "$lab_home")  # Git never looks for a repository above the sandbox
+export GIT_CEILING_DIRECTORIES
 export PATH="$root/tests/shims:$PATH${user_scripts:+:$user_scripts}"  # ssh uses the sandbox ~/.ssh
 # a tools folder next to the course (kind, used by project 6 and the capstone), if there is one
-[ -d "$root/../.tools" ] && export PATH="$PATH:$(cd "$root/../.tools" && pwd)"
+if [ -d "$root/../.tools" ]; then tools=$(cd "$root/../.tools" && pwd); export PATH="$PATH:$tools"; fi
 export GIT_CONFIG_NOSYSTEM=1 GIT_PAGER=cat PAGER=cat GIT_EDITOR=true GIT_TERMINAL_PROMPT=0
 # In a terminal, git log shows branch labels (HEAD -> main); piped into the runner it would not.
 # Show them anyway, so the recorded outputs look like your terminal (environment-only config, no file is changed).

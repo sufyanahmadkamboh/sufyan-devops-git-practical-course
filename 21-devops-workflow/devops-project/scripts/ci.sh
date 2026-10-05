@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # ci.sh: the checks every pull request must pass (run by .github/workflows/ci.yml, and locally before pushing)
 set -uo pipefail
-cd "$(dirname "$0")/.."
+cd "$(dirname "$0")/.." || exit 1
 failed=0
 check() { if eval "$2"; then echo "ok    $1"; else echo "FAIL  $1"; failed=1; fi; }
 
@@ -16,4 +16,4 @@ check "Chart appVersion matches VERSION ($version)" "[ '$chart_version' = '$vers
 check "image tag matches VERSION ($version)" "[ '$image_tag' = '$version' ]"
 check "no secrets in tracked files" "! git grep -nIE '(PASSWORD|SECRET|TOKEN)[A-Z_]*=[^ ]+|-----BEGIN [A-Z ]*PRIVATE KEY' -- ':!scripts/ci.sh' > /dev/null"
 
-[ $failed -eq 0 ] && echo "all checks passed" || { echo "checks failed"; exit 1; }
+if [ $failed -eq 0 ]; then echo "all checks passed"; else echo "checks failed"; exit 1; fi

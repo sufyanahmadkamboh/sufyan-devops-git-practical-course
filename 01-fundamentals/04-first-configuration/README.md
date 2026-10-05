@@ -144,11 +144,11 @@ Configure the identity (globally on your own machine; in CI, set it in the job).
 
 <!-- test: contains=First note; output -->
 ```bash
-git config --global user.email >/dev/null && git commit -q -m "First note" && git log --format='%h %an <%ae> %s'
+git config --global user.email >/dev/null && git commit -q -m "First note" && git log --format='%an <%ae> %s'
 ```
 
 ```text
-f2f185c Ada Lovelace <ada@example.com> First note
+Ada Lovelace <ada@example.com> First note
 ```
 
 ## Real-world example

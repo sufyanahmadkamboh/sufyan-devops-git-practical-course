@@ -53,7 +53,7 @@ GIT_CONFIG_GLOBAL=/dev/null git config --show-origin --get user.email || echo "n
 ## Fix
 
 ```bash
-git config --global user.email >/dev/null && git commit -q -m "First note" && git log --format='%h %an <%ae> %s'
+git config --global user.email >/dev/null && git commit -q -m "First note" && git log --format='%an <%ae> %s'
 ```
 
 ## Practice challenge

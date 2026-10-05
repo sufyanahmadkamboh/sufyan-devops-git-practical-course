@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # check-exam.sh: grade the final exam. Run inside ~/git-practice/exam.
+# shellcheck disable=SC2016  # the checks are single-quoted on purpose: check() evaluates them later
 set -u  # no pipefail: "git log | grep -q" must not fail when grep stops reading early
 score=0
 check() {
