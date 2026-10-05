@@ -35,6 +35,8 @@ jobs:
         run: python3 tests/check_links.py
       - name: Generated lesson files (commands, exercise, challenge, troubleshooting) are up to date
         run: python3 tools/lesson_files.py --check
+      - name: Module READMEs are up to date
+        run: python3 tools/module_readmes.py --check
       - name: Scripts (ShellCheck)
         run: |
           shellcheck -S style scripts/new-lab.sh tests/run.sh tests/shims/ssh \
