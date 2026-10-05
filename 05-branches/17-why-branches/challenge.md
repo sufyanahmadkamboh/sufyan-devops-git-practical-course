@@ -19,10 +19,10 @@ git log --oneline --graph feature-a feature-b main
 ```
 
 ```text
-* ee13942 (feature-a) Feature A
-| * 42d7e55 (HEAD -> feature-b) Feature B
+* 5ae7060 (feature-a) Feature A
+| * 6d0e1b3 (HEAD -> feature-b) Feature B
 |/  
-* ba2f254 (main) Fix the latte price
+* 18c8f11 (main) Fix the latte price
 * 4267004 Add prices
 * fc345e6 Add the menu
 * d6df412 Add README

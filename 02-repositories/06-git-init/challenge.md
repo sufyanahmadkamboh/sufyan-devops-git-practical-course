@@ -19,7 +19,7 @@ git log --oneline
 
 ```text
 Reinitialized existing Git repository in ~/git-practice/lesson-06/git-demo/.git/
-b6c4d52 (HEAD -> main) First commit
+3b90ce3 (HEAD -> main) First commit
 ```
 
 `Reinitialized existing Git repository`: `git init` never deletes history.

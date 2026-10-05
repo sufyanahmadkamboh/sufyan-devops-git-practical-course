@@ -45,7 +45,7 @@ done.
   remotes/origin/HEAD -> origin/main
   remotes/origin/feature-tea
   remotes/origin/main
-647ed23 (origin/feature-tea) Add green tea
+74a607c (origin/feature-tea) Add green tea
 4267004 (HEAD -> main, origin/main, origin/HEAD) Add prices
 fc345e6 Add the menu
 d6df412 Add README

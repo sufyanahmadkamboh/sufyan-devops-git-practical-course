@@ -36,8 +36,8 @@ index 02e91d0..52d5b90 100644
  green tea
  chai
 +mocha
-9ea0747 (HEAD -> main) Add mocha
-951d860 Rename espresso to ristretto
+97cd3f4 (HEAD -> main) Add mocha
+8d52e67 Rename espresso to ristretto
 ```
 
 `git add -p` splits a file's changes into hunks and asks for each one (`y` yes, `n` no, `s` split, `q` quit, `?`

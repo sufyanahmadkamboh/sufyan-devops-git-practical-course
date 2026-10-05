@@ -69,7 +69,7 @@ echo "releases: $(gh release list --json tagName --jq length)"
 
 ```text
 issues:   0
-PRs:      0
+PRs:      7
 runs:     0
 releases: 0
 ```

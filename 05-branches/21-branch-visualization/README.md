@@ -51,7 +51,7 @@ git log --oneline --graph --all
 ```
 
 ```text
-* 85afb8e (HEAD -> feature) Add green tea
+* de65bec (HEAD -> feature) Add green tea
 * 4267004 (main) Add prices
 * fc345e6 Add the menu
 * d6df412 Add README
@@ -67,8 +67,8 @@ git log --oneline --graph --all
 ```
 
 ```text
-* 85afb8e (feature) Add green tea
-| * 21c291f (HEAD -> main) Add hours
+* 9f920d9 (HEAD -> main) Add hours
+| * de65bec (feature) Add green tea
 |/  
 * 4267004 Add prices
 * fc345e6 Add the menu
@@ -128,9 +128,9 @@ git log --oneline --graph --all
 ```
 
 ```text
-* 63edaa0 (feature) Add chai
-* 85afb8e Add green tea
-| * 21c291f (HEAD -> main) Add hours
+* c8c4b19 (feature) Add chai
+* de65bec Add green tea
+| * 9f920d9 (HEAD -> main) Add hours
 |/  
 * 4267004 Add prices
 * fc345e6 Add the menu
@@ -158,10 +158,10 @@ git log --oneline --graph --all
 ```
 
 ```text
-* 06becd2 (HEAD -> experiment) Try oat milk
-* 63edaa0 (feature) Add chai
-* 85afb8e Add green tea
-| * 21c291f (main) Add hours
+* e5e6b92 (HEAD -> experiment) Try oat milk
+* c8c4b19 (feature) Add chai
+* de65bec Add green tea
+| * 9f920d9 (main) Add hours
 |/  
 * 4267004 Add prices
 * fc345e6 Add the menu

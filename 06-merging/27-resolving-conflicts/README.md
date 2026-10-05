@@ -65,7 +65,7 @@ git log --oneline --graph -4
 
 ```text
 M  prices.txt
-*   49a8b38 (HEAD -> main) Merge branch 'feature-tea'
+*   8061289 (HEAD -> main) Merge branch 'feature-tea'
 |\  
 | * 00931cc (feature-tea) Raise the latte price to 3.50
 * | 594657b Raise the latte price to 3.30

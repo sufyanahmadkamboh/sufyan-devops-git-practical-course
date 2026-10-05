@@ -53,7 +53,7 @@ cat menu.txt
 ```
 
 ```text
-Dropped refs/stash@{0} (dacb5f09d406bf5e567fd44f401d6738c23f36ed)
+Dropped refs/stash@{0} (52f0ff2474b2a1d0724a47861a67dadf7e15559c)
 espresso
 latte
 cappuccino

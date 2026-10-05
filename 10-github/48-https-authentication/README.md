@@ -61,7 +61,7 @@ git ls-remote --heads origin
 ```
 
 ```text
-4267004871ae95e12690719f02460f9e3c935cf5	refs/heads/main
+070373402250336f9b54949196ebde41049c58e8	refs/heads/main
 ```
 
 Writing does. With no helper, Git has to ask (here prompts are disabled, so it stops; on your computer you would see
@@ -130,18 +130,19 @@ comfortable way is a helper that supplies it.
 
 Log in once with the GitHub CLI (`gh auth login`, done in lesson 45) and connect it to Git:
 
-<!-- test: github; contains=Everything up-to-date; output -->
+<!-- test: github; contains=[new branch]; output -->
 ```bash
 gh auth setup-git
-git push --dry-run origin main 2>&1
+git push --dry-run origin main:refs/heads/lesson-48-check 2>&1
 ```
 
 ```text
-Everything up-to-date
+To https://github.com/sufyanahmadkamboh/git-practice-cafe.git
+ * [new branch]      main -> lesson-48-check
 ```
 
-`Everything up-to-date`: Git authenticated (with gh's token), compared the branches and found nothing to push.
-`--dry-run` never changes anything on GitHub.
+Git authenticated (with gh's token) and would create the branch `lesson-48-check`; `--dry-run` stops there and never
+changes anything on GitHub.
 
 ## Real-world example
 

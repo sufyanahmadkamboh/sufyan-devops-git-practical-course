@@ -30,7 +30,7 @@ git show --stat --format= HEAD
 ```
 
 ```text
-b6da377 (HEAD -> main) Add the opening hours
+2b6da3e (HEAD -> main) Add the opening hours
  holidays.txt | 1 +
  hours.txt    | 1 +
  2 files changed, 2 insertions(+)

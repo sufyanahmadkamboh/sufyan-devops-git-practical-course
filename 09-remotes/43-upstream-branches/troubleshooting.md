@@ -35,7 +35,7 @@ git branch -vv | grep feature-mocha
 ```
 
 ```text
-* feature-mocha 1851f92 [origin/feature-mocha] Add mocha
+* feature-mocha f2833c1 [origin/feature-mocha] Add mocha
 ```
 
 To never see the error again: `git config --global push.autoSetupRemote true`.

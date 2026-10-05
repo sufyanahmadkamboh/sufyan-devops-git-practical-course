@@ -26,7 +26,7 @@ ssh -vT git@github.com 2>&1 | grep -E "Offering public key|Authentications that 
 
 ```text
 debug1: Authentications that can continue: publickey
-debug1: Offering public key: ~/.ssh/id_ed25519 ED25519 SHA256:9C94jYMDra8ABvS7yDuhlN1VINlbwjMWac3wC+1u6xQ
+debug1: Offering public key: ~/.ssh/id_ed25519 ED25519 SHA256:Lfgk0+nzkcugdyXLLdgr2LM4deCcNOG+AmeQpocDeJU
 debug1: Authentications that can continue: publickey
 git@github.com: Permission denied (publickey).
 ```

@@ -35,6 +35,6 @@ git branch -D experiment
 ```
 
 ```text
-6bc77c1
-Deleted branch experiment (was 6bc77c1).
+b6d8466
+Deleted branch experiment (was b6d8466).
 ```

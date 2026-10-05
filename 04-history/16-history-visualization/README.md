@@ -59,7 +59,7 @@ git log --oneline --graph --all
 ```
 
 ```text
-*   2267cc4 (HEAD -> main) Merge branch 'feature-tea'
+*   c342413 (HEAD -> main) Merge branch 'feature-tea'
 |\  
 | * bb67674 (feature-tea) Add green tea to the menu
 * | f40d080 Add opening hours
@@ -77,7 +77,7 @@ git log --format='%h  parents: %p  %s' -5
 ```
 
 ```text
-2267cc4  parents: f40d080 bb67674  Merge branch 'feature-tea'
+c342413  parents: f40d080 bb67674  Merge branch 'feature-tea'
 f40d080  parents: 4267004  Add opening hours
 bb67674  parents: 4267004  Add green tea to the menu
 4267004  parents: fc345e6  Add prices

@@ -26,7 +26,7 @@ git reflog -3
 
 ```text
 4267004 (HEAD -> main) HEAD@{0}: reset: moving to HEAD~1
-6ba9a63 HEAD@{1}: commit: Add green tea with its price
+64474cf HEAD@{1}: commit: Add green tea with its price
 4267004 (HEAD -> main) HEAD@{2}: reset: moving to HEAD~2
 ```
 
@@ -40,8 +40,8 @@ git log --oneline -2
 ```
 
 ```text
-HEAD is now at 6ba9a63 Add green tea with its price
-6ba9a63 (HEAD -> main) Add green tea with its price
+HEAD is now at 64474cf Add green tea with its price
+64474cf (HEAD -> main) Add green tea with its price
 4267004 Add prices
 ```
 

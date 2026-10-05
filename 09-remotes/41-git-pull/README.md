@@ -42,12 +42,12 @@ git log --oneline -2
 
 ```text
 From ~/git-practice/lesson-41/server/cafe
-   4267004..3439703  main       -> origin/main
-Updating 4267004..3439703
+   4267004..1b60e79  main       -> origin/main
+Updating 4267004..1b60e79
 Fast-forward
  menu.txt | 1 +
  1 file changed, 1 insertion(+)
-3439703 (HEAD -> main, origin/main, origin/HEAD) Add green tea
+1b60e79 (HEAD -> main, origin/main, origin/HEAD) Add green tea
 4267004 Add prices
 ```
 
@@ -91,7 +91,7 @@ git pull 2>&1
 
 ```text
 From ~/git-practice/lesson-41/server/cafe
-   520c5c5..4baa03b  main       -> origin/main
+   0562a80..6bbab0d  main       -> origin/main
 hint: You have divergent branches and need to specify how to reconcile them.
 hint: You can do so by running one of the following commands sometime before
 hint: your next pull:
@@ -137,12 +137,12 @@ git log --oneline --graph -4
 Merge made by the 'ort' strategy.
  menu.txt | 1 +
  1 file changed, 1 insertion(+)
-*   91360a6 (HEAD -> main) Merge branch 'main' of ~/git-practice/lesson-41/server/cafe
+*   59d74a6 (HEAD -> main) Merge branch 'main' of ~/git-practice/lesson-41/server/cafe
 |\  
-| * 4baa03b (origin/main, origin/HEAD) Add mocha
-* | e1d3b7e Espresso 2.60
+| * 6bbab0d (origin/main, origin/HEAD) Add mocha
+* | 0c3438b Espresso 2.60
 |/  
-* 520c5c5 Add chai
+* 0562a80 Add chai
 ```
 
 Or undo that and rebase instead: your commit is replayed on top, a straight line (lesson 61 explains rebase):
@@ -157,9 +157,9 @@ git log --oneline --graph -3
 ```text
 Rebasing (1/1)
 Successfully rebased and updated refs/heads/main.
-* e99591c (HEAD -> main) Espresso 2.60
-* 4baa03b (origin/main, origin/HEAD) Add mocha
-* 520c5c5 Add chai
+* 251ba29 (HEAD -> main) Espresso 2.60
+* 6bbab0d (origin/main, origin/HEAD) Add mocha
+* 0562a80 Add chai
 ```
 
 Then set your default once: `git config --global pull.rebase true` (or `false`, or `pull.ff only`).

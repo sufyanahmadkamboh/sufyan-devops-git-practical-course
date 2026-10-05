@@ -14,7 +14,7 @@ git push backup main 2>&1
 ```
 
 ```text
-fatal: '/tmp/tmp.LhlSYiWu4E/git-practice/no-such-server/cafe.git' does not appear to be a git repository
+fatal: '~/git-practice/no-such-server/cafe.git' does not appear to be a git repository
 fatal: Could not read from remote repository.
 
 Please make sure you have the correct access rights

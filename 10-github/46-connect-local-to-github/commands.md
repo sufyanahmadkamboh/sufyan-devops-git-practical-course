@@ -30,8 +30,7 @@ git push -u origin main
 
 ```bash
 git fetch -q
-git branch -vv
-git ls-remote --heads origin
+git log --oneline --reverse origin/main | head -3
 ```
 
 ## Hands-on exercise
@@ -46,7 +45,7 @@ gh api "repos/$me/git-practice-cafe/contents" --jq '.[].name'
 ```bash
 me=$(gh api user --jq .login)
 git remote set-url origin "https://github.com/$me/git-practise-cafe.git"
-git push 2>&1
+git ls-remote origin 2>&1
 ```
 
 ## Troubleshoot
@@ -60,7 +59,7 @@ git remote get-url origin
 ```bash
 me=$(gh api user --jq .login)
 git remote set-url origin "https://github.com/$me/git-practice-cafe.git"
-git push 2>&1
+git ls-remote --heads origin
 ```
 
 ## Practice challenge

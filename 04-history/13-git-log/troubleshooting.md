@@ -32,7 +32,7 @@ git branch --contains "$(git log --all --format=%h --grep=matcha)"
 ```
 
 ```text
-5b84357 (feature-tea) Add matcha
+73b21d3 (feature-tea) Add matcha
   feature-tea
 ```
 

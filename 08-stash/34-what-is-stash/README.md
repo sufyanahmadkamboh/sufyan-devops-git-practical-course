@@ -87,7 +87,7 @@ Changes not staged for commit:
 	modified:   prices.txt
 
 no changes added to commit (use "git add" and/or "git commit -a")
-Dropped refs/stash@{0} (754dde1c58ee39fbddf382f8693dd5ab01e2c936)
+Dropped refs/stash@{0} (1024f541e2313a9ac33d0515691321875c30d1af)
 espresso 2.40
 latte 3.20
 cappuccino 3.40
@@ -134,7 +134,7 @@ git status --short
 ```
 
 ```text
-Saved working directory and index state WIP on main: 8c1f1e8 Fix the espresso price
+Saved working directory and index state WIP on main: c9d93e6 Fix the espresso price
 ?? specials.txt
 ```
 
@@ -156,7 +156,7 @@ git stash pop -q
 ```
 
 ```text
-Saved working directory and index state WIP on main: 8c1f1e8 Fix the espresso price
+Saved working directory and index state WIP on main: c9d93e6 Fix the espresso price
 On branch main
 nothing to commit, working tree clean
 ```
@@ -184,8 +184,8 @@ git stash pop -q
 ```
 
 ```text
-b772b00c744a1737f6368305820a13d2af328644 refs/stash
-b772b00 (refs/stash) WIP on main: 8c1f1e8 Fix the espresso price
+ee1dab5fd68598b43d281c1d9a045001eb9f0c78 refs/stash
+ee1dab5 (refs/stash) WIP on main: c9d93e6 Fix the espresso price
 ```
 
 A stash is a special commit stored under `refs/stash`, a local reference. `git push` sends branches and tags, never

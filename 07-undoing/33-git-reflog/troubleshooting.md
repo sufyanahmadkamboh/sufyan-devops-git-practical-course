@@ -14,7 +14,7 @@ git branch -D risky
 ```
 
 ```text
-Deleted branch risky (was c384746).
+Deleted branch risky (was 4e57b0c).
 ```
 
 ## Troubleshoot
@@ -27,7 +27,7 @@ git reflog | grep -m1 "pumpkin"
 ```
 
 ```text
-c384746 HEAD@{1}: commit: Add pumpkin latte
+4e57b0c HEAD@{1}: commit: Add pumpkin latte
 ```
 
 ## Fix
@@ -39,5 +39,5 @@ git log --oneline -1 risky
 ```
 
 ```text
-c384746 (risky) Add pumpkin latte
+4e57b0c (risky) Add pumpkin latte
 ```

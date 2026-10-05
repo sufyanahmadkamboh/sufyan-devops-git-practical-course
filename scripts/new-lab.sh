@@ -16,6 +16,7 @@
 #   history      basic + 4 more commits on main (for reset, revert, reflog, rebase -i)
 #   remote       server/cafe.git (a bare "GitHub"), ada/ and grace/ clones of it
 #   bisect       10 commits; one of them breaks the price calculator (check.sh tells good from bad)
+#   github       a clone of YOUR practice repository on GitHub (lesson 45: git-practice-cafe; needs gh, logged in)
 set -euo pipefail
 
 name="${1:?usage: new-lab.sh NAME SCENARIO}"
@@ -136,6 +137,15 @@ EOF
     done
     printf '\nPrices include tax.\n' > NOTES.md
     git add -A && commit "Add notes"
+    ;;
+  github)
+    cd "$HOME/git-practice" && rm -rf "$lab"
+    me=$(gh api user --jq .login)
+    gh repo clone "$me/git-practice-cafe" "$lab" -- -q
+    cd "$lab"
+    if ! git config --global user.name > /dev/null 2>&1; then
+      git config user.name "Ada Lovelace" && git config user.email "ada@example.com"
+    fi
     ;;
   *)
     echo "unknown scenario: $scenario" >&2

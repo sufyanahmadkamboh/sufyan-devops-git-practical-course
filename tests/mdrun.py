@@ -175,7 +175,7 @@ def shell() -> list[str]:
     return ["bash"]
 
 
-ENV = {**os.environ, "NO_COLOR": "1", "TERM": "dumb", "MSYS_NO_PATHCONV": "1", "DOCKER_CLI_HINTS": "false",
+ENV = {**os.environ, "NO_COLOR": "1", "TERM": "dumb", "DOCKER_CLI_HINTS": "false",
        "MINIKUBE_IN_STYLE": "false", "AWS_PAGER": ""}
 
 
@@ -277,7 +277,9 @@ def shown_output(out: str, spec) -> list[str]:
 
 def run_file(path: Path, update: bool, record: Path | None) -> tuple[int, int]:
     lines, blocks = parse(path)
-    cwd = str(ROOT).replace("\\", "/")
+    # run.sh points MDRUN_CWD at a copy of the course without .git: a lesson whose lab setup failed then runs its
+    # commands in that copy, never in the course repository itself
+    cwd = os.environ.get("MDRUN_CWD", "").removeprefix("posix:") or str(ROOT).replace("\\", "/")
     rel = path.resolve().relative_to(ROOT).as_posix()
     print(f"\n=== {rel}", flush=True)
     passed = failed = 0

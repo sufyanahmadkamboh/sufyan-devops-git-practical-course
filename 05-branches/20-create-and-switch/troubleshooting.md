@@ -17,7 +17,7 @@ git log --oneline main..feature-specials
 
 ```text
 Switched to a new branch 'feature-specials'
-036f6f3 (HEAD -> feature-specials) Add specials
+5d6c90c (HEAD -> feature-specials) Add specials
 bb67674 (fix-tea-price, feature-tea) Add green tea to the menu
 ```
 
@@ -37,5 +37,5 @@ git log --oneline main..feature-specials
 ```
 
 ```text
-b26491e (HEAD -> feature-specials) Add specials
+3485fa5 (HEAD -> feature-specials) Add specials
 ```

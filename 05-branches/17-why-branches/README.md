@@ -39,7 +39,7 @@ git log --oneline
 ```
 
 ```text
-72719b0 (HEAD -> main) WIP: loyalty card
+b5c10db (HEAD -> main) WIP: loyalty card
 4267004 Add prices
 fc345e6 Add the menu
 d6df412 Add README
@@ -56,8 +56,8 @@ git log --oneline -2
 ```
 
 ```text
-70e31a6 (HEAD -> main) Fix the latte price
-72719b0 WIP: loyalty card
+f9c4227 (HEAD -> main) Fix the latte price
+b5c10db WIP: loyalty card
 ```
 
 Whatever we release from `main` now contains "WIP: loyalty card". The same work with a branch for the feature:
@@ -75,8 +75,8 @@ git log --oneline --graph --all
 ```
 
 ```text
-* 7054ffa (feature-loyalty) WIP: loyalty card
-| * ba2f254 (HEAD -> main) Fix the latte price
+* 7e32ef1 (feature-loyalty) WIP: loyalty card
+| * 18c8f11 (HEAD -> main) Fix the latte price
 |/  
 * 4267004 Add prices
 * fc345e6 Add the menu
@@ -142,7 +142,7 @@ git log --oneline main
 ```
 
 ```text
-ba2f254 (HEAD -> main) Fix the latte price
+35f851e (HEAD -> main) Fix the latte price
 4267004 Add prices
 fc345e6 Add the menu
 d6df412 Add README
@@ -171,10 +171,10 @@ git log --oneline --graph feature-a feature-b main
 ```
 
 ```text
-* ee13942 (feature-a) Feature A
-| * 42d7e55 (HEAD -> feature-b) Feature B
+* 5ae7060 (feature-a) Feature A
+| * 6d0e1b3 (HEAD -> feature-b) Feature B
 |/  
-* ba2f254 (main) Fix the latte price
+* 18c8f11 (main) Fix the latte price
 * 4267004 Add prices
 * fc345e6 Add the menu
 * d6df412 Add README

@@ -126,8 +126,8 @@ git log --oneline -1 origin/main
 
 ```text
 From ~/git-practice/lesson-37/server/cafe
-   4267004..958330b  main       -> origin/main
-958330b (origin/main, origin/HEAD) Add opening hours
+   4267004..ee8ab62  main       -> origin/main
+ee8ab62 (origin/main, origin/HEAD) Add opening hours
 ```
 
 ## Real-world example
@@ -150,8 +150,8 @@ git rev-parse origin/main
 ```
 
 ```text
-958330b4325970f21538eb43bc187658891a6c0c	refs/heads/main
-958330b4325970f21538eb43bc187658891a6c0c
+ee8ab62f3196c5eabc42d26afcb7e7000db73ab8	refs/heads/main
+ee8ab62f3196c5eabc42d26afcb7e7000db73ab8
 ```
 
 `git ls-remote` asks the server directly without updating anything locally.

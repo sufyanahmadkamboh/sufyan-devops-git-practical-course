@@ -18,9 +18,9 @@ git log --oneline --graph -3 main feature-mocha
 ```
 
 ```text
-* ff25001 (feature-mocha) Price mocha
-* 41fa26f (HEAD -> main, feature-chai) Add chai
-*   6f50e27 Merge branch 'feature-hours'
+* 8109406 (feature-mocha) Price mocha
+* 45d6d00 (HEAD -> main, feature-chai) Add chai
+*   d986fad Merge branch 'feature-hours'
 |\  
 ```
 

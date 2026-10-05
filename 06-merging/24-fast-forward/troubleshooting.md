@@ -36,10 +36,10 @@ git log --oneline --graph main feature-mocha | head -5
 ```
 
 ```text
-* 788d6c8 (feature-mocha) Price mocha
-| * 41fa26f (HEAD -> main, feature-chai) Add chai
+* 45d6d00 (HEAD -> main, feature-chai) Add chai
+| * 97d7b53 (feature-mocha) Price mocha
 |/  
-*   6f50e27 Merge branch 'feature-hours'
+*   d986fad Merge branch 'feature-hours'
 |\  
 ```
 
@@ -56,7 +56,7 @@ git merge --ff-only feature-mocha
 ```
 
 ```text
-Updating 41fa26f..ff25001
+Updating 45d6d00..8109406
 Fast-forward
  prices.txt | 1 +
  1 file changed, 1 insertion(+)

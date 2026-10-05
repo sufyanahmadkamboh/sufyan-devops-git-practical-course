@@ -30,11 +30,11 @@ git log --oneline -1
 ```
 
 ```text
-Updating bb67674..b328274
+Updating bb67674..8cb4ac7
 Fast-forward
  README.md | 2 ++
  1 file changed, 2 insertions(+)
-b328274 (HEAD -> feature-tea, main) Merge branch 'feature-tea'
+8cb4ac7 (HEAD -> feature-tea, main) Merge branch 'feature-tea'
 ```
 
 `feature-tea` now has `main`'s work too. (It was a fast-forward: lesson 24.)

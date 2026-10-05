@@ -42,10 +42,10 @@ git log --oneline -3
 
 ```text
 To ~/git-practice/lesson-42/server/cafe.git
-   49d8dcb..3bd3ab8  main -> main
-3bd3ab8 (HEAD -> main, origin/main, origin/HEAD) Espresso 2.60
-49d8dcb Add mocha
-986e4d7 Add green tea
+   c234723..3f3ebb8  main -> main
+3f3ebb8 (HEAD -> main, origin/main, origin/HEAD) Espresso 2.60
+c234723 Add mocha
+d4540f4 Add green tea
 ```
 
 Both commits are on the server: Grace's, then Ada's on top.

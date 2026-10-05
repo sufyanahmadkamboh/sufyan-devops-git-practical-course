@@ -10,7 +10,7 @@ A typo in the repository name when adding the remote:
 ```bash
 me=$(gh api user --jq .login)
 git remote set-url origin "https://github.com/$me/git-practise-cafe.git"
-git push 2>&1
+git ls-remote origin 2>&1
 ```
 
 ```text
@@ -32,9 +32,9 @@ git remote get-url origin
 ```bash
 me=$(gh api user --jq .login)
 git remote set-url origin "https://github.com/$me/git-practice-cafe.git"
-git push 2>&1
+git ls-remote --heads origin
 ```
 
 ```text
-Everything up-to-date
+070373402250336f9b54949196ebde41049c58e8	refs/heads/main
 ```

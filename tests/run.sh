@@ -15,6 +15,12 @@ mkdir -p "$lab_home"
 if pwd -W > /dev/null 2>&1; then masked=$(cd "$lab_home" && pwd -W); else masked=$lab_home; fi
 
 export HOME="$lab_home" MDRUN_HOME="$masked" MDRUN_HOME_POSIX="posix:$lab_home"  # the prefix stops MSYS from converting the path
+# the lessons run from a copy of the course inside the sandbox, without .git (see MDRUN_CWD in mdrun.py)
+work="$lab_home/git-practical-course"
+rm -rf "$work" && mkdir -p "$work"
+(cd "$root" && tar --exclude=./.git --exclude=./video --exclude=./tests/out -cf - .) | tar -xf - -C "$work"
+export MDRUN_CWD="posix:$work"  # the prefix stops MSYS from converting the path
+export GIT_CEILING_DIRECTORIES="$(dirname "$lab_home")"  # Git never looks for a repository above the sandbox
 export PATH="$root/tests/shims:$PATH"  # ssh uses the sandbox ~/.ssh
 export GIT_CONFIG_NOSYSTEM=1 GIT_PAGER=cat PAGER=cat GIT_EDITOR=true GIT_TERMINAL_PROMPT=0
 # In a terminal, git log shows branch labels (HEAD -> main); piped into the runner it would not.

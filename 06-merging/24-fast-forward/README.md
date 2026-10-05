@@ -63,9 +63,9 @@ Merge made by the 'ort' strategy.
  hours.txt | 1 +
  1 file changed, 1 insertion(+)
  create mode 100644 hours.txt
-*   6f50e27 (HEAD -> main) Merge branch 'feature-hours'
+*   d986fad (HEAD -> main) Merge branch 'feature-hours'
 |\  
-| * 7147d6e (feature-hours) Add hours
+| * be5c323 (feature-hours) Add hours
 |/  
 * bb67674 (feature-tea) Add green tea to the menu
 * 4267004 Add prices
@@ -134,10 +134,10 @@ git log --oneline --graph main feature-mocha | head -5
 ```
 
 ```text
-* 788d6c8 (feature-mocha) Price mocha
-| * 41fa26f (HEAD -> main, feature-chai) Add chai
+* 45d6d00 (HEAD -> main, feature-chai) Add chai
+| * 97d7b53 (feature-mocha) Price mocha
 |/  
-*   6f50e27 Merge branch 'feature-hours'
+*   d986fad Merge branch 'feature-hours'
 |\  
 ```
 
@@ -155,7 +155,7 @@ git merge --ff-only feature-mocha
 ```
 
 ```text
-Updating 41fa26f..ff25001
+Updating 45d6d00..8109406
 Fast-forward
  prices.txt | 1 +
  1 file changed, 1 insertion(+)
@@ -183,9 +183,9 @@ git log --oneline --graph -3 main feature-mocha
 ```
 
 ```text
-* ff25001 (feature-mocha) Price mocha
-* 41fa26f (HEAD -> main, feature-chai) Add chai
-*   6f50e27 Merge branch 'feature-hours'
+* 8109406 (feature-mocha) Price mocha
+* 45d6d00 (HEAD -> main, feature-chai) Add chai
+*   d986fad Merge branch 'feature-hours'
 |\  
 ```
 

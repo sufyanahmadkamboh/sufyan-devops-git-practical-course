@@ -43,7 +43,7 @@ git push --dry-run "https://$me:my-account-password@github.com/$me/git-practice-
 
 ```bash
 gh auth setup-git
-git push --dry-run origin main 2>&1
+git push --dry-run origin main:refs/heads/lesson-48-check 2>&1
 ```
 
 ## Practice challenge

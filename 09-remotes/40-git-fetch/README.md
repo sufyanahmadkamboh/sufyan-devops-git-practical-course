@@ -43,7 +43,7 @@ git fetch
 
 ```text
 From ~/git-practice/lesson-40/server/cafe
-   4267004..e075a26  main       -> origin/main
+   4267004..9755f90  main       -> origin/main
 ```
 
 <!-- test: contains=behind 'origin/main' by 2 commits; output -->
@@ -58,8 +58,8 @@ Your branch is behind 'origin/main' by 2 commits, and can be fast-forwarded.
   (use "git pull" to update your local branch)
 
 nothing to commit, working tree clean
-e075a26 (origin/main, origin/HEAD) Price green tea
-524d6d3 Add green tea
+9755f90 (origin/main, origin/HEAD) Price green tea
+0284799 Add green tea
 ```
 
 `main..origin/main` = "commits on `origin/main` that are not on `main`": exactly what a pull would bring in. Review
@@ -192,7 +192,7 @@ echo "outgoing:"; git log --oneline origin/main..main
 ```text
 incoming:
 outgoing:
-0ca2024 (HEAD -> main) Ada's unpushed note
+0f9f559 (HEAD -> main) Ada's unpushed note
 ```
 
 </details>

@@ -37,10 +37,10 @@ git log --oneline -3
 ```
 
 ```text
-[main 215ea0f] Revert "Add mocha"
- Date: Mon Oct 5 03:04:54 2026 +0200
+[main 3df45fb] Revert "Add mocha"
+ Date: Mon Oct 5 03:32:50 2026 +0200
  1 file changed, 1 deletion(-)
-215ea0f (HEAD -> main) Revert "Add mocha"
+3df45fb (HEAD -> main) Revert "Add mocha"
 ecff18a Price mocha
 2c389c0 Add mocha
 ```
@@ -182,7 +182,7 @@ git log --oneline -1
 ```
 
 ```text
-1cdb3a1 (HEAD -> main) Revert the last two commits
+05608e7 (HEAD -> main) Revert the last two commits
 ```
 
 </details>

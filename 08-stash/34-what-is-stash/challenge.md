@@ -19,8 +19,8 @@ git stash pop -q
 ```
 
 ```text
-b772b00c744a1737f6368305820a13d2af328644 refs/stash
-b772b00 (refs/stash) WIP on main: 8c1f1e8 Fix the espresso price
+ee1dab5fd68598b43d281c1d9a045001eb9f0c78 refs/stash
+ee1dab5 (refs/stash) WIP on main: c9d93e6 Fix the espresso price
 ```
 
 A stash is a special commit stored under `refs/stash`, a local reference. `git push` sends branches and tags, never

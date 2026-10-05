@@ -182,7 +182,7 @@ git switch -q main
 ```
 
 ```text
-HEAD is now at f4fa504 Add matcha
+HEAD is now at bf2e403 Add matcha
 HEAD detached at refs/heads/feature-tea
 ```
 

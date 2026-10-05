@@ -71,16 +71,17 @@ branch 'main' set up to track 'origin/main'.
 <!-- test: github; contains=4267004; output -->
 ```bash
 git fetch -q
-git branch -vv
-git ls-remote --heads origin
+git log --oneline --reverse origin/main | head -3
 ```
 
 ```text
-* main 4267004 [origin/main] Add prices
-4267004871ae95e12690719f02460f9e3c935cf5	refs/heads/main
+d6df412 Add README
+fc345e6 Add the menu
+4267004 (HEAD -> main) Add prices
 ```
 
-The commit IDs on GitHub are the same as on your computer: it is the same history.
+GitHub's `main` starts with exactly your three commits, with the same IDs: it is the same history. (Later lessons add
+commits on top of them.)
 
 ## Command breakdown
 
@@ -113,7 +114,7 @@ A typo in the repository name when adding the remote:
 ```bash
 me=$(gh api user --jq .login)
 git remote set-url origin "https://github.com/$me/git-practise-cafe.git"
-git push 2>&1
+git ls-remote origin 2>&1
 ```
 
 ```text
@@ -133,15 +134,15 @@ git remote get-url origin
 
 ## Fix
 
-<!-- test: github; contains=Everything up-to-date; output -->
+<!-- test: github; contains=refs/heads/main; output -->
 ```bash
 me=$(gh api user --jq .login)
 git remote set-url origin "https://github.com/$me/git-practice-cafe.git"
-git push 2>&1
+git ls-remote --heads origin
 ```
 
 ```text
-Everything up-to-date
+070373402250336f9b54949196ebde41049c58e8	refs/heads/main
 ```
 
 ## Real-world example
@@ -172,7 +173,7 @@ remote: Create a pull request for 'docs' on GitHub by visiting:
 remote:      https://github.com/sufyanahmadkamboh/git-practice-cafe/pull/new/docs        
 remote: 
 4267004871ae95e12690719f02460f9e3c935cf5	refs/heads/docs
-4267004871ae95e12690719f02460f9e3c935cf5	refs/heads/main
+070373402250336f9b54949196ebde41049c58e8	refs/heads/main
 ```
 
 The last line deletes the branch on GitHub again, to keep the practice repository tidy.

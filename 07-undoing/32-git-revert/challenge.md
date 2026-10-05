@@ -18,7 +18,7 @@ git log --oneline -1
 ```
 
 ```text
-1cdb3a1 (HEAD -> main) Revert the last two commits
+05608e7 (HEAD -> main) Revert the last two commits
 ```
 
 </details>

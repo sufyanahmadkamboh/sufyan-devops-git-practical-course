@@ -57,7 +57,7 @@ cat menu.txt README.md
 ```
 
 ```text
-*   b328274 (HEAD -> main) Merge branch 'feature-tea'
+*   8cb4ac7 (HEAD -> main) Merge branch 'feature-tea'
 |\  
 | * bb67674 (feature-tea) Add green tea to the menu
 * | f40d080 Add opening hours
@@ -85,7 +85,7 @@ git log -1 --format='%h parents: %p'
 ```
 
 ```text
-b328274 parents: f40d080 bb67674
+8cb4ac7 parents: f40d080 bb67674
 ```
 
 ## Command breakdown
@@ -140,11 +140,11 @@ git log --oneline -1
 ```
 
 ```text
-Updating bb67674..b328274
+Updating bb67674..8cb4ac7
 Fast-forward
  README.md | 2 ++
  1 file changed, 2 insertions(+)
-b328274 (HEAD -> feature-tea, main) Merge branch 'feature-tea'
+8cb4ac7 (HEAD -> feature-tea, main) Merge branch 'feature-tea'
 ```
 
 `feature-tea` now has `main`'s work too. (It was a fast-forward: lesson 24.)
@@ -176,12 +176,12 @@ git log --oneline --graph -6
 ```
 
 ```text
-*   c0f8604 (HEAD -> main) Merge branch 'b'
+*   febf353 (HEAD -> main) Merge branch 'b'
 |\  
-| * 035eb43 (b) Add b
-* | a18d378 (a) Add a
+| * fe4994f (b) Add b
+* | 5c7bb5e (a) Add a
 |/  
-*   b328274 (feature-tea) Merge branch 'feature-tea'
+*   8cb4ac7 (feature-tea) Merge branch 'feature-tea'
 |\  
 | * bb67674 Add green tea to the menu
 * | f40d080 Add opening hours

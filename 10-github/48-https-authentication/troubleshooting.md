@@ -30,12 +30,13 @@ Log in once with the GitHub CLI (`gh auth login`, done in lesson 45) and connect
 
 ```bash
 gh auth setup-git
-git push --dry-run origin main 2>&1
+git push --dry-run origin main:refs/heads/lesson-48-check 2>&1
 ```
 
 ```text
-Everything up-to-date
+To https://github.com/sufyanahmadkamboh/git-practice-cafe.git
+ * [new branch]      main -> lesson-48-check
 ```
 
-`Everything up-to-date`: Git authenticated (with gh's token), compared the branches and found nothing to push.
-`--dry-run` never changes anything on GitHub.
+Git authenticated (with gh's token) and would create the branch `lesson-48-check`; `--dry-run` stops there and never
+changes anything on GitHub.

@@ -23,12 +23,12 @@ git log --oneline --graph -6
 ```
 
 ```text
-*   c0f8604 (HEAD -> main) Merge branch 'b'
+*   febf353 (HEAD -> main) Merge branch 'b'
 |\  
-| * 035eb43 (b) Add b
-* | a18d378 (a) Add a
+| * fe4994f (b) Add b
+* | 5c7bb5e (a) Add a
 |/  
-*   b328274 (feature-tea) Merge branch 'feature-tea'
+*   8cb4ac7 (feature-tea) Merge branch 'feature-tea'
 |\  
 | * bb67674 Add green tea to the menu
 * | f40d080 Add opening hours

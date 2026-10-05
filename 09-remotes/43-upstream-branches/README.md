@@ -51,7 +51,7 @@ git branch -vv
 To ~/git-practice/lesson-43/server/cafe.git
  * [new branch]      feature-chai -> feature-chai
 branch 'feature-chai' set up to track 'origin/feature-chai'.
-* feature-chai fe231d4 [origin/feature-chai] Add chai
+* feature-chai 6cb7a99 [origin/feature-chai] Add chai
   main         4267004 [origin/main] Add prices
 ```
 
@@ -127,7 +127,7 @@ git branch -vv | grep feature-mocha
 ```
 
 ```text
-* feature-mocha 1851f92 [origin/feature-mocha] Add mocha
+* feature-mocha f2833c1 [origin/feature-mocha] Add mocha
 ```
 
 To never see the error again: `git config --global push.autoSetupRemote true`.

@@ -33,7 +33,7 @@ git log --oneline main
 ```
 
 ```text
-ba2f254 (HEAD -> main) Fix the latte price
+35f851e (HEAD -> main) Fix the latte price
 4267004 Add prices
 fc345e6 Add the menu
 d6df412 Add README

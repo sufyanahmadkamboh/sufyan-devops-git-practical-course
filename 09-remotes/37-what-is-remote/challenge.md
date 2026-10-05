@@ -17,8 +17,8 @@ git rev-parse origin/main
 ```
 
 ```text
-958330b4325970f21538eb43bc187658891a6c0c	refs/heads/main
-958330b4325970f21538eb43bc187658891a6c0c
+ee8ab62f3196c5eabc42d26afcb7e7000db73ab8	refs/heads/main
+ee8ab62f3196c5eabc42d26afcb7e7000db73ab8
 ```
 
 `git ls-remote` asks the server directly without updating anything locally.

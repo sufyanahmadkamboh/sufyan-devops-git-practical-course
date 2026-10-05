@@ -31,9 +31,9 @@ git log --oneline --graph --all
 ```
 
 ```text
-* 63edaa0 (feature) Add chai
-* 85afb8e Add green tea
-| * 21c291f (HEAD -> main) Add hours
+* c8c4b19 (feature) Add chai
+* de65bec Add green tea
+| * 9f920d9 (HEAD -> main) Add hours
 |/  
 * 4267004 Add prices
 * fc345e6 Add the menu

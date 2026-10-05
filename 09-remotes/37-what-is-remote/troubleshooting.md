@@ -31,6 +31,6 @@ git log --oneline -1 origin/main
 
 ```text
 From ~/git-practice/lesson-37/server/cafe
-   4267004..958330b  main       -> origin/main
-958330b (origin/main, origin/HEAD) Add opening hours
+   4267004..ee8ab62  main       -> origin/main
+ee8ab62 (origin/main, origin/HEAD) Add opening hours
 ```

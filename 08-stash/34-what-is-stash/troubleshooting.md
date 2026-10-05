@@ -14,7 +14,7 @@ git status --short
 ```
 
 ```text
-Saved working directory and index state WIP on main: 8c1f1e8 Fix the espresso price
+Saved working directory and index state WIP on main: c9d93e6 Fix the espresso price
 ?? specials.txt
 ```
 
@@ -35,7 +35,7 @@ git stash pop -q
 ```
 
 ```text
-Saved working directory and index state WIP on main: 8c1f1e8 Fix the espresso price
+Saved working directory and index state WIP on main: c9d93e6 Fix the espresso price
 On branch main
 nothing to commit, working tree clean
 ```
