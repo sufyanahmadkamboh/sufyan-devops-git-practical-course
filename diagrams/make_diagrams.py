@@ -65,7 +65,8 @@ class Svg:
     def save(self, name: str):
         svg = (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {self.w} {self.h}" width="{self.w}" '
                f'height="{self.h}" role="img" aria-label="{name}">' + "".join(self.parts) + "</svg>\n")
-        (OUT / f"{name}.svg").write_text(svg, encoding="utf-8")
+        (OUT / f"{name}.svg").write_text(svg, encoding="utf-8", newline="
+")
         print(f"wrote diagrams/{name}.svg")
 
 
