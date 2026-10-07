@@ -1,5 +1,0 @@
-0:00 Lesson 74 · How Git stores data
-2:09 Lesson 75 · Git objects
-4:00 Lesson 76 · HEAD
-5:33 Lesson 77 · Branches are references
-7:01 Lesson 78 · Detached HEAD

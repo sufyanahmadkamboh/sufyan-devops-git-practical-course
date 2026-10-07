@@ -3,3 +3,7 @@ video/out/
 __pycache__/
 *.pyc
 .env
+
+# Social media packages (LinkedIn carousel/post, YouTube upload package): kept locally, not published
+linkedin/
+video/youtube/

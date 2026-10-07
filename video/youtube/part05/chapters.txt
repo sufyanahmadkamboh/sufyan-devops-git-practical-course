@@ -1,6 +1,0 @@
-0:00 Lesson 17 · Why branches exist
-2:00 Lesson 18 · Creating branches
-3:42 Lesson 19 · Switching branches
-5:25 Lesson 20 · Create and switch in one command
-7:02 Lesson 21 · Branch visualization
-8:45 Lesson 22 · Deleting branches

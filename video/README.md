@@ -1,5 +1,7 @@
 # Video series
 
+> The YouTube upload package (`youtube/`) is written by the build and kept locally; it is not published in this repository.
+
 The course as **23 videos**: one per module (01–20), plus the DevOps workflow, the 18 troubleshooting problems and the
 capstone. Each lesson is played as a conversation between a **senior DevOps engineer** and a **junior colleague**
 (two voices): the junior asks, the senior explains with the lesson's diagram, they run the lesson's commands, the

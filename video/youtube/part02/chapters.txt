@@ -1,4 +1,0 @@
-0:00 Lesson 05 · What is a Git repository?
-1:43 Lesson 06 · git init
-3:43 Lesson 07 · The working directory
-5:54 Lesson 08 · git status

@@ -1,5 +1,0 @@
-0:00 Lesson 29 · Undo working directory changes
-1:53 Lesson 30 · Unstage files
-3:40 Lesson 31 · git reset: soft, mixed and hard
-5:40 Lesson 32 · git revert
-7:25 Lesson 33 · git reflog

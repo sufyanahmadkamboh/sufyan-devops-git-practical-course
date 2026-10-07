@@ -1,7 +1,0 @@
-0:00 Lesson 44 · What is GitHub?
-2:12 Lesson 45 · Creating a GitHub repository
-4:21 Lesson 46 · Connecting local Git to GitHub
-6:18 Lesson 47 · GitHub repository structure
-8:33 Lesson 48 · HTTPS authentication
-10:31 Lesson 49 · SSH authentication
-12:07 Lesson 50 · SSH vs HTTPS

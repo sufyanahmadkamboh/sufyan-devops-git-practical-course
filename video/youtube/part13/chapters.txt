@@ -1,7 +1,0 @@
-0:00 Lesson 60 · What is rebase?
-1:52 Lesson 61 · Basic rebase
-3:21 Lesson 62 · Rebase vs merge
-5:04 Lesson 63 · Interactive rebase
-7:24 Lesson 64 · Rebase conflicts
-9:09 Lesson 65 · Aborting a rebase
-10:55 Lesson 66 · Continuing a rebase

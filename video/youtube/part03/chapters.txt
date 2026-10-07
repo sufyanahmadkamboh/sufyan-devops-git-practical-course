@@ -1,4 +1,0 @@
-0:00 Lesson 09 · git add
-2:04 Lesson 10 · The staging area
-3:49 Lesson 11 · git commit
-5:41 Lesson 12 · What actually happens during a commit?

@@ -1,5 +1,0 @@
-0:00 Lesson 55 · Team Git workflow
-2:01 Lesson 56 · Feature branch workflow
-3:38 Lesson 57 · GitHub Flow
-5:15 Lesson 58 · Git Flow
-6:51 Lesson 59 · Branch protection
